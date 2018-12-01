@@ -16,41 +16,15 @@
     <link rel="stylesheet" type="text/css" href="css\bootstrap.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-    <script>
-        // $(document).ready(function() {
-        //     $("#hide").click(function() {
-        //         $("#basic").hide();
-        //     });
-        //     $("#show").click(function() {
-        //         $("#basic").show();
-        //     });
-        // });
-
-        $(document).ready(function() {
-            $("#night").click(function() {
-                $(".frame").css("background-image", "url('../images/backgroundNight.png')");
-                $("#buildings").attr("src", "./images/buildings2.png");
-            });
-
-            $("#day").click(function() {
-                $(".frame").css("background-image", "url('../images/background.png')");
-                $("#buildings").attr("src", "./images/buildings.png");
-            });
-        });
-    </script>
-
 </head>
 
 <body>
 
-
-
+    <!-- Day/Night Buttons -->
     <button id="day">Dia</button>
     <button id="night">Noite</button>
 
-    <!-- Menu Bar -->
+    <!-- Hamburger Menu  -->
     <nav role="navigation">
         <div id="menuToggle">
             <input type="checkbox" />
@@ -74,10 +48,12 @@
         </div>
     </nav>
 
-
-
-
+    <!-- Login Button   -->
+    <div class="topo">
+        <a href="#" class="myButton">Login</a>
     </div>
+
+    <!-- Buildings Navigation   -->
     <div class="frame" id="basic">
         <ul class="slidee">
             <li>
@@ -86,10 +62,7 @@
         </ul>
     </div>
 
-
-
-
-
+    <!-- Footer Menu (Social Networks / Slide Bar )   -->
     <div class="footer">
         <div class="socialNetworks">
             <a class="fa fa-facebook"></a>
@@ -109,15 +82,6 @@
             <div style="clear:both;"></div>
         </div>
     </div>
-
-
-    <div class="topo">
-        <a href="#" class="myButton">Login</a>
-    </div>
-
-
-
-
 
 </body>
 

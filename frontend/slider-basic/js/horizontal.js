@@ -2,7 +2,7 @@ jQuery(function($) {
     'use strict';
 
     // -------------------------------------------------------------
-    //   Basic Navigation
+    //   Basic Navigation - Horizontal Roll
     // -------------------------------------------------------------
     (function() {
 
@@ -41,5 +41,20 @@ jQuery(function($) {
             speed: 8000000000000000000 // Animations speed in milliseconds. 0 to disable animations.
         });
     }());
+});
 
+// -------------------------------------------------------------
+//   Day to Night Changer
+// -------------------------------------------------------------
+
+$(document).ready(function() {
+    $("#night").click(function() {
+        $(".frame").css("background-image", "url('../images/backgroundNight.png')");
+        $("#buildings").attr("src", "./images/buildings2.png");
+    });
+
+    $("#day").click(function() {
+        $(".frame").css("background-image", "url('../images/background.png')");
+        $("#buildings").attr("src", "./images/buildings.png");
+    });
 });
