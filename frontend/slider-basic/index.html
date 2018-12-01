@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Share Portugal</title>
+
+    <!-- Libraries -->
+    <script type="text/javascript" src="js-libs\jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js-libs\sly.min.js"></script>
+    <script type="text/javascript" src="js-libs\bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js\horizontal.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css\style.css">
+    <link rel="stylesheet" type="text/css" href="css\bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script>
+        // $(document).ready(function() {
+        //     $("#hide").click(function() {
+        //         $("#basic").hide();
+        //     });
+        //     $("#show").click(function() {
+        //         $("#basic").show();
+        //     });
+        // });
+
+        $(document).ready(function() {
+            $("#night").click(function() {
+                $(".frame").css("background-image", "url('../images/backgroundNight.png')");
+                $("#buildings").attr("src", "./images/buildings2.png");
+            });
+
+            $("#day").click(function() {
+                $(".frame").css("background-image", "url('../images/background.png')");
+                $("#buildings").attr("src", "./images/buildings.png");
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+
+
+    <button id="day">Dia</button>
+    <button id="night">Noite</button>
+
+    <!-- Menu Bar -->
+    <nav role="navigation">
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu">
+                <a href="#">
+                    <li>Funchal</li>
+                </a>
+                <a href="#">
+                    <li>Lisbon</li>
+                </a>
+                <a href="./signup/signup.html">
+                    <li>Do you want to be a host?</li>
+                </a>
+                <a href="#" target="_blank">
+                    <li>Contact</li>
+                </a>
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+    </div>
+    <div class="frame" id="basic">
+        <ul class="slidee">
+            <li>
+                <img id="buildings" src="./images/buildings.png">
+            </li>
+        </ul>
+    </div>
+
+
+
+
+
+    <div class="footer">
+        <div class="socialNetworks">
+            <a class="fa fa-facebook"></a>
+            <a class="fa fa-twitter"></a>
+            <a class="fa fa-instagram"></a>
+        </div>
+        <div class="textSharingFunchal">
+            <center>
+                <p>Sharing <b>Funchal</b></p>
+            </center>
+        </div>
+        <div class="slideBar">
+            <div class="sly_scrollbar">
+                <div class="sly_handle">
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+
+
+    <div class="topo">
+        <a href="#" class="myButton">Login</a>
+    </div>
+
+
+
+
+
+</body>
+
+</html>
