@@ -49,12 +49,12 @@ jQuery(function($) {
 
 $(document).ready(function() {
     $("#night").click(function() {
-        $(".frame").css("background-image", "url('../images/backgroundNight.png')");
+        $(".frame").css("background-image", "url('../images/backgroundNight.svg')");
         $("#buildings").attr("src", "./images/buildings2.png");
     });
 
     $("#day").click(function() {
-        $(".frame").css("background-image", "url('../images/background.png')");
+        $(".frame").css("background-image", "url('../images/background.svg')");
         $("#buildings").attr("src", "./images/buildings.png");
     });
 });
