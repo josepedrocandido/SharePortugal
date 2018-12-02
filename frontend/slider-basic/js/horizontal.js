@@ -48,13 +48,14 @@ jQuery(function($) {
 // -------------------------------------------------------------
 
 $(document).ready(function() {
-    $("#night").click(function() {
-        $(".frame").css("background-image", "url('../images/backgroundNight.svg')");
+
+    $('.frame').toggleClass('day-background');
+
+    $('#cb1').on('click', function() {
+        $('.frame').toggleClass('day-background');
         $("#buildings").attr("src", "./images/buildings2.png");
+
     });
 
-    $("#day").click(function() {
-        $(".frame").css("background-image", "url('../images/background.svg')");
-        $("#buildings").attr("src", "./images/buildings.png");
-    });
+
 });
