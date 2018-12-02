@@ -51,10 +51,14 @@ $(document).ready(function() {
 
     $('.frame').toggleClass('day-background');
 
-    $('#cb1').on('click', function() {
-        $('.frame').toggleClass('day-background');
-        $("#buildings").attr("src", "./images/buildings2.png");
-
+    $('#cb1').on('change', function() {
+        if (this.checked) {
+            $('.frame').toggleClass('day-background');
+            $("#buildings").attr("src", "./images/buildings2.png");
+        } else {
+            $('.frame').toggleClass('day-background');
+            $("#buildings").attr("src", "./images/buildings.png");
+        }
     });
 
 
