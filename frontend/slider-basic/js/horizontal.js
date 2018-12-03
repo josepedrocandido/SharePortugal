@@ -49,17 +49,55 @@ jQuery(function($) {
 
 $(document).ready(function() {
 
+    var source1 = "audio/nightSound.mp3"
+    var source2 = "audio/daySound.mp3"
+    var audio = document.createElement("audio");
+    //
+    audio.autoplay = true;
+    //
+
+    audio.load()
+    audio.addEventListener("load", function() {
+        audio.play();
+    }, true);
+    audio.src = source2;
+
     $('.frame').toggleClass('day-background');
+
+
+
 
     $('#cb1').on('change', function() {
         if (this.checked) {
             $('.frame').toggleClass('day-background');
             $("#buildings").attr("src", "./images/buildings2.png");
+            $('.sly_handle').toggleClass('slyGreen');
+
+            audio.load()
+            audio.addEventListener("load", function() {
+                audio.play();
+            }, true);
+            audio.src = source1;
+
+
         } else {
+
+            audio.load()
+            audio.addEventListener("load", function() {
+                audio.play();
+            }, true);
+            audio.src = source2;
+
             $('.frame').toggleClass('day-background');
             $("#buildings").attr("src", "./images/buildings.png");
+            $('.sly_handle').toggleClass('slyGreen');
+
         }
     });
 
+    $('.speaker').click(function(e) {
+        e.preventDefault();
 
+        $(this).toggleClass('mute');
+    });
 });

@@ -7,7 +7,8 @@ html {
 
 /* Background and Buildings Navigation */
 
-.frame {
+
+/* .frame {
     width: 100%;
     height: 100%;
     background-image: url('../images/backgroundNight.svg');
@@ -19,13 +20,12 @@ html {
     height: 100%;
     background-image: url('../images/background.svg');
     background-repeat: no-repeat;
-}
+} */
 
 
 /* Responsive */
 
-
-/* .frame {
+.frame {
     background: url('../images/backgroundNight.svg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -43,7 +43,7 @@ html {
     background-size: cover;
     height: 100%;
     overflow: hidden;
-} */
+}
 
 img {
     height: 100%;
@@ -71,15 +71,23 @@ img {
 .sly_scrollbar {
     width: 100%;
     height: 10px;
-    background: #232323d2;
+    background: #545454cf;
     border-radius: 100px;
 }
 
-.sly_scrollbar .sly_handle {
+.sly_handle {
     width: 100px;
     /* overriden if dynamicHandle: 1 */
     height: 100%;
     background: #ED6463;
+    border-radius: 100px;
+}
+
+.sly_handle.slyGreen {
+    width: 100px;
+    /* overriden if dynamicHandle: 1 */
+    height: 100%;
+    background: rgb(90, 124, 199);
     border-radius: 100px;
 }
 
@@ -266,7 +274,7 @@ img {
     height: 26px;
     top: -18px;
     margin: 0 7px;
-    fill: #000000;
+    fill: #ED6463;
 }
 
 #nightIcon {
@@ -275,7 +283,8 @@ img {
     height: 26px;
     top: -18px;
     margin: 0 7px;
-    fill: #000000;
+    fill: rgb(90, 124, 199);
+    ;
 }
 
 #dayIcon,
@@ -325,7 +334,7 @@ img {
     height: 2em;
     position: relative;
     cursor: pointer;
-    border: 2px solid rgb(0, 0, 0);
+    border: 2px solid #545454cf;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -357,14 +366,14 @@ img {
     padding: 2px;
     -webkit-transition: all .2s ease;
     transition: all .2s ease;
-    border: 2px solid rgb(0, 0, 0);
+    border: 2px solid #545454cf;
     border-radius: 2em;
 }
 
 .toggle+.toggle-button:after {
     -webkit-transition: all .2s ease;
     transition: all .2s ease;
-    background: rgb(0, 0, 0);
+    background: #0e0d0df5;
     content: "";
     border-radius: 1em;
 }
