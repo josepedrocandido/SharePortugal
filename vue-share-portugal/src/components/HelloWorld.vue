@@ -1,96 +1,37 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
-  </div>
+<div id="app">
+  <h1>Photos</h1>
+  <img :src="image1.thumbnailUrl" id="img1">
+  <img :src="image2.thumbnailUrl" id="img2">
+  <img :src="image3.thumbnailUrl" id="img3">
+  <img :src="image4.thumbnailUrl" id="img4">
+</div>
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
   name: 'HelloWorld',
+
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      image1: '', image2: '', image3: '', image4: '', 
     }
+  },
+
+    mounted () {
+axios
+  .get('https://jsonplaceholder.typicode.com/photos')
+   .then(response => (
+     this.image1 = response.data[0], 
+     this.image2 = response.data[1],
+     this.image3 = response.data[2],
+     this.image4 = response.data[3]
+     ))
   }
+
 }
 </script>
 
@@ -110,4 +51,10 @@ li {
 a {
   color: #42b983;
 }
+
+#img1 { position: absolute; top: 80px; left: 30px; width: 150px; height: 150px; }
+#img2 { position: absolute; top: 80px; left: 230px; width: 150px; height: 150px; }
+#img3 { position: absolute; top: 80px; left: 430px; width: 150px; height: 150px; }
+#img4 { position: absolute; top: 80px; left: 630px; width: 150px; height: 150px; }
+
 </style>
