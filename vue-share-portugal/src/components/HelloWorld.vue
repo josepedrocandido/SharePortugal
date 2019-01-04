@@ -1,10 +1,11 @@
 <template>
-<div id="app">
-  <h1>Photos</h1>
+<div class="container">
   <img :src="image1.thumbnailUrl" id="img1">
   <img :src="image2.thumbnailUrl" id="img2">
   <img :src="image3.thumbnailUrl" id="img3">
   <img :src="image4.thumbnailUrl" id="img4">
+   <h1>Photos</h1>
+  <router-link :to="{name: 'Photo', params: { id: image2.id }}"><img :src="image2.thumbnailUrl" id="img2"></router-link>
 </div>
 </template>
 
@@ -22,14 +23,13 @@ export default {
   },
 
     mounted () {
-axios
-  .get('https://jsonplaceholder.typicode.com/photos')
-   .then(response => (
-     this.image1 = response.data[0], 
-     this.image2 = response.data[1],
-     this.image3 = response.data[2],
-     this.image4 = response.data[3]
-     ))
+    axios.get('https://jsonplaceholder.typicode.com/photos')
+         .then(response => (
+            this.image1 = response.data[0], 
+            this.image2 = response.data[1],
+            this.image3 = response.data[2],
+            this.image4 = response.data[3]
+            ))
   }
 
 }
