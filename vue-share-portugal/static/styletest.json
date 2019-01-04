@@ -4,12 +4,21 @@
         "name": "Manuel Alves",
         "bio": "Eu sou o Manel, tenho 26 anos e sou informático. Gosto de futebol e jogar playstation. Basicamente sou um boneco no geral e tenho o id:"
     },
-    "stylePart": {
-        "height": "250px",
-        "width": "200px",
-        "position": "absolute",
-        "top": "40%",
-        "right": "10%",
-        "background-color": "blanchedalmond"
+
+    "workshopActivity": {
+        "name": "Fishing Workshop",
+        "photo": "https://i.imgur.com/O44qChX.jpg"
+    },
+
+    "wallColor": {
+        "background-color": "#C9C39B"
+    },
+
+    "tableColor": {
+        "background-color": "brown"
+    },
+
+    "frameImage": {
+        "frameLink": "https://imagens.publicocdn.com/imagens.aspx/805367?tp=UH&db=IMAGENS&type=JPG"
     }
 }

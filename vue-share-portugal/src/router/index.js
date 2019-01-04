@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Photo from '@/components/Photo'
+import Room from '@/components/Room'
 
 Vue.use(Router)
 
@@ -13,9 +13,9 @@ export default new Router({
         },
 
         {
-            path: '/photoid/:id',
-            name: 'Photo',
-            component: Photo
+            path: '/locals/:id',
+            name: 'Room',
+            component: Room
         }
     ]
 })

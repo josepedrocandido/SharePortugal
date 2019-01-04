@@ -5,7 +5,7 @@
   <img :src="image3.thumbnailUrl" id="img3">
   <img :src="image4.thumbnailUrl" id="img4">
    <h1>Photos</h1>
-  <router-link :to="{name: 'Photo', params: { id: image2.id }}"><img :src="image2.thumbnailUrl" id="img2"></router-link>
+  <router-link :to="{name: 'Room', params: { id: image2.id }}"><img :src="image2.thumbnailUrl" id="img2"></router-link>
 </div>
 </template>
 

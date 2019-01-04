@@ -1,12 +1,13 @@
 <template>
-<div class="wall">
+<div class="wall" v-bind:style="wallColor">
   <img src="static/quadroCortica.svg" alt="Computer Man" style="width:650px;height:650px;position:absolute;top:5%;right:5%;">
   <p class="bio"><b>{{ userName }}</b><br>{{ userBio }} {{ this.$route.params.id }}</p>
   <div class="rectangle"></div>
-  <img src="https://imagens.publicocdn.com/imagens.aspx/805367?tp=UH&db=IMAGENS&type=JPG" alt="Smiley face" class="frame">
-  <div class="table"></div>
-  <div v-bind:style="style1"> 
-    <p class="activityDescription"><b>{{ userName }}</b><br>{{ userBio }} {{ this.$route.params.id }}</p> 
+  <img :src="framePath" alt="Smiley face" class="frame">
+  <div class="table" v-bind:style="tableColor"></div>
+  <div class="activity" v-bind:style="style1"> 
+    <p class="activityDescription"><b>{{ workshopName }}</b></p> 
+    <img :src="workshopImageLink" alt="Smiley face" class="workshopImage">
   </div>
   <!-- <h1>Photo Id:</h1>   -->
       
@@ -19,7 +20,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'Photo',
+  name: 'Room',
 
   data () {
 
@@ -28,6 +29,11 @@ export default {
       style1: '',
       userName: '',
       userBio: '',
+      framePath: '',
+      workshopName: '',
+      workshopImageLink: '',
+      wallColor: '',
+      tableColor: ''
     }
 
 
@@ -39,7 +45,12 @@ export default {
          .then(response => (
             this.style1 = response.data.stylePart,
             this.userName = response.data.userInfo.name,
-            this.userBio = response.data.userInfo.bio
+            this.userBio = response.data.userInfo.bio,
+            this.framePath = response.data.frameImage.frameLink,
+            this.workshopName = response.data.workshopActivity.name,
+            this.workshopImageLink = response.data.workshopActivity.photo,
+            this.wallColor = response.data.wallColor,
+            this.tableColor = response.data.tableColor
             ))
   }
 
@@ -48,8 +59,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+
 .wall {
-  background-color: #C9C39B;
+  /* background-color: #C9C39B; */
   width: 100%;
   height: 100%;
   position: absolute;
@@ -86,7 +98,7 @@ export default {
   position: absolute;
   bottom: 0%; 
   left: 0px;
-  background-color: brown;
+  /* background-color: brown; */
 }
 
 .frame {
@@ -101,14 +113,14 @@ export default {
   object-fit: cover;
 }
 
-/* .activity {
+.activity {
   height: 250px;
   width: 200px;
   position: absolute;
   top: 40%; 
   right: 10%;
   background-color: blanchedalmond;
-} */
+}
 
  .activityDescription {
   width:180px;
@@ -117,7 +129,16 @@ export default {
   top: 12%; 
   right: 8%;
   word-wrap: break-word;
-  text-align: left;
+  text-align: center;
   overflow: hidden;
 } 
+
+.workshopImage {
+  height: 75px;
+  width: 150px;
+  position: absolute;
+  top: 50%; 
+  right: 12%;
+  object-fit: cover;
+}
 </style>
