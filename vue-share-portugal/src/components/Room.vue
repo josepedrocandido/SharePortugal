@@ -5,7 +5,7 @@
   <div class="rectangle"></div>
   <img :src="framePath" alt="Smiley face" class="frame">
   <div class="table" v-bind:style="tableColor"></div>
-  <div class="activity" v-bind:style="style1"> 
+  <div v-if="workshop" class="activity" v-bind:style="style1"> 
     <p class="activityDescription"><b>{{ workshopName }}</b></p> 
     <img :src="workshopImageLink" alt="Smiley face" class="workshopImage">
   </div>
@@ -30,6 +30,7 @@ export default {
       userName: '',
       userBio: '',
       framePath: '',
+      workshop: '',
       workshopName: '',
       workshopImageLink: '',
       wallColor: '',
@@ -47,10 +48,11 @@ export default {
             this.userName = response.data.userInfo.name,
             this.userBio = response.data.userInfo.bio,
             this.framePath = response.data.frameImage.frameLink,
-            this.workshopName = response.data.workshopActivity.name,
-            this.workshopImageLink = response.data.workshopActivity.photo,
             this.wallColor = response.data.wallColor,
-            this.tableColor = response.data.tableColor
+            this.tableColor = response.data.tableColor,
+            this.workshop = response.data.workshopActivity,
+            this.workshopName = response.data.workshopActivity.name,
+            this.workshopImageLink = response.data.workshopActivity.photo
             ))
   }
 
