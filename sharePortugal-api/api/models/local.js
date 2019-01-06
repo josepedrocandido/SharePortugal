@@ -11,13 +11,13 @@ const localSchema = mongoose.Schema({
     password: { type: String, required: true },
     _id: mongoose.Schema.Types.ObjectId,
     name: { type: String, required: false },
-    birthday: { type: Date },
+    birthday: { type: Date, required: false },
     citizenship: { type: String, required: false },
     languages: { type: String, required: false },
     citisToShare: { type: String, required: false },
-    job: { type: String },
+    job: { type: String, required: false },
     aboutMe: { type: String, required: false },
-    localImage: { type: String, required: false }
+    localImage: { type: String, required: true }
 
 });
 

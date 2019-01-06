@@ -35,7 +35,7 @@ exports.local_signup = (req, res, next) => {
                             citisToShare: req.body.citisToShare,
                             job: req.body.job,
                             aboutMe: req.body.aboutMe,
-                            // localImage: req.file.path
+                            localImage: req.file.path
                         });
                         local
                             .save()
