@@ -10,8 +10,7 @@ const restaurantRoutes = require('./api/routes/restaurants');
 const activityRoutes = require('./api/routes/activities');
 const articleRoutes = require('./api/routes/articles');
 
-
-
+app.set('secretKey', 'nodeRestApi'); // jwt secret token
 
 mongoose.connect(
     "mongodb://localhost:27017/sharePortugal", {

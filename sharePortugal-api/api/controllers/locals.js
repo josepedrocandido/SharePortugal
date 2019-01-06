@@ -66,21 +66,16 @@ exports.local_login = (req, res, next) => {
                     message: "Auth failed"
                 });
             }
+
             bcrypt.compare(req.body.password, local[0].password, (err, result) => {
                 if (err) {
                     return res.status(401).json({
-                        message: "Auth failed2"
+                        message: "Auth failed"
                     });
                 }
                 if (result) {
-                    const token = jwt.sign({
-                            email: local[0].email,
-                            localId: local[0]._id
-                        },
-                        process.env.JWT_KEY, {
-                            expiresIn: "1h"
-                        }
-                    );
+                    const token = jwt.sign({ email: local[0].email, localId: local[0]._id }, req.app.get('secretKey'), { expiresIn: '1h' });
+
                     return res.status(200).json({
                         message: "Auth successful",
                         token: token
