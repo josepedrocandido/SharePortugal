@@ -32,7 +32,7 @@ exports.local_signup = (req, res, next) => {
                             birthday: req.body.birthday,
                             citizenship: req.body.citizenship,
                             languages: req.body.languages,
-                            citisToShare: req.body.citisToShare,
+                            citiesToShare: req.body.citiesToShare,
                             job: req.body.job,
                             aboutMe: req.body.aboutMe,
                             localImage: req.file.path
@@ -69,7 +69,7 @@ exports.local_login = (req, res, next) => {
             bcrypt.compare(req.body.password, local[0].password, (err, result) => {
                 if (err) {
                     return res.status(401).json({
-                        message: "Auth failed"
+                        message: "Auth failed2"
                     });
                 }
                 if (result) {
@@ -101,7 +101,7 @@ exports.local_login = (req, res, next) => {
 
 exports.locals_get_all = (req, res, next) => {
     Local.find()
-        .select("_id name email birthday citizenship languages citisToShare job aboutMe localImage")
+        .select("_id name email birthday citizenship languages citiesToShare job aboutMe localImage")
         .exec()
         .then(docs => {
 
@@ -142,7 +142,7 @@ exports.local_delete = (req, res, next) => {
 exports.locals_get_local = (req, res, next) => {
     const id = req.params.localId;
     Local.findById(id)
-        .select("_id name email birthday citizenship languages citisToShare job aboutMe localImage")
+        .select("_id name email birthday citizenship languages citiesToShare job aboutMe localImage")
         .exec()
         .then(doc => {
             console.log("From database", doc);

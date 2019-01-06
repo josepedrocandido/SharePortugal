@@ -14,10 +14,11 @@ const localSchema = mongoose.Schema({
     birthday: { type: Date, required: false },
     citizenship: { type: String, required: false },
     languages: { type: String, required: false },
-    citisToShare: { type: String, required: false },
+    citiesToShare: { type: String, required: false },
     job: { type: String, required: false },
     aboutMe: { type: String, required: false },
-    localImage: { type: String, required: true }
+    localImage: { type: String, required: false }
+
 
 });
 

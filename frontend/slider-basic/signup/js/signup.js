@@ -32,7 +32,7 @@ $(function() {
     var $birthday = $('#birthday');
     var $citizenship = $('#citizenship');
     var $languages = $('#languages');
-    var $citisToShare = $('#citisToShare');
+    var $citiesToShare = $('#citiesToShare');
     var $job = $('#job');
     var $aboutMe = $('#aboutMe');
     var $name = $('#name');
@@ -60,7 +60,7 @@ $(function() {
             birthday: $birthday.val(),
             citizenship: $citizenship.val(),
             languages: $languages.val(),
-            citisToShare: $citisToShare.val(),
+            citiesToShare: $citiesToShare.val(),
             job: $job.val(),
             aboutMe: $aboutMe.val(),
             name: $name.val(),
