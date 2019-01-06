@@ -1,6 +1,6 @@
 <template>
 <div>
-<nav role="navigation">
+<!-- <nav role="navigation">
         <div id="menuToggle">
             <input type="checkbox" />
             <span></span>
@@ -16,12 +16,12 @@
                 </a>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 
     <!-- Login Button   -->
-    <div class="topo">
+    <!-- <div class="topo">
         <a href="./signup/signup.html" class="myButton">Login</a>
-    </div>
+    </div> -->
 
     <!-- Buildings Navigation   -->
     <div class="frame" id="basic">
@@ -33,7 +33,7 @@
     </div>
 
     <!-- Footer Menu (Social Networks / Slide Bar )   -->
-    <div class="footer">
+    <!-- <div class="footer">
         <div class="socialNetworks">
             <a class="fa fa-facebook"></a>
             <a class="fa fa-twitter"></a>
@@ -42,7 +42,7 @@
         <div class="textSharingFunchal">
             <p>Sharing <b>Funchal</b></p>
         </div>
-    </div>
+    </div> -->
     <div class="slideBar">
         <div class="sly_scrollbar">
             <div class="sly_handle">
@@ -53,7 +53,7 @@
 
 
     <!-- Day and Night Buttons   -->
-    <div class="button-con">
+    <!-- <div class="button-con">
 
         <label for='cb1'>
 
@@ -77,10 +77,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
             <path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z" />
           </svg>
-
         </label>
-    </div>
-     </div>
+    </div> -->
+</div>
 
 </template>
 
@@ -93,31 +92,19 @@ export default {
 
   data () {
     return {
-      image1: '', image2: '', image3: '', image4: '', 
     }
   },
-
-    mounted () {
-    axios.get('https://jsonplaceholder.typicode.com/photos')
-         .then(response => (
-            this.image1 = response.data[0], 
-            this.image2 = response.data[1],
-            this.image3 = response.data[2],
-            this.image4 = response.data[3]
-            ))
-  }
-
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-body,
+/* body,
 html {
     height: 100%;
     margin: 0;
-}
+} */
 
 
 /* Background and Buildings Navigation */
@@ -217,7 +204,7 @@ img {
 
 /* Hamburger Menu */
 
-#menuToggle {
+/* #menuToggle {
     display: block;
     position: fixed;
     top: 50px;
@@ -225,9 +212,9 @@ img {
     z-index: 1;
     -webkit-user-select: none;
     user-select: none;
-}
+} */
 
-#menuToggle input {
+/* #menuToggle input {
     display: block;
     width: 40px;
     height: 32px;
@@ -236,13 +223,11 @@ img {
     left: -5px;
     cursor: pointer;
     opacity: 0;
-    /* hide this */
     z-index: 2;
-    /* and place it over the hamburger */
     -webkit-touch-callout: none;
-}
+} */
 
-#menuToggle span {
+/* #menuToggle span {
     display: block;
     width: 33px;
     height: 4px;
@@ -253,9 +238,9 @@ img {
     z-index: 1;
     transform-origin: 4px 0px;
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
-}
+} */
 
-#menuToggle span:first-child {
+/* #menuToggle span:first-child {
     transform-origin: 0% 0%;
 }
 
@@ -276,9 +261,9 @@ img {
 
 #menuToggle input:checked~span:nth-last-child(2) {
     transform: rotate(-45deg) translate(0, -1px);
-}
+} */
 
-#menu {
+/* #menu {
     opacity: 0.95;
     position: absolute;
     width: 500px;
@@ -288,27 +273,26 @@ img {
     background: #ededed;
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
-    /* to stop flickering of text in safari */
     transform-origin: 0% 0%;
     transform: translate(-100%, 0);
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
     height: 600px;
     border-radius: 10px;
-}
+} */
 
-#menu li {
+/* #menu li {
     padding: 10px 0;
     font-size: 22px;
 }
 
 #menuToggle input:checked~ul {
     transform: none;
-}
+} */
 
 
 /* Login Button */
 
-.topo {
+/* .topo {
     position: fixed;
     top: 4%;
     left: 89%;
@@ -331,12 +315,12 @@ img {
 
 .myButton:hover {
     background-color: rgba(237, 99, 99, 0.671);
-}
+} */
 
 
 /* Footer Menu (Social Networks / Slide Bar ) */
 
-.footer {
+/* .footer {
     position: fixed;
     top: 95%;
     left: 0%;
@@ -348,7 +332,6 @@ img {
     float: left;
     width: 65%;
     padding-left: 45px;
-    /* border: 1px solid #CEDCEA; */
 }
 
 .fa {
@@ -368,12 +351,12 @@ img {
     left: 89%;
     width: 97%;
     z-index: 1;
-}
+} */
 
 
 /* Day and Night Buttons */
 
-.button-con {
+/* .button-con {
     cursor: default;
     position: absolute;
     top: 91%;
@@ -495,6 +478,6 @@ img {
 
 .toggle:checked+.toggle-button:after {
     left: 50%;
-}
+} */
 
 </style>
