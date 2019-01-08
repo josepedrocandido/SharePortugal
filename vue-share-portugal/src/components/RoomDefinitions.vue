@@ -1,5 +1,7 @@
 <template>
+
   <div class="wall" v-bind:style="wallColor">
+    <p>Welcome to your room user:<b> {{ id }}</b></p>
     <img
       src="static/quadroCortica.svg"
       alt="Computer Man"
@@ -28,7 +30,7 @@
 import axios from "axios";
 
 export default {
-  name: "Room",
+  name: "RoomDefinitions",
 
   data() {
     return {

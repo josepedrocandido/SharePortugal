@@ -78,7 +78,8 @@ exports.local_login = (req, res, next) => {
 
                     return res.status(200).json({
                         message: "Auth successful",
-                        token: token
+                        token: token,
+                        localId: local[0]._id
                     });
                 }
                 res.status(401).json({
@@ -161,6 +162,7 @@ exports.locals_get_local = (req, res, next) => {
 exports.locals_update_local = (req, res, next) => {
     const id = req.params.localId;
     const updateOps = {};
+    console.log(req.body);
     for (const ops of req.body) {
         updateOps[ops.propName] = ops.value;
     }
