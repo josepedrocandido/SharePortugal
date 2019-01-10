@@ -35,14 +35,14 @@ exports.local_signup = (req, res, next) => {
                             citiesToShare: req.body.citiesToShare,
                             job: req.body.job,
                             aboutMe: req.body.aboutMe,
-                            localImage: req.file.path
+                            // localImage: req.file.path
                         });
                         local
                             .save()
                             .then(result => {
                                 console.log(result);
                                 res.status(201).json({
-                                    message: "Local created"
+                                    message: "Account created successfully!"
                                 });
                             })
                             .catch(err => {
@@ -74,12 +74,13 @@ exports.local_login = (req, res, next) => {
                     });
                 }
                 if (result) {
-                    const token = jwt.sign({ email: local[0].email, localId: local[0]._id }, req.app.get('secretKey'), { expiresIn: '1h' });
+                    const token = jwt.sign({ email: local[0].email, localId: local[0]._id, name: local[0].name }, req.app.get('secretKey'), { expiresIn: '1h' });
 
                     return res.status(200).json({
                         message: "Auth successful",
                         token: token,
-                        localId: local[0]._id
+                        localId: local[0]._id,
+                        name: local[0].name
                     });
                 }
                 res.status(401).json({

@@ -1,20 +1,28 @@
 <template>
   <div id="login">
     <h1>Welcome Back!</h1>
-    <input type="text" name="email" v-model="input.email" placeholder="email">
-    <br>
-    <input type="password" name="password" v-model="input.password" placeholder="Password">
-    <br>
+    <div v-if="loginFlag">
+      <input type="text" name="email" v-model="input.email" placeholder="email">
+      <br>
+      <input type="password" name="password" v-model="input.password" placeholder="Password">
+      <br>
+      <button type="button" @click.stop.prevent="login()">Login</button>
 
-    <router-link :to="{name: 'RoomDefinitions', params: { _id: tokenId }}">
-      <button type="button" @click.stop.prevent="login()">Register</button>
-    </router-link>
-    <router-link :to="{name: 'RoomDefinitions', params: { _id: tokenId }}">    </router-link>
-
-
-
-    {{ token }}
-    {{ tokenId }}
+      <p>Don't have and account yet?
+        <br>Just create yours down here and let the journey begins!
+      </p>
+      <router-link :to="{name: 'SignUp'}">
+        <button type="button">Sign Up</button>
+      </router-link>
+      <!-- {{ token }}
+      {{ tokenId }}-->
+    </div>
+    <div v-if="!loginFlag">
+      <p>Hello again, {{ user }}!</p>
+      <router-link :to="{name: 'RoomDefinitions', params: { _id: tokenId }}">
+        <a>Go to my room!</a>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -31,7 +39,9 @@ export default {
         password: ""
       },
       token: "",
-      tokenId: ""
+      tokenId: "",
+      loginFlag: true,
+      user: ""
     };
   },
 
@@ -47,6 +57,8 @@ export default {
           .then(function(response) {
             vm.token = response.data.token;
             vm.tokenId = response.data.localId;
+            vm.user = response.data.name;
+            vm.loginFlag = false;
           });
       } else {
         console.log("A email and password must be present");
@@ -67,3 +79,6 @@ export default {
   border-radius: 30px;
 }
 </style>
+
+
+

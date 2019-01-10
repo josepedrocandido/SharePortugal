@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Room from '@/components/Room'
 import Login from '@/components/Login'
 import RoomDefinitions from '@/components/RoomDefinitions'
+import SignUp from '@/components/SignUp'
+
 
 
 Vue.use(Router)
@@ -31,6 +33,12 @@ export default new Router({
             path: '/local/:_id',
             name: 'RoomDefinitions',
             component: RoomDefinitions
+        },
+
+        {
+            path: '/signUp',
+            name: 'SignUp',
+            component: SignUp
         }
     ]
 })
