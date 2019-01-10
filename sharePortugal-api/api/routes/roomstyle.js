@@ -33,7 +33,7 @@ const upload = multer({
 });
 
 
-router.get("/", RoomstyleController.roomstyle_get_all);
+// router.get("/", RoomstyleController.roomstyle_get_all);
 
 router.post("/", checkAuth, RoomstyleController.create_roomstyle);
 
