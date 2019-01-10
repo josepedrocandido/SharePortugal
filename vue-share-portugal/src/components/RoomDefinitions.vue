@@ -1,7 +1,7 @@
 <template>
 
   <div class="wall" v-bind:style="wallColor">
-    <p>Welcome to your room user:<b> {{ id }}</b></p>
+    <p>Welcome to your room user:<b> {{ token }} <br><br>{{ id }}</b></p>
     <img
       src="static/quadroCortica.svg"
       alt="Computer Man"
@@ -50,6 +50,8 @@ export default {
   mounted() {
     this.baseUrl = "http://localhost:3000/locals/";
     this.id = this.$route.params._id;
+    this.token = this.$route.params.token;
+
 
     axios
       .get("static/styletest.json")

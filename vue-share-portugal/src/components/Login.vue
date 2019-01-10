@@ -19,7 +19,7 @@
     </div>
     <div v-if="!loginFlag">
       <p>Hello again, {{ user }}!</p>
-      <router-link :to="{name: 'RoomDefinitions', params: { _id: tokenId }}">
+      <router-link :to="{name: 'RoomDefinitions', params: { token: token, _id: tokenId }}">
         <a>Go to my room!</a>
       </router-link>
     </div>

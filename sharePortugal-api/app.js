@@ -9,6 +9,8 @@ const placeRoutes = require('./api/routes/places');
 const restaurantRoutes = require('./api/routes/restaurants');
 const activityRoutes = require('./api/routes/activities');
 const articleRoutes = require('./api/routes/articles');
+const roomstyleRoutes = require('./api/routes/roomstyle');
+
 
 app.set('secretKey', 'nodeRestApi'); // jwt secret token
 
@@ -43,6 +45,8 @@ app.use("/places", placeRoutes);
 app.use("/restaurants", restaurantRoutes);
 app.use("/activities", activityRoutes);
 app.use("/articles", articleRoutes);
+app.use("/roomstyle", roomstyleRoutes);
+
 
 
 
