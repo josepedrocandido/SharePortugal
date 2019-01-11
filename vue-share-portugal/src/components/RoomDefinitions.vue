@@ -1,34 +1,41 @@
 <template>
   <div class="wall" v-bind:style="wallColor">
     <p>
-      Welcome to your room user:
-      <b>
-          {{ token }}
-          <br>
-          {{ roomstyleId }}<br>{{ wallColor }}
-          <br>
-          {{ id }}
-        </b>
+      {{ token }}
+      <br> {{ roomstyleId }}
+      <br> {{ id }}
     </p>
-    <img src="static/quadroCortica.svg" alt="Computer Man" style="width:650px;height:650px;position:absolute;top:5%;right:5%;">
+    <img src="static/quadroCortica.svg" alt="activityFrame" style="width:650px;height:650px;position:absolute;top:5%;right:5%;z-index: -1;">
     <p class="bio">
       <b>{{ userName }}</b>
       <br>
       <br> {{ userBio }}
     </p>
-    <div class="rectangle"></div>
-    <img :src="frameImage" alt="Smiley face" class="frame">
-    <div class="table" v-bind:style="tableColor"></div>
     <div v-if="workshop" class="activity" v-bind:style="style1">
       <p class="activityDescription">
         <b>{{ workshopName }}</b>
       </p>
       <img :src="workshopImageLink" alt="Smiley face" class="workshopImage">
     </div>
-    <!-- <h1>Photo Id:</h1>   -->
-    <!-- <img :src="image1.thumbnailUrl" id="img1"> -->
+    <div>
+      <img :src="frameImage" alt="localFrame" class="frame">
+      <button v-on:click="frameDefs = true">Change photo</button>
+    </div>
+    <div class="table" v-bind:style="tableColor"></div>
+    <div class="shelf"></div>
+    <div v-if="frameDefs" class="frameDefs">
+      <input type="text" name="frameLink" v-model="frameLink" placeholder="New link">{{frameLink}}
+      <button type="button" @click.stop.prevent="submitFrameLink()">Submit</button>
+    </div>
   </div>
 </template>
+
+
+
+
+
+
+
 
 <script>
   import axios from "axios";
@@ -46,28 +53,44 @@
         workshopImageLink: "",
         wallColor: "",
         tableColor: "",
-        frameImage: "",
-        roomstyleId: ""
+        roomstyleId: "",
+        frameDefs: false,
+        frameLink: ""
       };
     },
-    created() {
+
+
+  
+    methods: {
+  
+      submitFrameLink() {
+          var vm = this;
+          axios
+            .patch("http://localhost:3000/roomstyle/5c38a3c158409605cab93d3a", [{
+                propName: "frameImage",
+                value: vm.frameLink,
+            }])
+            .then(function(response) {});
+      }
+  
+    },
+
+  created() {
       this.baseUrl = "http://localhost:3000/locals/";
       this.id = this.$route.params._id;
       this.token = this.$route.params.token;
   
       this.roomstyleUrl = "http://localhost:3000/roomstyle/";
   
-      axios
-        .get(this.baseUrl + this.id)
-        .then(
-          response => (
-            (this.userName = response.data.local.name),
-            (this.userBio = response.data.local.aboutMe),
-            // (this.wallColor = response.data.local.wallColor),
-            (this.tableColor = response.data.local.tableColor),
-            (this.frameImage = response.data.local.frameImage)
-          )
-        );
+      axios.get(this.baseUrl + this.id).then(
+        response => (
+          (this.userName = response.data.local.name),
+          (this.userBio = response.data.local.aboutMe),
+          // (this.wallColor = response.data.local.wallColor),
+          (this.tableColor = response.data.local.tableColor),
+          (this.frameImage = response.data.local.frameImage)
+        )
+      );
       var vm = this;
       axios.get("http://localhost:3000/roomstyle").then(function(response) {
         // console.log("Response! " + response);
@@ -77,13 +100,12 @@
           // console.log(res[i].local);
           if (res[i].local === vm.id) {
             // console.log("id found!");
-            vm.roomstyleId = res[i]._id
+            vm.roomstyleId = res[i]._id;
             // console.log(vm.roomstyleId);
           }
         }
         getstyle(vm);
       });
-  
   
       function getstyle(vm) {
         axios
@@ -97,10 +119,7 @@
               (vm.frameImage = response.data.roomstyle.frameImage)
             )
           );
-  
       }
-  
-  
   
       // axios.get(this.roomstyleUrl + roomstyleId).then(function(response) {
       //   // console.log("Response! " + response);
@@ -130,6 +149,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: -10;
   }
   
   .bio {
@@ -146,15 +166,17 @@
     word-wrap: break-word;
     text-align: left;
     overflow: hidden;
+    z-index: -1;
   }
   
-  .rectangle {
+  .shelf {
     height: 30px;
     width: 450px;
     position: absolute;
     top: 28%;
     left: 3%;
     background-color: white;
+    z-index: -1;
   }
   
   .table {
@@ -163,6 +185,7 @@
     position: absolute;
     bottom: 0%;
     left: 0px;
+    z-index: -1;
     /* background-color: brown; */
   }
   
@@ -176,6 +199,7 @@
     border-width: 15px;
     border-color: black;
     object-fit: cover;
+    z-index: -1;
   }
   
   .activity {
@@ -185,6 +209,7 @@
     top: 40%;
     right: 10%;
     background-color: blanchedalmond;
+    z-index: -1;
   }
   
   .activityDescription {
@@ -196,6 +221,7 @@
     word-wrap: break-word;
     text-align: center;
     overflow: hidden;
+    z-index: -1;
   }
   
   .workshopImage {
@@ -205,5 +231,18 @@
     top: 50%;
     right: 12%;
     object-fit: cover;
+    z-index: -1;
+  }
+  
+  .frameDefs {
+    width: 900px;
+    height: 400px;
+    background-color: white;
+    opacity: 0.95;
+    margin: auto;
+    margin-top: 100px;
+    text-align: center;
+    border-radius: 30px;
+    z-index: 2;
   }
 </style>
