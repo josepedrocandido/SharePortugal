@@ -3,29 +3,26 @@ const mongoose = require("mongoose");
 const Roomstyle = require("../models/roomstyle");
 const Local = require("../models/local");
 
-// exports.roomstyle_get_all = (req, res, next) => {
-//     Place.find()
-//         .select("local _id nameOfPlace")
-//         .populate("local", "nameOfPlace")
-//         .exec()
-//         .then(docs => {
-//             res.status(200).json({
-//                 count: docs.length,
-//                 places: docs.map(doc => {
-//                     return {
-//                         _id: doc._id,
-//                         local: doc.local,
-//                         nameOfPlace: doc.nameOfPlace
-//                     };
-//                 })
-//             });
-//         })
-//         .catch(err => {
-//             res.status(500).json({
-//                 error: err
-//             });
-//         });
-// };
+exports.roomstyle_get_all = (req, res, next) => {
+    Roomstyle.find()
+        .select("local _id")
+        .exec()
+        .then(docs => {
+            res.status(200).json({
+                roomstyles: docs.map(doc => {
+                    return {
+                        _id: doc._id,
+                        local: doc.local
+                    };
+                })
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err
+            });
+        });
+};
 
 
 exports.create_roomstyle = (req, res, next) => {
@@ -85,6 +82,8 @@ exports.roomstyles_get_roomstyle = (req, res, next) => {
             });
         });
 };
+
+
 
 
 

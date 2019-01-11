@@ -18,8 +18,6 @@ const localSchema = mongoose.Schema({
     job: { type: String, required: false },
     aboutMe: { type: String, required: false },
     localImage: { type: String, required: false }
-
-
 });
 
 module.exports = mongoose.model('Local', localSchema);

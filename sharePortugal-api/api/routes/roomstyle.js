@@ -33,15 +33,23 @@ const upload = multer({
 });
 
 
-// router.get("/", RoomstyleController.roomstyle_get_all);
+router.get("/", RoomstyleController.roomstyle_get_all);
 
-router.post("/", checkAuth, RoomstyleController.create_roomstyle);
+router.post("/", RoomstyleController.create_roomstyle);
 
 router.get("/:roomstyleId", RoomstyleController.roomstyles_get_roomstyle);
 
-router.patch("/:roomstyleId", checkAuth, RoomstyleController.roomstyles_update_roomstyle);
+router.patch("/:roomstyleId", RoomstyleController.roomstyles_update_roomstyle);
 
-router.delete("/:roomstyleId", checkAuth, RoomstyleController.roomstyles_delete_roomstyle);
+router.delete("/:roomstyleId", RoomstyleController.roomstyles_delete_roomstyle);
+
+// router.post("/", checkAuth, RoomstyleController.create_roomstyle);
+
+// router.get("/:roomstyleId", RoomstyleController.roomstyles_get_roomstyle);
+
+// router.patch("/:roomstyleId", checkAuth, RoomstyleController.roomstyles_update_roomstyle);
+
+// router.delete("/:roomstyleId", checkAuth, RoomstyleController.roomstyles_delete_roomstyle);
 
 
 module.exports = router;
