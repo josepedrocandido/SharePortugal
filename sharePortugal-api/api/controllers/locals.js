@@ -43,7 +43,8 @@ exports.local_signup = (req, res, next) => {
                             .then(result => {
                                 console.log(result);
                                 res.status(201).json({
-                                    message: "Account created successfully!"
+                                    message: "Account created successfully!",
+                                    id: local._id
                                 });
                             })
                             .catch(err => {

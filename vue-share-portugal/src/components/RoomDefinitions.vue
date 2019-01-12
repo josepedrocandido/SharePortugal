@@ -1,5 +1,5 @@
 <template>
-  <div class="wall" v-bind:style="wallColor">
+  <div class="wall" v-bind:style="backgroundCss + wallColor">
     <p>
       {{ token }}
       <br> {{ roomstyleId }}
@@ -21,11 +21,15 @@
       <img :src="frameImage" alt="localFrame" class="frame">
       <button v-on:click="frameDefs = true">Change photo</button>
     </div>
-    <div class="table" v-bind:style="tableColor"></div>
+    <div class="table" v-bind:style="backgroundCss + tableColor"></div>
     <div class="shelf"></div>
     <div v-if="frameDefs" class="frameDefs">
-      <input type="text" name="frameLink" v-model="frameLink" placeholder="New link">{{frameLink}}
+      <input type="text" name="frameLink" v-model="frameLink" placeholder="New link">
       <button type="button" @click.stop.prevent="submitFrameLink()">Submit</button>
+      <div>
+        <swatches v-model="wallColor" />
+      </div>
+  
     </div>
   </div>
 </template>
@@ -39,9 +43,17 @@
 
 <script>
   import axios from "axios";
+  import Swatches from 'vue-swatches'
+  
+  // Import the styles too, globally
+  import "vue-swatches/dist/vue-swatches.min.css"
   
   export default {
     name: "RoomDefinitions",
+    components: {
+      Swatches
+    }, // window.VueSwatches.default - from CDN
+  
   
     data() {
       return {
@@ -52,88 +64,73 @@
         workshopName: "",
         workshopImageLink: "",
         wallColor: "",
+        frameImage: "",
         tableColor: "",
         roomstyleId: "",
         frameDefs: false,
-        frameLink: ""
+        frameLink: "",
+        // color: '#BDC3C8',
+        backgroundCss: "background-color :"
+  
       };
     },
-
-
+  
+  
   
     methods: {
   
+      //Change roomstyle data in database
       submitFrameLink() {
-          var vm = this;
-          axios
-            .patch("http://localhost:3000/roomstyle/5c38a3c158409605cab93d3a", [{
-                propName: "frameImage",
-                value: vm.frameLink,
-            }])
-            .then(function(response) {});
+        var vm = this;
+        axios
+          .patch(this.roomstyleUrl + this.roomstyleId, [{
+            propName: "frameImage",
+            value: vm.frameLink
+          }])
+          .then(function(response) {});
+        window.location.reload()
       }
   
     },
-
-  created() {
+  
+    created() {
       this.baseUrl = "http://localhost:3000/locals/";
+      this.roomstyleUrl = "http://localhost:3000/roomstyle/";
       this.id = this.$route.params._id;
       this.token = this.$route.params.token;
   
-      this.roomstyleUrl = "http://localhost:3000/roomstyle/";
-  
+      //Pull local personal info
       axios.get(this.baseUrl + this.id).then(
         response => (
           (this.userName = response.data.local.name),
-          (this.userBio = response.data.local.aboutMe),
-          // (this.wallColor = response.data.local.wallColor),
-          (this.tableColor = response.data.local.tableColor),
-          (this.frameImage = response.data.local.frameImage)
+          (this.userBio = response.data.local.aboutMe)
         )
       );
+  
+      //Check for roomstyle id for local id
       var vm = this;
-      axios.get("http://localhost:3000/roomstyle").then(function(response) {
-        // console.log("Response! " + response);
-        // console.log(vm.id);
+      axios.get(this.roomstyleUrl).then(function(response) {
         var res = response.data.roomstyles;
         for (var i in response.data.roomstyles) {
-          // console.log(res[i].local);
           if (res[i].local === vm.id) {
-            // console.log("id found!");
             vm.roomstyleId = res[i]._id;
-            // console.log(vm.roomstyleId);
           }
         }
         getstyle(vm);
       });
   
+      //Pull local roomstyle
       function getstyle(vm) {
         axios
           .get(vm.roomstyleUrl + vm.roomstyleId)
           .then(
             response => (
-              console.log(vm.roomstyleUrl + vm.roomstyleId),
-              console.log(response),
               (vm.wallColor = response.data.roomstyle.wallColor),
               (vm.tableColor = response.data.roomstyle.tableColor),
               (vm.frameImage = response.data.roomstyle.frameImage)
             )
           );
       }
-  
-      // axios.get(this.roomstyleUrl + roomstyleId).then(function(response) {
-      //   // console.log("Response! " + response);
-      //   // // console.log(vm.id);
-      //   // var res = response.data.roomstyles;
-      //   // for (var i in response.data.roomstyles) {
-      //   //   // console.log(res[i].local);
-      //   //   if (res[i].local === vm.id) {
-      //   //     // console.log("id found!");
-      //   //     vm.roomstyleId = res[i]._id
-      //   //     console.log(vm.roomstyleId);
-      //   //   }
-      //   // }
-      //    });
     },
   
     mounted() {}

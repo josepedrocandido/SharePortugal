@@ -10,7 +10,7 @@
       <br>
       <button type="button" @click.stop.prevent="signUp()">Sign Up</button>
     </div>
-
+  
     <router-link v-if="message" :to="{name: 'Login'}">
       <p>Account created successfully.
         <br>Please login!
@@ -20,7 +20,7 @@
     </router-link>
     <br>
     <br>
-
+  
     <router-link v-if="messageFlag" :to="{name: 'Login'}">
       <p>Do you already have an account?</p>
       <button type="button">Login</button>
@@ -29,59 +29,77 @@
 </template>
 
 <script>
-import axios from "axios";
-
-export default {
-  name: "SignUp",
-
-  data() {
-    return {
-      input: {
-        email: "",
-        password: "",
-        name: ""
-      },
-      message: "",
-      messageFlag: true
-    };
-  },
-
-  methods: {
-    signUp() {
-      if (
-        this.input.name != "" &&
-        this.input.email != "" &&
-        this.input.password != ""
-      ) {
-        var vm = this;
-        axios
-          .post("http://localhost:3000/locals/signup", {
-            name: this.input.name,
-            email: this.input.email,
-            password: this.input.password
-          })
-          .then(function(response) {
-            vm.message = response.data.message;
-            vm.messageFlag = false;
-          });
-      } else {
-        console.log("A name, email and password must be present");
+  import axios from "axios";
+  
+  export default {
+    name: "SignUp",
+  
+    data() {
+      return {
+        input: {
+          email: "",
+          password: "",
+          name: ""
+        },
+        message: "",
+        messageFlag: true
+      };
+    },
+  
+    methods: {
+  
+      // createRoomStyle(id) {
+  
+      // },
+  
+      signUp() {
+        if (
+          this.input.name != "" &&
+          this.input.email != "" &&
+          this.input.password != ""
+        ) {
+          var vm = this;
+          axios
+            .post("http://localhost:3000/locals/signup", {
+              name: this.input.name,
+              email: this.input.email,
+              password: this.input.password
+            })
+            .then(function(response) {
+              vm.message = response.data.message;
+              vm.messageFlag = false;
+              console.log(response.data.id);
+              // createRoomStyle(response.data.id);
+              axios
+                .post("http://localhost:3000/roomstyle", {
+                  localId: response.data.id,
+                  wallColor: "green",
+                  tableColor: "blue",
+                  frameImage: "http://www.viajantecomum.com/wp-content/uploads/2017/04/praia-de-bacutia-1.jpg"
+                })
+                .then(function(response) {
+                  console.log(response);
+                });
+            });
+        } else {
+          console.log("A name, email and password must be present");
+        }
       }
+  
     }
-  }
-};
+  };
 </script>
 
 <style scoped>
-#login {
-  width: 500px;
-  background-color: rgba(226, 216, 216, 0.541);
-  margin: auto;
-  margin-top: 200px;
-  padding: 20px;
-  text-align: center;
-  border-radius: 30px;
-}
+  #login {
+    width: 500px;
+    background-color: rgba(226, 216, 216, 0.541);
+    margin: auto;
+    margin-top: 200px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 30px;
+  }
 </style>
 
 
