@@ -24,10 +24,12 @@
     <div class="table" v-bind:style="backgroundCss + tableColor"></div>
     <div class="shelf"></div>
     <div v-if="frameDefs" class="frameDefs">
-      <input type="text" name="frameLink" v-model="frameLink" placeholder="New link">
+      <input type="text" name="frameImage" v-model="frameImage" placeholder="New link">
       <button type="button" @click.stop.prevent="submitFrameLink()">Submit</button>
       <div>
         <swatches v-model="wallColor" />
+        <button type="button" @click.stop.prevent="submitWallColorChange()">Submit</button>
+
       </div>
   
     </div>
@@ -85,10 +87,17 @@
         axios
           .patch(this.roomstyleUrl + this.roomstyleId, [{
             propName: "frameImage",
-            value: vm.frameLink
+            value: vm.frameImage
           }])
-          .then(function(response) {});
-        window.location.reload()
+      },
+  
+      submitWallColorChange() {
+        var vm = this;
+        axios
+          .patch(this.roomstyleUrl + this.roomstyleId, [{
+            propName: "wallColor",
+            value: vm.wallColor
+          }])
       }
   
     },

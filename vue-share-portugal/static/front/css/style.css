@@ -25,6 +25,14 @@ html {
 
 /* Responsive */
 
+.test {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+}
+
 .frame {
     background: url('static/front/images/backgroundNight.svg') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -55,6 +63,7 @@ img {
     padding: 0;
     height: 100%;
     list-style: none;
+    z-index: 3;
 }
 
 .frame .slidee li {
@@ -63,6 +72,7 @@ img {
     padding: 0;
     width: auto;
     height: 100%;
+    z-index: 3;
 }
 
 
@@ -73,6 +83,7 @@ img {
     height: 10px;
     background: #545454cf;
     border-radius: 100px;
+    z-index: 4;
 }
 
 .sly_handle {
@@ -81,6 +92,7 @@ img {
     height: 100%;
     background: #ED6463;
     border-radius: 100px;
+    z-index: 4;
 }
 
 .sly_handle.slyGreen {
@@ -89,6 +101,7 @@ img {
     height: 100%;
     background: rgb(90, 124, 199);
     border-radius: 100px;
+    z-index: 4;
 }
 
 .slideBar {
@@ -97,6 +110,7 @@ img {
     top: 96%;
     left: 36%;
     z-index: 10;
+    z-index: 4;
 }
 
 

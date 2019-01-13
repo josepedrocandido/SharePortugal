@@ -5,6 +5,9 @@ import Room from '@/components/Room'
 import Login from '@/components/Login'
 import RoomDefinitions from '@/components/RoomDefinitions'
 import SignUp from '@/components/SignUp'
+import teste from '@/components/teste'
+import PhotosTest from '@/components/PhotosTest'
+
 
 
 
@@ -39,6 +42,17 @@ export default new Router({
             path: '/signUp',
             name: 'SignUp',
             component: SignUp
+        },
+
+        {
+            path: '/teste',
+            name: 'teste',
+            component: teste
+        },
+        {
+            path: '/PhotosTest',
+            name: 'PhotosTest',
+            component: PhotosTest
         }
     ]
 })
