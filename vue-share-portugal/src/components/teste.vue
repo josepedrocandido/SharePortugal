@@ -1,96 +1,49 @@
 <template>
   <div>
-    <VueSlideBar
-      v-model="slider.value"
-      :data="slider.data"
-      :range="slider.range"
-      :labelStyles="{ color: '#4a4a4a', backgroundColor: '#4a4a4a' }"
-      :processStyle="{ backgroundColor: '#d8d8d8' }"
-      @callbackRange="callbackRange">
-      <template slot="tooltip" slot-scope="tooltip">
-        <img src="static/images/rectangle-slider.svg">
-      </template>
-    </VueSlideBar>
-    <h2>Value: {{slider.value}}</h2>
-    <h2>Label: {{rangeValue.label}}</h2>
-    <br><br>
-
-            
-  <div id="app">
-    
-  
-    <button id="left-button" @click="swipeLeft">swipe left</button>
-    <button id="right-button" @click="swipeRight">swipe right</button>
-
-  
+    <div id="div-vue-bar">
+      <VueSlideBar
+        v-model="value2"
+        :min="slider.minValue"
+        :max="slider.maxValue"
+        :processStyle="slider.processStyle"
+        :lineHeight="slider.lineHeight"
+        :speed="0.1"
+        :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }"
+        @dragEnd="dragEnd"
+        @dragStart="dragStart"
+        @input="input">
+        <template slot="tooltip" slot-scope="tooltip">
+          <img id="tooltip" src="/static/images/location.png">
+        </template>
+      </VueSlideBar>
+    </div>
     <div class="center" id="content" ref="content">
       <div class="internal">
-        <img src="https://i.ibb.co/rvJ3Hwp/buildings.png" alt="Smiley face">
-        <img src="https://i.ibb.co/rvJ3Hwp/buildings.png" alt="Smiley face">
+        <img id="img-buildings" src="https://i.ibb.co/rvJ3Hwp/buildings.png">
       </div>
-    </div>
-  
-  
-  </div>
+    </div> 
   </div>
 </template>
 
 <script>
 import VueSlideBar from 'vue-slide-bar'
-
-export default {
-  data () {
-    return {
-      rangeValue: {},
-      slider: {
-        value: 400,
-        data: [
-          400,
-          800,
-          1200,
-          1600,
-          2000,
-          2400,
-          2800
-        ],
-        range: [
-          {
-            label: '1'
+  export default {
+    data () {
+      return {
+        value2: 1,
+        slider: {
+          lineHeight: 15,
+          processStyle: {
+            backgroundColor: 'red'
           },
-          {
-            label: '2',
-            isHide: true
-          },
-          {
-            label: '3'
-          },
-          {
-            label: '4',
-            isHide: true
-          },
-          {
-            label: '5'
-          },
-          {
-            label: '6',
-            isHide: true
-          },
-          {
-            label: '7'
-          }
-        ]
+          minValue: 1,
+          maxValue: 10,
+          isDragging: false
+        },
+        oldValue: 1 // variavel que guarda o valor anterior do scroll
       }
-    }
-  },
-  methods: {
-
-
-          /**
-       * scrollTo - Horizontal Scrolling
-       * @param {(HTMLElement ref)} element - Scroll Container
-       * @param {number} scrollPixels - pixel to scroll
-       * @param {number} duration -  Duration of scrolling animation in millisec
-       */
+    },
+    methods: {
       scrollTo(element, scrollPixels, duration) {
         const scrollPos = element.scrollLeft;
         // Condition to check if scrolling is required
@@ -124,24 +77,50 @@ export default {
           window.requestAnimationFrame(scroll);
         }
       },
-  
-      swipeLeft() {
+      swipe() {
+        // Valor de cada vez que move uma casa
+        var sliderSwipeBase = 200;
+        // variavel das casas
         const content = this.$refs.content;
-        this.scrollTo(content, -400, 800);
+        // Quantas casas moveu
+        var difference = this.value2 - this.oldValue;
+
+        console.log("Quantas casas mexeu? " + difference);
+        if(difference != 0) {
+          var totalToMove;
+          // Mexe para a direita (positivo)
+          if(this.oldValue < this.value2) {
+            totalToMove = Math.abs(sliderSwipeBase * difference);
+          }
+          // Mexe para a esquerda (negativo)
+          else {
+            totalToMove = -Math.abs(sliderSwipeBase * difference);
+          }
+          console.log("... will move " + totalToMove);
+
+          this.scrollTo(content, totalToMove, 600);
+
+          // guarda novo valor no valor anterior para ser usado na iteracao seguinte
+          this.oldValue = this.value2;
+          this.isDragging = false;
+        }
       },
-      swipeRight() {
-        const content = this.$refs.content;
-        this.scrollTo(content, 400, 800);
+      dragEnd (val) {
+        this.swipe();
       },
-          callbackRange (val) {
-      this.rangeValue = val
-      this.scrollTo(content, 400, 800);
+      dragStart(val) {
+        this.isDragging = true;
+      },
+      input(val) {
+        if(!this.isDragging) {
+          this.swipe();
+        }
+      }
     },
-  },
-  components: {
-    VueSlideBar
+    components: {
+      VueSlideBar
+    }
   }
-}
 </script>
 
 <style scoped>
@@ -155,16 +134,14 @@ export default {
     text-align: center;
   }
   
-  
   /* The slider itself */
-  
   .slider {
     -webkit-appearance: none;
     /* Override default CSS styles */
     appearance: none;
     height: 25px;
     /* Specified height */
-    background: #d3d3d3;
+    background: #444242;
     /* Grey background */
     outline: none;
     /* Remove outline */
@@ -175,17 +152,13 @@ export default {
     transition: opacity 0.2s;
   }
   
-  
   /* Mouse-over effects */
-  
   .slider:hover {
     opacity: 1;
     /* Fully shown on mouse-over */
   }
   
-  
   /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-  
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     /* Override default look */
@@ -199,34 +172,6 @@ export default {
     cursor: pointer;
     /* Cursor on hover */
   }
-  
-  .slider::-moz-range-thumb {
-    width: 25px;
-    /* Set a specific slider handle width */
-    height: 25px;
-    /* Slider handle height */
-    background: #4caf50;
-    /* Green background */
-    cursor: pointer;
-    /* Cursor on hover */
-  }
-  
-  
-  /* .left {
-        float: left;
-        width: 30%;
-        height: 200px;
-        border: 1px solid green;
-      } */
-  
-  
-  /* .internal {
-        width: 31.75%;
-        height: 100%;
-        border: 1px solid black;
-        display: inline-block;
-      } */
-  
   .center {
     float: left;
     width: 100%;
@@ -237,15 +182,16 @@ export default {
     white-space: nowrap;
   }
   
-  img {
-    height: 500px;
+  .internal > img {
+    height: 800px;
   }
   
-  
-  /* .right {
-        float: right;
-        width: 30%;
-        height: 200px;
-        border: 1px solid black;
-      } */
+  #div-vue-bar {
+    width: 50%;
+    margin-left: 25%;
+  }
+
+  #tooltip {
+    height: 30px;
+  }
 </style>
