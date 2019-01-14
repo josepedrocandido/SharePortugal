@@ -30,7 +30,7 @@ import VueSlideBar from 'vue-slide-bar'
   export default {
     data () {
       return {
-        value2: 1,
+        value2: 5,
         slider: {
           lineHeight: 15,
           processStyle: {
