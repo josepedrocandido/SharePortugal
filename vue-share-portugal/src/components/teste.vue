@@ -1,46 +1,56 @@
 <template>
   <div>
+    <div class="background"></div>
+
     <div id="div-vue-bar">
-      <VueSlideBar
-        v-model="value2"
-        :min="slider.minValue"
-        :max="slider.maxValue"
-        :processStyle="slider.processStyle"
-        :lineHeight="slider.lineHeight"
-        :speed="0.1"
-        :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }"
-        @dragEnd="dragEnd"
-        @dragStart="dragStart"
-        @input="input">
-        <template slot="tooltip" slot-scope="tooltip">
-          <img id="tooltip" src="/static/images/location.png">
-        </template>
-      </VueSlideBar>
+        <VueSlideBar
+          v-model="value2"
+          :min="slider.minValue"
+          :max="slider.maxValue"
+          :processStyle="slider.processStyle"
+          :lineHeight="slider.lineHeight"
+          :speed="0.1"
+          :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }"
+          @dragEnd="dragEnd"
+          @dragStart="dragStart"
+          @input="input">
+          <template slot="tooltip" slot-scope="tooltip">
+            <img id="tooltip" src="/static/images/location.png">
+          </template>
+        </VueSlideBar>
     </div>
+      
     <div class="center" id="content" ref="content">
-      <div class="internal">
-        <img id="img-buildings" src="https://i.ibb.co/rvJ3Hwp/buildings.png">
-      </div>
-    </div> 
+      <img class="img-buildings" src="/static/Illustrator Files/buildingsDay.png">
+      <!-- <img class="localImage" src="/static/front/images/madeira.png"> -->
+    <router-link :to="{name: 'Room', params: { _id: image1._id }}">
+      <img :src="localhost + image1.localImage" id="img1">
+    </router-link>
+    </div>
+    
+
   </div>
 </template>
 
 <script>
-import VueSlideBar from 'vue-slide-bar'
+import axios from "axios";
+  import VueSlideBar from 'vue-slide-bar'
   export default {
-    data () {
+    data() {
       return {
-        value2: 5,
+        value2: 2,
         slider: {
           lineHeight: 15,
           processStyle: {
             backgroundColor: 'red'
           },
           minValue: 1,
-          maxValue: 10,
+          maxValue: 11,
           isDragging: false
         },
-        oldValue: 1 // variavel que guarda o valor anterior do scroll
+        oldValue: 1, // variavel que guarda o valor anterior do scroll
+        image1: "",
+        localhost: "http://localhost:3000/"
       }
     },
     methods: {
@@ -84,12 +94,12 @@ import VueSlideBar from 'vue-slide-bar'
         const content = this.$refs.content;
         // Quantas casas moveu
         var difference = this.value2 - this.oldValue;
-
+  
         console.log("Quantas casas mexeu? " + difference);
-        if(difference != 0) {
+        if (difference != 0) {
           var totalToMove;
           // Mexe para a direita (positivo)
-          if(this.oldValue < this.value2) {
+          if (this.oldValue < this.value2) {
             totalToMove = Math.abs(sliderSwipeBase * difference);
           }
           // Mexe para a esquerda (negativo)
@@ -97,26 +107,36 @@ import VueSlideBar from 'vue-slide-bar'
             totalToMove = -Math.abs(sliderSwipeBase * difference);
           }
           console.log("... will move " + totalToMove);
-
+  
           this.scrollTo(content, totalToMove, 600);
-
+  
           // guarda novo valor no valor anterior para ser usado na iteracao seguinte
           this.oldValue = this.value2;
           this.isDragging = false;
         }
       },
-      dragEnd (val) {
+      dragEnd(val) {
         this.swipe();
       },
       dragStart(val) {
         this.isDragging = true;
       },
       input(val) {
-        if(!this.isDragging) {
+        if (!this.isDragging) {
           this.swipe();
         }
       }
     },
+
+      mounted() {
+    axios
+      .get("http://localhost:3000/locals")
+      .then(
+        response => (
+          (this.image1 = response.data[0])
+        )
+      );
+  },
     components: {
       VueSlideBar
     }
@@ -124,7 +144,7 @@ import VueSlideBar from 'vue-slide-bar'
 </script>
 
 <style scoped>
- #app {
+  #app {
     text-align: center;
     font-size: 20px;
   }
@@ -132,66 +152,75 @@ import VueSlideBar from 'vue-slide-bar'
   h1 {
     font-family: "Arial";
     text-align: center;
-  }
-  
-  /* The slider itself */
-  .slider {
-    -webkit-appearance: none;
-    /* Override default CSS styles */
-    appearance: none;
-    height: 25px;
-    /* Specified height */
-    background: #444242;
-    /* Grey background */
-    outline: none;
-    /* Remove outline */
-    opacity: 0.7;
-    /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: 0.2s;
-    /* 0.2 seconds transition on hover */
-    transition: opacity 0.2s;
-  }
-  
-  /* Mouse-over effects */
-  .slider:hover {
-    opacity: 1;
-    /* Fully shown on mouse-over */
-  }
-  
-  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    /* Override default look */
-    appearance: none;
-    width: 65px;
-    /* Set a specific slider handle width */
-    height: 25px;
-    /* Slider handle height */
-    background: #4caf50;
-    /* Green background */
-    cursor: pointer;
-    /* Cursor on hover */
-  }
+  } 
+
   .center {
-    float: left;
+    /* float: left; */
     width: 100%;
     height: 100%;
-    border: 1px solid black;
-    margin: 1px;
+    /* border: 1px solid black; */
     overflow: hidden;
-    white-space: nowrap;
+    /* white-space: nowrap; */
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
   }
-  
-  .internal > img {
-    height: 800px;
+
+  .img-buildings {
+    height: 65%;
+    padding-top: 18%
   }
   
   #div-vue-bar {
-    width: 50%;
-    margin-left: 25%;
+    width: 30%;
+    /* margin-left: 50%; */
+    position: absolute;
+    top: 90.5%;
+    left: 35%;
+    z-index: 99999;
+  }
+  
+  #tooltip {
+    height: 70px;
+    position: relative;
+    bottom: 48px;
+  }
+  
+  /* .localImage {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    top: -438px;
+    left: 490px;
+    z-index: 999;
+  } */
+  
+  .background {
+    /* The image used */
+    background-image: url("/static/front/images/background.png");
+    width: 100%;
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: -999;
   }
 
-  #tooltip {
-    height: 30px;
-  }
+  #img1 {
+  /* position: absolute;
+  top: 80px;
+  left: 30px;
+  width: 150px;
+  height: 150px; */
+      height: 4.5%;
+    /* width: 20%; */
+    position: absolute;
+    top: 58%;
+    left: 34.5%;
+    z-index: 999;
+}
 </style>
