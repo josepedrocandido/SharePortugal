@@ -162,6 +162,10 @@ export default {
   left: 689px;
 }
 
+#img1:hover {
+  transform: scale(2);
+}
+
 #div-vue-bar {
   width: 30%;
   position: absolute;
