@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div class="background"></div>
+    <transition name="fade">
+      <div v-if="day" class="background"></div>
+    </transition>
+    <transition name="fade">
+      <div v-if="!day" class="backgroundNight"></div>
+    </transition>
 
     <div id="div-vue-bar">
       <VueSlideBar
@@ -20,19 +25,38 @@
         </template>
       </VueSlideBar>
     </div>
+   
 
     <div class="center" id="content" ref="content">
-      <img class="img-buildings" src="/static/Illustrator Files/buildingsDay.png">
+      <transition name="fade">
+        <img v-if="day" class="img-buildings" src="/static/Illustrator Files/buildingsDay.png">
+      </transition>
+      <transition name="fade">
+        <img v-if="!day" class="img-buildings" src="/static/Illustrator Files/buildingsNight.png">
+      </transition>
       <router-link :to="{name: 'Room', params: { _id: image1._id }}">
         <img :src="localhost + image1.localImage" id="img1">
       </router-link>
     </div>
+
+    <toggle-button id="toggleButton"
+      v-model="day"
+      :value="true"
+      :speed="2000"
+      :color="{checked: 'red', unchecked: 'green'}"
+      :height="17"
+      
+    />
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import VueSlideBar from "vue-slide-bar";
+import Vue from "vue";
+import ToggleButton from "vue-js-toggle-button";
+Vue.use(ToggleButton);
+
 export default {
   data() {
     return {
@@ -48,9 +72,22 @@ export default {
       },
       oldValue: 1, // variavel que guarda o valor anterior do scroll
       image1: "",
-      localhost: "http://localhost:3000/"
+      localhost: "http://localhost:3000/",
+      day: true,
+      teste: ""
     };
   },
+
+  watch: {
+    day(newValue) {
+      if (this.day) {
+        this.slider.processStyle.backgroundColor = "red";
+      } else {
+        this.slider.processStyle.backgroundColor = "green";
+      }
+    }
+  },
+
   methods: {
     scrollTo(element, scrollPixels, duration) {
       const scrollPos = element.scrollLeft;
@@ -174,6 +211,13 @@ export default {
   z-index: 99999;
 }
 
+#toggleButton {
+  position: absolute;
+  top: 95.2%;
+  left: 30%;
+  z-index: 99999;
+}
+
 #tooltip {
   height: 70px;
   position: relative;
@@ -181,15 +225,36 @@ export default {
 }
 
 .background {
-    background-image: url("/static/front/images/background.png");
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: -999;
-  }
+  background-image: url("/static/front/images/background.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -999;
+}
+
+.backgroundNight {
+  background-image: url("/static/front/images/backgroundNight.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -999;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>
