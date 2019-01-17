@@ -1,5 +1,8 @@
 <template>
+
   <div>
+    <button id="loginButton" type="button" class="btn btn-outline-light">Login</button>
+   
     <transition name="fade">
       <div v-if="day" class="background"></div>
     </transition>
@@ -257,4 +260,12 @@ export default {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+
+#loginButton {
+  position: absolute;
+  top: 50px;
+  right: 3%;
+}
+
 </style>
