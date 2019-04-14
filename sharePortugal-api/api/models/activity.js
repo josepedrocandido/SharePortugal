@@ -13,7 +13,7 @@ const activitySchema = mongoose.Schema({
     requirements: { type: String },
     activityImage: { type: String },
     webSite: { type: String },
-    schedule: { type: Number },
+    schedule: { type: String },
     phoneNumber: { type: Number },
     limitOfParticipants: { type: Number },
     info: { type: String }
@@ -21,8 +21,3 @@ const activitySchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('Activity', activitySchema);
-
-
-
-
-

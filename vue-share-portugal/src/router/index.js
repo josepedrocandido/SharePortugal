@@ -7,6 +7,7 @@ import RoomDefinitions from '@/components/RoomDefinitions'
 import SignUp from '@/components/SignUp'
 import teste from '@/components/teste'
 import PhotosTest from '@/components/PhotosTest'
+import PersonalInformation from '@/components/PersonalInformation'
 
 
 
@@ -53,6 +54,11 @@ export default new Router({
             path: '/PhotosTest',
             name: 'PhotosTest',
             component: PhotosTest
+        },
+        {
+            path: '/local/:_id/personalInformation',
+            name: 'PersonalInformation',
+            component: PersonalInformation
         }
     ]
 })

@@ -1,9 +1,36 @@
 <template>
-  <div>
-    <router-link :to="{name: 'Login'}">
-      <button id="loginButton" type="button" class="btn btn-outline-light">Login</button>
-    </router-link>
+<div>
   
+    
+  
+<router-link :to="{name: 'Login'}">
+  <button id="loginButton" type="button" class="btn btn-outline-light">Login</button>
+</router-link>
+  
+<nav role="navigation">
+  <div id="menuToggle">
+    <input type="checkbox" />
+    <span></span>
+    <span></span>
+    <span></span>
+    <ul id="menu">
+      <li>
+      <img class="madeira" src="/static/Illustrator Files/madeira.png">  
+      <div class="madeiraText">
+        <h4>Madeira</h4>
+        <p>Come and meet the local people of Madeira, their stories and their land.</p>
+      </div>
+      </li>
+            <li>
+      <img class="lisbon" src="/static/Illustrator Files/lisbon.png">  
+      <div class="lisbonText">
+        <h4>Lisboa</h4>
+        <p>Come and meet the local people of Lisboa, their stories and their land.</p>
+      </div>
+      </li>
+    </ul>
+  </div>
+</nav>
   
     <transition name="fade">
       <div v-if="day" class="background"></div>
@@ -16,7 +43,7 @@
       <VueSlideBar v-model="value2" :min="slider.minValue" :max="slider.maxValue" :processStyle="slider.processStyle" :lineHeight="slider.lineHeight" :speed="0.1" :tooltipStyles="{ backgroundColor: 'tomato', borderColor: 'tomato' }" @dragEnd="dragEnd" @dragStart="dragStart"
         @input="input">
         <template slot="tooltip" slot-scope="tooltip">
-            <img id="tooltip" src="/static/images/location.png">
+              <img id="tooltip" src="/static/images/location.png">
 </template>
       </VueSlideBar>
     </div>
@@ -28,8 +55,29 @@
       <transition name="fade">
         <img v-if="!day" class="img-buildings" src="/static/Illustrator Files/buildingsNight.png">
       </transition>
-      <router-link :to="{name: 'Room', params: { _id: image1._id }}">
-        <img :src="localhost + image1.localImage" id="img1">
+      <router-link v-if="image1" :to="{name: 'Room', params: { _id: image1._id }}">
+        <img :src="image1.localImage" id="img1">
+      </router-link>
+      <router-link v-if="image2" :to="{name: 'Room', params: { _id: image2._id }}">
+        <img :src="image2.localImage" id="img2">
+      </router-link>
+      <router-link v-if="image3" :to="{name: 'Room', params: { _id: image3._id }}">
+        <img :src="image3.localImage" id="img3">
+      </router-link>
+      <router-link v-if="image4" :to="{name: 'Room', params: { _id: image4._id }}">
+        <img :src="image4.localImage" id="img4">
+      </router-link>
+      <router-link v-if="image5" :to="{name: 'Room', params: { _id: image5._id }}">
+        <img :src="image5.localImage" id="img5">
+      </router-link>
+      <router-link v-if="image6" :to="{name: 'Room', params: { _id: image6._id }}">
+        <img :src="image6.localImage" id="img6">
+      </router-link>
+      <router-link v-if="image7" :to="{name: 'Room', params: { _id: image7._id }}">
+        <img :src="image7.localImage" id="img7">
+      </router-link>
+      <router-link v-if="image8" :to="{name: 'Room', params: { _id: image8._id }}">
+        <img :src="image8.localImage" id="img8">
       </router-link>
     </div>
 
@@ -70,7 +118,15 @@
           isDragging: false
         },
         oldValue: 1, // variavel que guarda o valor anterior do scroll
+        image: [],
         image1: "",
+        image2: "",
+        image3: "",
+        image4: "",
+        image5: "",
+        image6: "",
+        image7: "",
+        image8: "",
         localhost: "http://localhost:3000/",
         day: true,
         teste: ""
@@ -163,9 +219,56 @@
     },
   
     mounted() {
+
+      var vm = this;
       axios
         .get("http://localhost:3000/locals")
-        .then(response => (this.image1 = response.data[0]));
+        .then(function(response) {
+              var res = response.data;
+              for (var i in response.data) {
+                console.log("entrei");
+                if(res[0]) {
+                  vm.image1 = res[0]; 
+                }
+                if(res[1]) {
+                  vm.image2 = res[1]; 
+                }
+                if(res[2]) {
+                  vm.image3 = res[2]; 
+                }
+                if(res[3]) {
+                  vm.image4 = res[3]; 
+                }
+                if(res[4]) {
+                  vm.image5 = res[4]; 
+                }
+                if(res[5]) {
+                  vm.image6 = res[5]; 
+                }
+                if(res[6]) {
+                  vm.image7 = res[6]; 
+                }
+                if(res[7]) {
+                  vm.image8 = res[7]; 
+                }
+                    
+
+              }
+                              // console.log(vm.image[1]);
+
+            });
+
+
+        // .then(response => (
+        //   this.image1 = response.data[0],
+        //   this.image2 = response.data[1],
+        //   this.image3 = response.data[2]
+        //   // this.image4 = response.data[3],
+        //   // this.image5 = response.data[4],
+        //   // this.image6 = response.data[5],
+        //   // this.image7 = response.data[6],
+        //   // this.image8 = response.data[7]
+        //   ));
     },
     components: {
       VueSlideBar
@@ -174,7 +277,8 @@
 </script>
 
 <style scoped>
-  .center {
+
+.center {
     position: fixed;
     width: 100%;
     height: 650px;
@@ -182,6 +286,7 @@
     bottom: 0px;
     left: 0px;
   }
+  
   
   .img-buildings {
     position: absolute;
@@ -199,7 +304,84 @@
   #img1:hover {
     transform: scale(2);
   }
+
+  #img2 {
+    position: absolute;
+    height: 44px;
+    top: 215px;
+    left: 761px;
+  }
   
+  #img2:hover {
+    transform: scale(2);
+  }
+
+  #img3 {
+    position: absolute;
+    height: 44px;
+    top: 215px;
+    left: 887px;
+  }
+  
+  #img3:hover {
+    transform: scale(2);
+  }
+
+  #img4 {
+    position: absolute;
+    height: 44px;
+    top: 215px;
+    left: 1014px;
+  }
+  
+  #img4:hover {
+    transform: scale(2);
+  }
+
+  #img5 {
+    position: absolute;
+    height: 44px;
+    top: 215px;
+    left: 1086px;
+  }
+  
+  #img5:hover {
+    transform: scale(2);
+  }
+  
+  #img6 {
+    position: absolute;
+    height: 44px;
+    top: 222px;
+    left: 1462px;
+  }
+  
+  #img6:hover {
+    transform: scale(2);
+  }
+
+  #img7 {
+    position: absolute;
+    height: 44px;
+    top: 222px;
+    left: 1546px;
+  }
+  
+  #img8:hover {
+    transform: scale(2);
+  }
+
+  #img8 {
+    position: absolute;
+    height: 44px;
+    top: 222px;
+    left: 1630px;
+  }
+  
+  #img7:hover {
+    transform: scale(2);
+  }
+
   #div-vue-bar {
     width: 30%;
     position: absolute;
@@ -249,7 +431,7 @@
   
   .fade-enter-active,
   .fade-leave-active {
-    transition: opacity 5s;
+    transition: opacity 3s;
   }
   
   .fade-enter,
@@ -265,7 +447,7 @@
     top: 50px;
     right: 3%;
   }
-
+  
   .sun {
     position: absolute;
     bottom: 2.5%;
@@ -273,12 +455,187 @@
     width: 35px;
     height: 35px;
   }
-
-    .moon {
+  
+  .moon {
     position: absolute;
     bottom: 2.5%;
-    left: 63.6%;
+    left: 64.2%;
     width: 35px;
     height: 35px;
   }
+
+  .madeira {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  width: 150px;
+  height: 150px;
+  }
+
+    .madeiraText {
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  width: 350px;
+  height: 150px;
+  }
+
+    .lisbon {
+  position: absolute;
+  bottom: 13%;
+  left: 5%;
+  width: 150px;
+  height: 150px;
+  }
+
+      .lisbonText {
+  position: absolute;
+  bottom: 14%;
+  left: 35%;
+  width: 350px;
+  height: 150px;
+  }
+  /*
+ * Made by Erik Terwan
+ * 24th of November 2015
+ * MIT License
+ *
+ *
+ * If you are thinking of using this in
+ * production code, beware of the browser
+ * prefixes.
+ */
+
+
+
+#menuToggle
+{
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 3%;
+  
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: white;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+  position: fixed;
+  top: 3%;
+  left: 1%;
+  width: 600px;
+  height: 500px;
+  /* padding: 50px; */
+  /* padding-top: 125px; */
+  background: #ededed;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  transform-origin: 0% 0%;
+  transform: translate(-200%, 0);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  border-radius: 20px;
+  opacity: 0.9;
+
+}
+
+/* #menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+} */
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+  
 </style>

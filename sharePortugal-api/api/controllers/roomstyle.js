@@ -38,7 +38,8 @@ exports.create_roomstyle = (req, res, next) => {
                 local: req.body.localId,
                 wallColor: req.body.wallColor,
                 tableColor: req.body.tableColor,
-                frameImage: req.body.frameImage
+                frameImage: req.body.frameImage,
+                wallPattern: req.body.wallPattern
             });
             return roomstyle.save();
         })
@@ -49,7 +50,8 @@ exports.create_roomstyle = (req, res, next) => {
                 local: result.local,
                 wallColor: result.wallColor,
                 tableColor: result.tableColor,
-                frameImage: result.frameImage
+                frameImage: result.frameImage,
+                wallPattern: result.wallPattern
             });
         })
         .catch(err => {

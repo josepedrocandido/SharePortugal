@@ -36,13 +36,13 @@ const upload = multer({
 // Handle incoming GET requests to /places
 router.get("/", ActivitiesController.activities_get_all);
 
-router.post("/", checkAuth, ActivitiesController.activities_create_activity);
+router.post("/", ActivitiesController.activities_create_activity);
 
 router.get("/:activityId", ActivitiesController.activities_get_activity);
 
-router.patch("/:activityId", checkAuth, ActivitiesController.activities_update_activity);
+router.patch("/:activityId", ActivitiesController.activities_update_activity);
 
-router.delete("/:activityId", checkAuth, ActivitiesController.activities_delete_activity);
+router.delete("/:activityId", ActivitiesController.activities_delete_activity);
 
 
 module.exports = router;
