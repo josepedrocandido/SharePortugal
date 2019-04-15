@@ -4,6 +4,8 @@
       <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
       <div class="background"></div>
       <div class="roomWall"></div>
+            
+
       
     <img v-on:click="activePhone" src="/static/phoneNotification.png" class="phoneNotification">
       <!-- <div class="padrao"></div> -->
@@ -82,6 +84,7 @@
       <div v-if="picked === 'Two'" class="backgroundRoom2Inverted"></div>
       
     <img v-on:click="activePhone" src="/static/phoneNotification.png" class="phoneNotification2">
+        <div class="vinil"></div>
 
 
       <!-- <div v-if="picked === 'One'" class="padrao"></div>
