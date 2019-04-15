@@ -1,80 +1,151 @@
 <template>
 <div>
-    <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
-    <div class="background"></div>
-    <div class="roomWall"></div>
-    
-   <img v-on:click="activePhone" src="/static/phoneNotification.png" class="phoneNotification">
-    <!-- <div class="padrao"></div> -->
-
-    <div v-if="picked === 'One'" class="padrao"></div>
-    <div v-if="picked === 'Two'" class="padrao2"></div>
-
-    <!-- <transition name="fade">
+  <div v-if="room === 'room1'">
+      <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
+      <div class="background"></div>
+      <div class="roomWall"></div>
       
-    </transition>
-    <transition name="fade">
-      
-    </transition> -->
+    <img v-on:click="activePhone" src="/static/phoneNotification.png" class="phoneNotification">
+      <!-- <div class="padrao"></div> -->
 
-    <router-link :to="{name: 'SharePortugal'}">
-      <img src="/static/Illustrator Files/back.png" class="back">
-    </router-link>
+      <div v-if="picked === 'One'" class="padrao"></div>
+      <div v-if="picked === 'Two'" class="padrao2"></div>
 
-    <div class="frameBorder">
-      <img :src="frameImage" class="frame">
-    </div>
+      <!-- <transition name="fade">
+        
+      </transition>
+      <transition name="fade">
+        
+      </transition> -->
 
-    <div v-on:click="activePhone" class="phoneActivated"></div>
+      <router-link :to="{name: 'SharePortugal'}">
+        <img src="/static/Illustrator Files/back.png" class="back">
+      </router-link>
 
-    <div v-if="this.phoneOn" class="phone">
-      
-      <div id="bio">
-        <div class="bioImage">
-            <img :src="userPicture" alt="Local Picture" class="localPic">
-        </div>
-        <div class="bioText">
-            <p><b>{{ userName }}</b><br>{{ userBio }}</p><br>
-            <a :href="this.mailTo + this.userEmail" class="btn btn-success" role="button" aria-pressed="true">Send Email</a><br><br>
-            <button type="button" class="btn btn-light" v-on:click="activePhone">Close</button>
+      <div class="frameBorder">
+        <img :src="frameImage" class="frame">
+      </div>
 
+      <div v-on:click="activePhone" class="phoneActivated"></div>
+
+      <div v-if="this.phoneOn" class="phone">
+        
+        <div id="bio">
+          <div class="bioImage">
+              <img :src="userPicture" alt="Local Picture" class="localPic">
+          </div>
+          <div class="bioText">
+              <p><b>{{ userName }}</b><br>{{ userBio }}</p><br>
+              <a :href="this.mailTo + this.userEmail" class="btn btn-success" role="button" aria-pressed="true">Send Email</a><br><br>
+              <button type="button" class="btn btn-light" v-on:click="activePhone">Close</button>
+
+          </div>
         </div>
       </div>
-    </div>
 
-    
-
-    <div v-if="this.activityName">
-        <img class="wsPaper" src="/static/workshopPaper.png">
-        <div v-on:click="activeWS" class="workshopDiv">
-          <p><b>{{ this.activityName }}</b></p>
-          <img :src="activityPicture" alt="WS" class="WsPicture"><br><br>   
-         </div>
-    </div>
-
-  <div v-if="this.wsOn" class="ws">
       
-      <div id="wsArea">
-        <div class="wsImage">
-            <img :src="activityPicture" alt="Local Picture" class="localPic">
+
+      <div v-if="flag === '1'">
+          <img class="wsPaper" src="/static/workshopPaper.png">
+          <div v-on:click="activeWS" class="workshopDiv">
+            <p><b>{{ this.activityName }}</b></p>
+            <img :src="activityPicture" alt="WS" class="WsPicture"><br><br>   
+          </div>
+      </div>
+
+    <div v-if="this.wsOn" class="ws">
+        
+        <div id="wsArea">
+          <div class="wsImage">
+              <img :src="activityPicture" alt="Local Picture" class="localPic">
+          </div>
+          <div class="wsText">
+              <p><b>Name: </b>{{ activityName }}<br></p>
+              <p><b>When: </b>{{ activityWhen }}<br></p>
+              <p><b>Where: </b>{{ activityWhere }}<br></p>
+              <p><b>Infos: </b>{{ activityInfo }}<br><br></p>
+              
+              <a :href="this.mailTo + this.userEmail  + this.subject" class="btn btn-success" role="button" aria-pressed="true">Register</a>
+              <button type="button" class="btn btn-dark" v-on:click="activeWS">Close</button>
+
+          </div>
         </div>
-        <div class="wsText">
-            <p><b>Name: </b>{{ activityName }}<br></p>
-            <p><b>When: </b>{{ activityWhen }}<br></p>
-            <p><b>Where: </b>{{ activityWhere }}<br></p>
-            <p><b>Infos: </b>{{ activityInfo }}<br><br></p>
-            
+      </div>
+  </div>
+
+
+
+
+    <div v-if="room === 'room2'">
+      <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
+      <div v-if="picked === 'One'" class="backgroundRoom2"></div>
+      <div v-if="picked === 'Two'" class="backgroundRoom2Inverted"></div>
+      
+    <img v-on:click="activePhone" src="/static/phoneNotification.png" class="phoneNotification2">
+
+
+      <!-- <div v-if="picked === 'One'" class="padrao"></div>
+      <div v-if="picked === 'Two'" class="padrao2"></div> -->
+
+      <router-link :to="{name: 'SharePortugal'}">
+        <img src="/static/Illustrator Files/back.png" class="back">
+      </router-link>
+
+      <div class="frameBorder2">
+        <img :src="frameImage" class="frame2">
+      </div>
+
+      <div v-on:click="activePhone" class="phoneActivated2"></div>
+
+      <div v-if="this.phoneOn" class="phone">
+        
+        <div id="bio">
+          <div class="bioImage">
+              <img :src="userPicture" alt="Local Picture" class="localPic">
+          </div>
+          <div class="bioText">
+              <p><b>{{ userName }}</b><br>{{ userBio }}</p><br>
+              <a :href="this.mailTo + this.userEmail" class="btn btn-success" role="button" aria-pressed="true">Send Email</a><br><br>
+              <button type="button" class="btn btn-light" v-on:click="activePhone">Close</button>
+
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div v-if="flag === '1'">
+        <!-- <img class="wsPaper" src="/static/workshopPaper.png"> -->
+        <div v-on:click="activeWS" class="workshopDiv2">
+          <p>
+            <b>{{ this.activityName }}</b>
+          </p>
+          <img :src="activityPicture" class="WsPicture2">
+          <br>
+          <br> 
+        </div>
+      </div>
+
+    <div v-if="this.wsOn" class="ws2">
+        
+        <div id="wsArea2">
+          <div class="wsImage2">
+              <img :src="activityPicture" alt="Local Picture" class="localPic">
+          </div>
+          <div class="wsText2">
+              <p><b>Name: </b>{{ activityName }}<br></p>
+              <p><b>When: </b>{{ activityWhen }}<br></p>
+              <p><b>Where: </b>{{ activityWhere }}<br></p>
+              <p><b>Infos: </b>{{ activityInfo }}<br><br></p>
+          </div>
+
+          <div class="wsButton2">
             <a :href="this.mailTo + this.userEmail  + this.subject" class="btn btn-success" role="button" aria-pressed="true">Register</a>
             <button type="button" class="btn btn-dark" v-on:click="activeWS">Close</button>
-
+          </div>
         </div>
       </div>
-    </div>
-
-
-
-
-
+  </div>
 </div>
 
 
@@ -187,7 +258,10 @@ export default {
       subject: "?subject=Poncha Workshop Register",
       picked: "",
       phoneOn: false,
-      wsOn: false
+      wsOn: false,
+      room: "",
+      flag: "",
+      tipoPadrao: "padraoNormal"
 
 
     };
@@ -263,7 +337,8 @@ export default {
             (vm.activityPicture = response.data.activity.activityImage),
             (vm.activityWhen = response.data.activity.schedule),
             (vm.activityWhere = response.data.activity.where),
-            (vm.activityInfo = response.data.activity.aboutActivity)
+            (vm.activityInfo = response.data.activity.aboutActivity),
+            (vm.flag = response.data.activity.flag)
 
           )
         );
@@ -293,7 +368,8 @@ export default {
             (vm.wallColor = response.data.roomstyle.wallColor),
             (vm.tableColor = response.data.roomstyle.tableColor),
             (vm.frameImage = response.data.roomstyle.frameImage),
-            (vm.picked = response.data.roomstyle.wallPattern)
+            (vm.picked = response.data.roomstyle.wallPattern),
+            (vm.room = response.data.roomstyle.roomNumber)
           )
         );
     }
@@ -308,6 +384,19 @@ export default {
 
   .ws {
     background-image: url("/static/Paper.png"); 
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 9999999999;
+  }
+
+    .ws2 {
+    background-image: url("/static/board.png"); 
     width: 100%;
     height: 100%;
     background-position: center;
@@ -342,18 +431,19 @@ export default {
     z-index: 999;
 }
 
-
-
-
 .phoneActivated2 {
     position: absolute;
-    top: 0%;
-    left: 0%;
-    width: 15%;
-    height: 22%;
-    background-color: red;
+    top: 47%;
+    right: 50%;
+    width: 10%;
+    height: 20%;
+    /* border: 2px solid red; */
     z-index: 999;
 }
+
+
+
+
 
   .background {
     background-image: url("/static/room.png"); 
@@ -367,6 +457,59 @@ export default {
     left: 0px;
     z-index: -999;
   }
+
+  .backgroundRoom2 {
+  background-image: url("/static/room2.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -999;
+}
+
+.backgroundRoom2WS {
+  background-image: url("/static/room2WS.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -999;
+}
+
+
+.backgroundRoom2Inverted {
+  background-image: url("/static/room2Inverted.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -999;
+}
+
+.vinil {
+  background-image: url("/static/vinis.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+}
 
     .roomWall {
     background-image: url("/static/roomWall.png"); 
@@ -389,8 +532,21 @@ export default {
     z-index: 9999;
   }
 
+    .phoneNotification2 {
+    position: fixed;
+    top: 47%;
+    right: 50%;
+    height: 20%;
+    z-index: 9999;
+  }
+
 
   .phoneNotification:hover {
+  opacity: 0.5;
+  transform: scale(1.3);
+}
+
+  .phoneNotification2:hover {
   opacity: 0.5;
   transform: scale(1.3);
 }
@@ -474,6 +630,17 @@ export default {
   z-index: -1;
 }
 
+.frameBorder2 {
+  position: absolute;
+  top: 3.3%;
+  left: 38%;
+  height: 19.7%;
+  width: 14.2%;
+  /* border: 2px solid red; */
+  object-fit: cover;
+  z-index: -1;
+}
+
 .frameMoldure {
   position: absolute;
   top: 0%;
@@ -492,6 +659,17 @@ export default {
   width: 100%;
   object-fit: cover;
   z-index: -1;
+}
+
+.frame2 {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+  /* border: 2px solid green; */
 }
 
 .activity {
@@ -527,6 +705,11 @@ export default {
 }
 
 .workshopDiv:hover {
+  opacity: 0.5;
+  
+}
+
+.workshopDiv2:hover {
   opacity: 0.5;
   
 }
@@ -681,6 +864,20 @@ text-align: left;
   border-color: red; */
 }
 
+#wsArea2 {
+  position: absolute;
+  width: 30%;
+  height: 43%;
+  top: 30%;
+  right: 5.5%;
+  word-wrap: break-word;
+  text-align: left;
+  overflow: hidden;
+  z-index: 2;
+  /* border-style: solid;
+  border-color: red; */
+}
+
 .bioText  {
   color: white;
   text-align: center;
@@ -699,6 +896,27 @@ text-align: left;
   padding-top: 9%;
 }
 
+.wsText2  {
+  position: absolute;
+  left: 35%;
+  width: 60%;
+  color: black;
+  text-align: left;
+  z-index: 2;
+  /* border-style: solid; 
+  border-color: green; */
+}
+
+.wsButton2  {
+  text-align: center;
+  z-index: 2;
+  /* border-style: solid; 
+  border-color: green; */
+  padding-top: 50%;
+}
+
+
+
 .bioImage  {
   text-align: center;
   z-index: 2;
@@ -712,6 +930,16 @@ text-align: left;
   /* border-style: solid;
   border-color: blue; */
 }
+
+.wsImage2  {
+  position: absolute;
+  text-align: left;
+  z-index: 2;
+  /* border-style: solid;
+  border-color: blue; */
+
+}
+
 .workshopDiv  {
   position: absolute;
   width: 8%;
@@ -722,6 +950,20 @@ text-align: left;
   text-align: center;
   overflow: hidden;
   z-index: 2;
+  /* border-style: solid;
+  border-color: red; */
+}
+
+.workshopDiv2 {
+  position: absolute;
+  width: 9%;
+  height: 11%;
+  top: 37.6%;
+  left: 21.7%;
+  word-wrap: break-word;
+  text-align: center;
+  overflow: hidden;
+  z-index: -1;
   /* border-style: solid;
   border-color: red; */
 }
@@ -752,6 +994,9 @@ text-align: left;
   width: 95px;
 }
 
+.WsPicture2 {
+  width: 50px;
+}
 
 .boardArea {
   position: absolute;
