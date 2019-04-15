@@ -98,9 +98,9 @@
             <b>Type Of Room</b>
           </p>
           <br>
-          <div v-on:click="room1" class="room1"></div>
 
-          <div v-on:click="room2" class="room2"></div>
+          <button type="button" class="btn btn-outline-primary" v-on:click="room1">Type 1</button>
+          <button type="button" class="btn btn-primary">Type 2</button>
 
           <br>
           <br>
@@ -349,9 +349,9 @@
             <b>Type Of Room</b>
           </p>
           <br>
-          <div v-on:click="room1" class="room1"></div>
-
-          <div v-on:click="room2" class="room2"></div>
+          <button type="button" class="btn btn-primary">Type 1</button>
+          <button type="button" class="btn btn-outline-primary" v-on:click="room2">Type 2</button>
+          
           <!-- --------------------------------------------- -->
 
           <br>
