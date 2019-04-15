@@ -1,301 +1,491 @@
 <template>
-<div>
-    <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
-    <div class="background"></div>
-    <div class="roomWall"></div>
-    <!-- <div class="padrao"></div> -->
-
-    <div v-if="picked === 'One'" class="padrao"></div>
-    <div v-if="picked === 'Two'" class="padrao2"></div>
-
-
-    <!-- <transition name="fade">
-      
-    </transition>
-    <transition name="fade">
-      
-    </transition> -->
-
-
-
-    <div class="frameBorder">
-      <img :src="frameImage" class="frame">
-    </div>
-
-     
-
-    <nav role="navigation">
-      <div id="menuToggle">
-        <input type="checkbox">
-        <span></span>
-        <span></span>
-        <span></span>
-        <ul id="menu">
-          <li></li>
-          <li v-on:click="profileAction">
-            <img class="madeira" src="/static/Illustrator Files/profile.png">
-            <h4>Personal Information</h4>
-          </li>
-          <br>
-          <li v-on:click="roomAction">
-            <img class="madeira" src="/static/Illustrator Files/room.png">
-            <h4>Room Customization</h4>
-          </li>
-          <br>
-          <li v-on:click="activityAction">
-            <img class="madeira" src="/static/Illustrator Files/activities.png">
-            <h4>Create Activity</h4>
-          </li>
-        </ul>
+  <div>
+    <div v-if="room === 'room2'">
+      <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
+      <div class="backgroundRoom2"></div>
+      <div class="frameBorder2">
+        <img :src="frameImage" class="frame2">
       </div>
-    </nav>
+      <div class="vinil"></div>
 
-    <div v-if="this.profileDefinitionsOn" id="profileDefinitions">
-      <form>
-        <div class="text-center">
-          <img :src="userPicture" class="profileImage">
+      <nav role="navigation">
+        <div id="menuToggle">
+          <input type="checkbox">
+          <span></span>
+          <span></span>
+          <span></span>
+          <ul id="menu">
+            <li></li>
+            <li v-on:click="profileAction">
+              <img class="madeira" src="/static/Illustrator Files/profile.png">
+              <h4>Personal Information</h4>
+            </li>
+            <br>
+            <li v-on:click="roomAction">
+              <img class="madeira" src="/static/Illustrator Files/room.png">
+              <h4>Room Customization</h4>
+            </li>
+            <br>
+            <li v-on:click="activityAction">
+              <img class="madeira" src="/static/Illustrator Files/activities.png">
+              <h4>Create Activity</h4>
+            </li>
+          </ul>
         </div>
-        <br>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Picture Link</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="userPicture"
-            id="exampleInputEmail1"
-            placeholder="Picture Link"
-          >
-        </div>
-        <hr>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Name</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="userName"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="New FirstName LastName"
-          >
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            v-model="userEmail"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="New email address"
-          >
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Biography</label>
-          <textarea class="form-control" rows="2" v-model="userBio"></textarea>
-        </div>
-        <button
-          type="button"
-          class="btn btn-dark"
-          @click.stop.prevent="closeProfileDefinitions()"
-        >Close</button>
-        
-        <button
-          type="button"
-          class="btn btn-success"
-          @click.stop.prevent="submitProfileDefinitions()"
-        >Submit</button>
-      </form>
-    </div>
+      </nav>
 
-    <div v-if="this.roomDefinitionsOn" id="roomDefinitions">
-      <div class="row-centered">
-        <p class="h5"><b>Wall Color</b></p><br>
-        <swatches v-model="wallColor"/>
-        <br><hr>
-        <!-- <p class="h5"><b>Table Color</b></p>
-        <swatches v-model="tableColor"/>
-        <br><hr><br> -->
+      <div v-if="this.profileDefinitionsOn" id="profileDefinitions">
+        <form>
+          <div class="text-center">
+            <img :src="userPicture" class="profileImage">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Picture Link</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="userPicture"
+              id="exampleInputEmail1"
+              placeholder="Picture Link"
+            >
+          </div>
+          <hr>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="userName"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="New FirstName LastName"
+            >
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              v-model="userEmail"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="New email address"
+            >
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Biography</label>
+            <textarea class="form-control" rows="2" v-model="userBio"></textarea>
+          </div>
+          <button
+            type="button"
+            class="btn btn-dark"
+            @click.stop.prevent="closeProfileDefinitions()"
+          >Close</button>
 
-        <!-- <label class="container">One
-          <input v-model="padrao1" type="radio" checked="checked" name="padrao" value="padrao1">
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Two
-          <input v-model="padrao2" type="radio" name="padrao" value="padrao2">
-          <span class="checkmark"></span>
-        </label> -->
-        <p class="h5"><b>Wall Pattern</b></p><br>
-        <div v-on:click="padrao1" class="padrao1">
+          <button
+            type="button"
+            class="btn btn-success"
+            @click.stop.prevent="submitProfileDefinitions()"
+          >Submit</button>
+        </form>
+      </div>
+
+      <div v-if="this.roomDefinitionsOn" id="roomDefinitions">
+        <div class="row-centered">
+          <!-- --------------------------------------------- -->
+          <p class="h5">
+            <b>Type Of Room</b>
+          </p>
+          <br>
+          <div v-on:click="room1" class="room1"></div>
+
+          <div v-on:click="room2" class="room2"></div>
+          <!-- --------------------------------------------- -->
+
+          <br>
+          <br>
+
+          <p class="h5">
+            <b>Wall Color</b>
+          </p>
+          <br>
+          <swatches v-model="wallColor"/>
+          <br>
+          <hr>
+
+          <p class="h5">
+            <b>Wall Pattern</b>
+          </p>
+          <br>
+          <div v-on:click="padrao1" class="padrao1">
             <img src="/static/padrao2.png">
-        </div>
-        
-        <div v-on:click="padrao2" class="padrao22">
-         <img src="/static/padrao1.png">
-        </div>
-        
-        <br><br>
+          </div>
 
+          <div v-on:click="padrao2" class="padrao22">
+            <img src="/static/padrao1.png">
+          </div>
 
-       
-        <!-- <input type="radio" id="one" value="One" v-model="picked">
-        <label for="one">One</label>
-        <span class="checkmark"></span>
-        <br>
-        <input type="radio" id="two" value="Two" v-model="picked">
-        <label for="two">Two</label>
-        <span class="checkmark"></span>
-        <br> -->
+          <br>
+          <br>
 
-        <!-- <span>Picked: {{ picked }}</span> -->
-
-
-
-        <br><hr><br>
-        <p class="h5"><b>Frame Link</b></p>
-        <input
+          <br>
+          <hr>
+          <br>
+          <p class="h5">
+            <b>Frame Link</b>
+          </p>
+          <input
             type="text"
             class="form-control"
             v-model="frameImage"
             id="exampleInputEmail1"
             placeholder="Picture Link"
-        >
-        <br><hr><br>
+          >
+          <br>
+          <hr>
+          <br>
 
-        <button
-          type="button"
-          class="btn btn-dark"
-          @click.stop.prevent="closeRoomDefinitions()"
-        >Close</button>
-                   <button
-          type="button"
-          class="btn btn-success"
-          @click.stop.prevent="submitRoomChanges()"
-        >Submit</button>
+          <button
+            type="button"
+            class="btn btn-dark"
+            @click.stop.prevent="closeRoomDefinitions()"
+          >Close</button>
+          <button
+            type="button"
+            class="btn btn-success"
+            @click.stop.prevent="submitRoomChanges()"
+          >Submit</button>
+        </div>
+      </div>
+
+      <div v-if="this.activityDefinitionsOn" id="activityDefinitions">
+        <form>
+          <div class="text-center">
+            <img :src="newActivityPicture" class="profileImage">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Activity Picture Link</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="newActivityPicture"
+              id="exampleInputEmail1"
+              placeholder="Picture Link"
+            >
+          </div>
+          <hr>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Activity Name</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="newActivityName"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Activity Name"
+            >
+          </div>
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Where</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="newActivityWhere"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="Where?"
+                >
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="exampleInputEmail1">When</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  v-model="newActivityWhen"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="When?"
+                >
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Activity Info</label>
+            <textarea class="form-control" rows="2" v-model="newActivityInfo"></textarea>
+          </div>
+          <button
+            type="button"
+            class="btn btn-dark"
+            @click.stop.prevent="closeActivityDefinitions()"
+          >Close</button>
+
+          <button
+            type="button"
+            class="btn btn-success"
+            @click.stop.prevent="createActivity()"
+          >Submit</button>
+        </form>
       </div>
     </div>
 
-<!-- -------------------------------------------------- -->
 
-    <div v-if="this.activityDefinitionsOn" id="activityDefinitions">
-      <form>
-        <div class="text-center">
-          <img :src="newActivityPicture" class="profileImage">
+<!-- ------------------------------------------------------------------------------------------------ -->
+    <div v-if="room === 'room1'">
+      <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
+      <div class="background"></div>
+      <div class="roomWall"></div>
+      <!-- <div class="padrao"></div> -->
+
+      <div v-if="picked === 'One'" class="padrao"></div>
+      <div v-if="picked === 'Two'" class="padrao2"></div>
+
+      <div class="frameBorder">
+        <img :src="frameImage" class="frame">
+      </div>
+
+      <nav role="navigation">
+        <div id="menuToggle">
+          <input type="checkbox">
+          <span></span>
+          <span></span>
+          <span></span>
+          <ul id="menu">
+            <li></li>
+            <li v-on:click="profileAction">
+              <img class="madeira" src="/static/Illustrator Files/profile.png">
+              <h4>Personal Information</h4>
+            </li>
+            <br>
+            <li v-on:click="roomAction">
+              <img class="madeira" src="/static/Illustrator Files/room.png">
+              <h4>Room Customization</h4>
+            </li>
+            <br>
+            <li v-on:click="activityAction">
+              <img class="madeira" src="/static/Illustrator Files/activities.png">
+              <h4>Create Activity</h4>
+            </li>
+          </ul>
         </div>
-        <br>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Activity Picture Link</label>
+      </nav>
+
+      <div v-if="this.profileDefinitionsOn" id="profileDefinitions">
+        <form>
+          <div class="text-center">
+            <img :src="userPicture" class="profileImage">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Picture Link</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="userPicture"
+              id="exampleInputEmail1"
+              placeholder="Picture Link"
+            >
+          </div>
+          <hr>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="userName"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="New FirstName LastName"
+            >
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              v-model="userEmail"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="New email address"
+            >
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Biography</label>
+            <textarea class="form-control" rows="2" v-model="userBio"></textarea>
+          </div>
+          <button
+            type="button"
+            class="btn btn-dark"
+            @click.stop.prevent="closeProfileDefinitions()"
+          >Close</button>
+
+          <button
+            type="button"
+            class="btn btn-success"
+            @click.stop.prevent="submitProfileDefinitions()"
+          >Submit</button>
+        </form>
+      </div>
+
+      <div v-if="this.roomDefinitionsOn" id="roomDefinitions">
+        <div class="row-centered">
+          <!-- --------------------------------------------- -->
+          <p class="h5">
+            <b>Type Of Room</b>
+          </p>
+          <br>
+          <div v-on:click="room1" class="room1"></div>
+
+          <div v-on:click="room2" class="room2"></div>
+          <!-- --------------------------------------------- -->
+
+          <br>
+          <br>
+
+          <p class="h5">
+            <b>Wall Color</b>
+          </p>
+          <br>
+          <swatches v-model="wallColor"/>
+          <br>
+          <hr>
+
+          <p class="h5">
+            <b>Wall Pattern</b>
+          </p>
+          <br>
+          <div v-on:click="padrao1" class="padrao1">
+            <img src="/static/padrao2.png">
+          </div>
+
+          <div v-on:click="padrao2" class="padrao22">
+            <img src="/static/padrao1.png">
+          </div>
+
+          <br>
+          <br>
+
+          <br>
+          <hr>
+          <br>
+          <p class="h5">
+            <b>Frame Link</b>
+          </p>
           <input
             type="text"
             class="form-control"
-            v-model="newActivityPicture"
+            v-model="frameImage"
             id="exampleInputEmail1"
             placeholder="Picture Link"
           >
+          <br>
+          <hr>
+          <br>
+
+          <button
+            type="button"
+            class="btn btn-dark"
+            @click.stop.prevent="closeRoomDefinitions()"
+          >Close</button>
+          <button
+            type="button"
+            class="btn btn-success"
+            @click.stop.prevent="submitRoomChanges()"
+          >Submit</button>
         </div>
-        <hr>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Activity Name</label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="newActivityName"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Activity Name"
-          >
-        </div>
-        <div class="row">
-          <div class="col-sm">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Where</label>
-              <input
-                type="text"
-                class="form-control"
-                v-model="newActivityWhere"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="Where?"
-              >
+      </div>
+
+      <div v-if="this.activityDefinitionsOn" id="activityDefinitions">
+        <form>
+          <div class="text-center">
+            <img :src="newActivityPicture" class="profileImage">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Activity Picture Link</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="newActivityPicture"
+              id="exampleInputEmail1"
+              placeholder="Picture Link"
+            >
+          </div>
+          <hr>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Activity Name</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="newActivityName"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Activity Name"
+            >
+          </div>
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Where</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="newActivityWhere"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="Where?"
+                >
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="form-group">
+                <label for="exampleInputEmail1">When</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  v-model="newActivityWhen"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="When?"
+                >
+              </div>
             </div>
           </div>
-          <div class="col-sm">
-            <div class="form-group">
-              <label for="exampleInputEmail1">When</label>
-              <input
-                type="date"
-                class="form-control"
-                v-model="newActivityWhen"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="When?"
-              >
-            </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Activity Info</label>
+            <textarea class="form-control" rows="2" v-model="newActivityInfo"></textarea>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Activity Info</label>
-          <textarea class="form-control" rows="2" v-model="newActivityInfo"></textarea>
-        </div>
-        <button
-          type="button"
-          class="btn btn-dark"
-          @click.stop.prevent="closeActivityDefinitions()"
-        >Close</button>
-        
-        <button
-          type="button"
-          class="btn btn-success"
-          @click.stop.prevent="createActivity()"
-        >Submit</button>
-      </form>
+          <button
+            type="button"
+            class="btn btn-dark"
+            @click.stop.prevent="closeActivityDefinitions()"
+          >Close</button>
+
+          <button
+            type="button"
+            class="btn btn-success"
+            @click.stop.prevent="createActivity()"
+          >Submit</button>
+        </form>
+      </div>
+
+      <div v-if="flag === '1'">
+      <img class="wsPaper" src="/static/workshopPaper.png">
+      <div  class="workshopDiv">
+        <p>
+          <b>{{ this.activityName }}</b>
+        </p>
+        <img :src="activityPicture" class="WsPicture">
+        <br>
+        <br>
+      </div>
+      </div>
     </div>
-
-
-        <img class="wsPaper" src="/static/workshopPaper.png">
-        <div v-if="activityName !== 'Cenas'" class="workshopDiv">
-          <p><b>{{ this.activityName }}</b></p>
-          <img :src="activityPicture" class="WsPicture"><br><br>   
-         </div>
-
-             <!-- <div v-if="this.activityName">
-        <img class="wsPaper" src="/static/workshopPaper.png">
-        <div v-on:click="activeWS" class="workshopDiv">
-          <p><b>{{ this.activityName }}</b></p>
-          <img :src="activityPicture" alt="WS" class="WsPicture"><br><br>   
-         </div>
-    </div> -->
-
-
-    <!-- <div class="table" v-bind:style="backgroundCss + tableColor"></div> -->
-    <!-- <div class="presentationArea">
-      <div class="bioPaper">
-          <img src="/static/Illustrator Files/bioPaper.png" alt="Biography Paper" class="whitePaper">
-          <p id="bio" class="h8"><b>{{ userName }}</b><br>{{ userBio }}</p>
-      </div>
-      <div class="photoPaper">
-      <img src="/static/Illustrator Files/photoPaper.png" alt="Polaroid" class="polaroid">
-      <img :src="userPicture" alt="Local Picture" class="localPic">
-      </div>
-      <div class="boardArea">
-      <img src="/static/Illustrator Files/board.png" alt="Polaroid" class="board">
-      <a v-on:click="activityAction"><p class="boardText">{{ activityName }}</p></a>
-      <p class="boardText"></p>
-      <p class="boardText"></p>
-      <p class="boardText"></p>
-      </div>
-    </div> -->
-      
-
-   
-
-    <!-- <div class="frameBorder">
-      <div class="frameMoldure">
-      <img :src="frameImage" class="frame">
-      </div>
-    </div> -->
-    
-
-
   </div>
 </template>
 
@@ -353,8 +543,9 @@ export default {
       newActivityWhere: "",
       newActivityWhen: "",
       newActivityInfo: "",
-      picked: "One"
-
+      picked: "One",
+      room: "",
+      flag: ""
     };
   },
 
@@ -377,12 +568,18 @@ export default {
       } else this.activityDefinitionsOn = true;
     },
     padrao1: function(event) {
-        this.picked = "One";
+      this.picked = "One";
     },
     padrao2: function(event) {
-        this.picked = "Two";
+      this.picked = "Two";
     },
 
+    room1: function(event) {
+      this.room = "room1";
+    },
+    room2: function(event) {
+      this.room = "room2";
+    },
 
     submitProfileDefinitions() {
       var vm = this;
@@ -448,33 +645,35 @@ export default {
         {
           propName: "wallPattern",
           value: vm.picked
+        },
+        {
+          propName: "roomNumber",
+          value: vm.room
         }
       ]);
       this.roomDefinitionsOn = false;
     },
 
     createActivity() {
-        var vm = this;
-        axios
-          .post("http://localhost:3000/activities", {
-            localId: this.id,
-            nameOfActivity: this.newActivityName,
-            aboutActivity: this.newActivityInfo,
-            activityImage: this.newActivityPicture,
-            schedule: this.newActivityWhen,
-            where: this.newActivityWhere
-          })
-          // .then(function(response) {
-          //   vm.activityName = response.data.nameOfActivity;
-          //   vm.activityInfo = response.data.aboutActivity,
-          //   vm.activityPicture = response.data.activityImage,
-          //   vm.activityWhen = response.data.schedule,
-          //   vm.activityWhere = response.data.where
-          // });           
-          this.activityDefinitionsOn = false;
-          window.location.reload();
-
-          
+      var vm = this;
+      axios.post("http://localhost:3000/activities", {
+        localId: this.id,
+        nameOfActivity: this.newActivityName,
+        aboutActivity: this.newActivityInfo,
+        activityImage: this.newActivityPicture,
+        schedule: this.newActivityWhen,
+        where: this.newActivityWhere,
+        flag: "1"
+      });
+      // .then(function(response) {
+      //   vm.activityName = response.data.nameOfActivity;
+      //   vm.activityInfo = response.data.aboutActivity,
+      //   vm.activityPicture = response.data.activityImage,
+      //   vm.activityWhen = response.data.schedule,
+      //   vm.activityWhere = response.data.where
+      // });
+      this.activityDefinitionsOn = false;
+      window.location.reload();
     }
   },
 
@@ -496,11 +695,11 @@ export default {
           (this.userEmail = response.data.local.email)
         )
       );
-// -----------------------------------------------------------------
+    // -----------------------------------------------------------------
     var vm = this;
     axios.get(this.activityUrl).then(function(response) {
       var res = response.data.activities;
-            console.log(vm.id);
+      console.log(vm.id);
       for (var i in response.data.activities) {
         if (res[i].local._id === vm.id) {
           vm.activityId = res[i]._id;
@@ -509,7 +708,6 @@ export default {
       getActivity(vm);
     });
 
-
     //Pull local roomstyle
     function getActivity(vm) {
       axios
@@ -517,12 +715,13 @@ export default {
         .then(
           response => (
             (vm.activityName = response.data.activity.nameOfActivity),
-            (vm.activityPicture = response.data.activity.activityImage)
+            (vm.activityPicture = response.data.activity.activityImage),
+            (vm.flag = response.data.activity.flag)
           )
         );
     }
 
-// -----------------------------------------------------------------
+    // -----------------------------------------------------------------
 
     //Check for roomstyle id for local id
     var vm = this;
@@ -536,7 +735,6 @@ export default {
       getstyle(vm);
     });
 
-
     //Pull local roomstyle
     function getstyle(vm) {
       axios
@@ -546,7 +744,8 @@ export default {
             (vm.wallColor = response.data.roomstyle.wallColor),
             (vm.tableColor = response.data.roomstyle.tableColor),
             (vm.frameImage = response.data.roomstyle.frameImage),
-            (vm.picked = response.data.roomstyle.wallPattern)
+            (vm.picked = response.data.roomstyle.wallPattern),
+            (vm.room = response.data.roomstyle.roomNumber)
           )
         );
     }
@@ -558,12 +757,41 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-
-.padrao1  {
+.room1 {
   position: absolute;
   width: 18%;
   height: 6%;
-  top: 26%;
+  top: 5%;
+  left: 25%;
+  word-wrap: break-word;
+  text-align: center;
+  overflow: hidden;
+  border-style: solid;
+  border-color: green;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.room2 {
+  position: absolute;
+  width: 18%;
+  height: 6%;
+  top: 5%;
+  left: 50%;
+  word-wrap: break-word;
+  text-align: center;
+  overflow: hidden;
+  border-style: solid;
+  border-color: blue;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.padrao1 {
+  position: absolute;
+  width: 18%;
+  height: 6%;
+  top: 40%;
   left: 25%;
   word-wrap: break-word;
   text-align: center;
@@ -574,11 +802,11 @@ export default {
   margin-top: 20px;
 }
 
-.padrao22  {
+.padrao22 {
   position: absolute;
   width: 18%;
   height: 6%;
-  top: 26%;
+  top: 40%;
   left: 57%;
   word-wrap: break-word;
   text-align: center;
@@ -601,7 +829,7 @@ export default {
   z-index: -1;
 }
 
-.workshopDiv  {
+.workshopDiv {
   position: absolute;
   width: 8%;
   height: 23%;
@@ -653,7 +881,7 @@ export default {
 
 /* When the radio button is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -667,57 +895,82 @@ export default {
 .container input:checked ~ .checkmark:after {
   display: block;
 }
-  .background {
-    background-image: url("/static/room.png"); 
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: -999;
-  }
+.background {
+  background-image: url("/static/room.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -999;
+}
 
-    .roomWall {
-    background-image: url("/static/roomWall.png"); 
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: -9999;
-  }
+.backgroundRoom2 {
+  background-image: url("/static/room2.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -999;
+}
 
-      .padrao {
-    background-image: url("/static/padrao.png"); 
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: -9999;
-  }
+.vinil {
+  background-image: url("/static/vinis.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+}
+.roomWall {
+  background-image: url("/static/roomWall.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -9999;
+}
 
-        .padrao2 {
-    background-image: url("/static/padraoInvert.png"); 
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: -9999;
-  }
+.padrao {
+  background-image: url("/static/padrao.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -9999;
+}
+
+.padrao2 {
+  background-image: url("/static/padraoInvert.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -9999;
+}
 
 .wall {
   /* background-color: #C9C39B; */
@@ -759,6 +1012,17 @@ export default {
   z-index: -1;
 }
 
+.frameBorder2 {
+  position: absolute;
+  top: 3.3%;
+  left: 38%;
+  height: 19.7%;
+  width: 14.2%;
+  /* border: 2px solid red; */
+  object-fit: cover;
+  z-index: -1;
+}
+
 .frameMoldure {
   position: absolute;
   top: 0%;
@@ -777,6 +1041,17 @@ export default {
   width: 100%;
   object-fit: cover;
   z-index: -1;
+}
+
+.frame2 {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+  /* border: 2px solid green; */
 }
 
 .activity {
@@ -1006,8 +1281,7 @@ li:hover {
   height: 125px;
 }
 
-.presentationArea
-{
+.presentationArea {
   position: fixed;
   width: 30%;
   height: 70%;
@@ -1023,7 +1297,6 @@ li:hover {
   left: 0%;
   top: 0%;
   /* border: 1px solid pink; */
-
 }
 
 .whitePaper {
@@ -1033,7 +1306,6 @@ li:hover {
   left: 0%;
   top: 0%;
 }
-
 
 #bio {
   position: absolute;
@@ -1083,7 +1355,6 @@ li:hover {
   width: 460px;
   left: 5%;
   bottom: 0%;
-  
 }
 
 .boardText {
@@ -1098,5 +1369,4 @@ li:hover {
 .boardText:hover {
   opacity: 0.5;
 }
-
 </style>

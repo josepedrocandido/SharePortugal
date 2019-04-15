@@ -117,7 +117,9 @@ export default {
                 tableColor: "#DCE6E8",
                 frameImage:
                   "/static/Illustrator Files/frameStart.png",
-                wallPattern: "Two"
+                wallPattern: "Two",
+                flag: "0",
+                roomNumber: "room2"
               })
               .then(function(response) {
                 console.log(response);

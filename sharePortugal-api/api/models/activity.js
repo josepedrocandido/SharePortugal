@@ -16,7 +16,8 @@ const activitySchema = mongoose.Schema({
     schedule: { type: String },
     phoneNumber: { type: Number },
     limitOfParticipants: { type: Number },
-    info: { type: String }
+    info: { type: String },
+    flag: { type: String }
 
 });
 

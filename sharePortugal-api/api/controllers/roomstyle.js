@@ -39,7 +39,8 @@ exports.create_roomstyle = (req, res, next) => {
                 wallColor: req.body.wallColor,
                 tableColor: req.body.tableColor,
                 frameImage: req.body.frameImage,
-                wallPattern: req.body.wallPattern
+                wallPattern: req.body.wallPattern,
+                roomNumber: req.body.roomNumber
             });
             return roomstyle.save();
         })
@@ -51,7 +52,8 @@ exports.create_roomstyle = (req, res, next) => {
                 wallColor: result.wallColor,
                 tableColor: result.tableColor,
                 frameImage: result.frameImage,
-                wallPattern: result.wallPattern
+                wallPattern: result.wallPattern,
+                roomNumber: result.roomNumber
             });
         })
         .catch(err => {

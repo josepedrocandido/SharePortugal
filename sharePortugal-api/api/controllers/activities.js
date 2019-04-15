@@ -50,7 +50,8 @@ exports.activities_create_activity = (req, res, next) => {
                             aboutActivity: req.body.aboutActivity,
                             activityImage: req.body.activityImage,
                             schedule: req.body.schedule,
-                            where: req.body.where
+                            where: req.body.where,
+                            flag: req.body.flag
                         });
                         return activity.save();
                     })
@@ -65,7 +66,8 @@ exports.activities_create_activity = (req, res, next) => {
                                 aboutActivity: result.aboutActivity,
                                 activityImage: result.activityImage,
                                 schedule: result.schedule,
-                                where: result.where
+                                where: result.where,
+                                flag: result.flag
                             },
                         });
                     })

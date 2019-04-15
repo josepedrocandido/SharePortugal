@@ -6,7 +6,8 @@ const roomstyleSchema = mongoose.Schema({
     wallColor: { type: String },
     tableColor: { type: String },
     frameImage: { type: String },
-    wallPattern: { type: String }
+    wallPattern: { type: String },
+    roomNumber: { type: String }
 });
 
 module.exports = mongoose.model('Roomstyle', roomstyleSchema);
