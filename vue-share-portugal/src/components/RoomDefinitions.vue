@@ -2,7 +2,8 @@
   <div>
     <div v-if="room === 'room2'">
       <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
-      <div class="backgroundRoom2"></div>
+      <div v-if="picked === 'One'" class="backgroundRoom2"></div>
+      <div v-if="picked === 'Two'" class="backgroundRoom2Inverted"></div>
       <div class="frameBorder2">
         <img :src="frameImage" class="frame2">
       </div>
@@ -93,7 +94,6 @@
 
       <div v-if="this.roomDefinitionsOn" id="roomDefinitions">
         <div class="row-centered">
-          <!-- --------------------------------------------- -->
           <p class="h5">
             <b>Type Of Room</b>
           </p>
@@ -101,7 +101,6 @@
           <div v-on:click="room1" class="room1"></div>
 
           <div v-on:click="room2" class="room2"></div>
-          <!-- --------------------------------------------- -->
 
           <br>
           <br>
@@ -118,12 +117,12 @@
             <b>Wall Pattern</b>
           </p>
           <br>
-          <div v-on:click="padrao1" class="padrao1">
-            <img src="/static/padrao2.png">
+          <div v-on:click="mudarPadrao" class="padrao1">
+            <img src="/static/room2Padrao1.png">
           </div>
 
-          <div v-on:click="padrao2" class="padrao22">
-            <img src="/static/padrao1.png">
+          <div v-on:click="mudarPadrao2" class="padrao22">
+            <img src="/static/room2Padrao2.png">
           </div>
 
           <br>
@@ -232,10 +231,21 @@
           >Submit</button>
         </form>
       </div>
+
+      <div v-if="flag === '1'">
+        <!-- <img class="wsPaper" src="/static/workshopPaper.png"> -->
+        <div class="workshopDiv2">
+          <p>
+            <b>{{ this.activityName }}</b>
+          </p>
+          <img :src="activityPicture" class="WsPicture2">
+          <br>
+          <br> 
+        </div>
+      </div>
     </div>
 
-
-<!-- ------------------------------------------------------------------------------------------------ -->
+    <!-- ------------------------------------------------------------------------------------------------ -->
     <div v-if="room === 'room1'">
       <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
       <div class="background"></div>
@@ -475,15 +485,15 @@
       </div>
 
       <div v-if="flag === '1'">
-      <img class="wsPaper" src="/static/workshopPaper.png">
-      <div  class="workshopDiv">
-        <p>
-          <b>{{ this.activityName }}</b>
-        </p>
-        <img :src="activityPicture" class="WsPicture">
-        <br>
-        <br>
-      </div>
+        <img class="wsPaper" src="/static/workshopPaper.png">
+        <div class="workshopDiv">
+          <p>
+            <b>{{ this.activityName }}</b>
+          </p>
+          <img :src="activityPicture" class="WsPicture">
+          <br>
+          <br>
+        </div>
       </div>
     </div>
   </div>
@@ -545,7 +555,8 @@ export default {
       newActivityInfo: "",
       picked: "One",
       room: "",
-      flag: ""
+      flag: "",
+      tipoPadrao: "padraoNormal"
     };
   },
 
@@ -580,7 +591,12 @@ export default {
     room2: function(event) {
       this.room = "room2";
     },
-
+    mudarPadrao: function(event) {
+      this.picked = "One";
+    },
+    mudarPadrao2: function(event) {
+      this.picked = "Two";
+    },
     submitProfileDefinitions() {
       var vm = this;
       axios.patch(this.baseUrl + this.id, [
@@ -821,6 +837,10 @@ export default {
   width: 100px;
 }
 
+.WsPicture2 {
+  width: 50px;
+}
+
 .wsPaper {
   position: absolute;
   top: 6%;
@@ -831,10 +851,10 @@ export default {
 
 .workshopDiv {
   position: absolute;
-  width: 8%;
+  width: 80%;
   height: 23%;
   top: 12%;
-  left: 49%;
+  left: 13.1%;
   word-wrap: break-word;
   text-align: center;
   overflow: hidden;
@@ -842,6 +862,21 @@ export default {
   /* border-style: solid;
   border-color: red; */
 }
+
+.workshopDiv2 {
+  position: absolute;
+  width: 9%;
+  height: 11%;
+  top: 37.6%;
+  left: 21.7%;
+  word-wrap: break-word;
+  text-align: center;
+  overflow: hidden;
+  z-index: -1;
+  /* border-style: solid;
+  border-color: red; */
+}
+
 /* The container */
 .container {
   display: block;
@@ -910,6 +945,33 @@ export default {
 
 .backgroundRoom2 {
   background-image: url("/static/room2.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -999;
+}
+
+.backgroundRoom2WS {
+  background-image: url("/static/room2WS.png");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -999;
+}
+
+
+.backgroundRoom2Inverted {
+  background-image: url("/static/room2Inverted.png");
   width: 100%;
   height: 100%;
   background-position: center;
