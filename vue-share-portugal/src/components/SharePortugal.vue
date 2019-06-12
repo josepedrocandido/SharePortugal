@@ -21,7 +21,7 @@
         <p>Come and meet the local people of Madeira, their stories and their land.</p>
       </div>
       </li>
-            <li>
+            <li class="lisboa">
       <img class="lisbon" src="/static/Illustrator Files/lisbon.png">  
       <div class="lisbonText">
         <h4>Lisboa</h4>
@@ -480,13 +480,17 @@
   height: 150px;
   }
 
-    .lisbon {
+.lisbon {
   position: absolute;
   bottom: 13%;
   left: 5%;
   width: 150px;
   height: 150px;
   }
+
+.lisboa {
+opacity: 0.2;
+}
 
       .lisbonText {
   position: absolute;

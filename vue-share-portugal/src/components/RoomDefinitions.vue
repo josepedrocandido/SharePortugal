@@ -4,10 +4,13 @@
       <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
       <div v-if="picked === 'One'" class="backgroundRoom2"></div>
       <div v-if="picked === 'Two'" class="backgroundRoom2Inverted"></div>
-      <div class="frameBorder2">
-        <img :src="frameImage" class="frame2">
-      </div>
+
       <div class="vinil"></div>
+      <div class="moldure">
+        <div class="frameBorder2">
+          <img :src="frameImage" class="frame2">
+        </div>
+      </div>
 
       <nav role="navigation">
         <div id="menuToggle">
@@ -234,13 +237,15 @@
 
       <div v-if="flag === '1'">
         <!-- <img class="wsPaper" src="/static/workshopPaper.png"> -->
-        <div class="workshopDiv2">
-          <p>
-            <b>{{ this.activityName }}</b>
-          </p>
-          <img :src="activityPicture" class="WsPicture2">
-          <br>
-          <br> 
+        <div class="workshopMoldure">
+            <div class="workshopDiv2">
+              <p>
+                <b>{{ this.activityName }}</b>
+              </p>
+              <img :src="activityPicture" class="WsPicture2">
+              <br>
+              <br> 
+            </div>
         </div>
       </div>
     </div>
@@ -255,9 +260,12 @@
       <div v-if="picked === 'One'" class="padrao"></div>
       <div v-if="picked === 'Two'" class="padrao2"></div>
 
-      <div class="frameBorder">
-        <img :src="frameImage" class="frame">
+      <div class="imageFrame">
+        <div class="frameBorder">
+          <img :src="frameImage" class="frame">
+        </div>
       </div>
+  
 
       <nav role="navigation">
         <div id="menuToggle">
@@ -715,7 +723,7 @@ export default {
     var vm = this;
     axios.get(this.activityUrl).then(function(response) {
       var res = response.data.activities;
-      console.log(vm.id);
+      console.log("vm.id = " + vm.id);
       for (var i in response.data.activities) {
         if (res[i].local._id === vm.id) {
           vm.activityId = res[i]._id;
@@ -864,17 +872,17 @@ export default {
 }
 
 .workshopDiv2 {
-  position: absolute;
-  width: 9%;
-  height: 11%;
-  top: 37.6%;
-  left: 21.7%;
+  position: relative;
+  width: 85%;
+  height: 90%;
+  top: 3%;
+  left: 11%;
   word-wrap: break-word;
   text-align: center;
   overflow: hidden;
   z-index: -1;
-  /* border-style: solid;
-  border-color: red; */
+  /* border-style: solid; */
+  /* border-color: green; */
 }
 
 /* The container */
@@ -995,6 +1003,49 @@ export default {
   left: 0px;
   z-index: 0;
 }
+
+
+
+.moldure {
+  position: absolute;
+  top: 3%;
+  left: 37%;
+  width: 285px;
+  height: 200px;
+  background-image: url("/static/moldure.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* border: 1px solid red; */
+  z-index: -15;
+}
+
+.imageFrame {
+  position: absolute;
+  top: 9%;
+  left: 34%;
+  width: 200px;
+  height: 260px;
+  background-image: url("/static/imageFrame.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* border: 1px solid red; */
+  z-index: -15;
+}
+
+.workshopMoldure {
+  position: absolute;
+  top: 39%;
+  left: 21%;
+  width: 150px;
+  height: 100px;
+  background-image: url("/static/workshopMoldure.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* border: 1px solid red; */
+  z-index: -15;
+}
+
+
 .roomWall {
   background-image: url("/static/roomWall.png");
   width: 100%;
@@ -1064,44 +1115,22 @@ export default {
 }
 
 .frameBorder {
-  position: absolute;
-  top: 0.8%;
-  left: 33.9%;
-  height: 26.8%;
-  width: 9.7%;
-  /* border: 15px solid black; */
+  position: relative;
+  top: 2%;
+  left: 2.5%;
+  height: 96%;
+  width: 92%;
   object-fit: cover;
   z-index: -1;
 }
 
 .frameBorder2 {
-  position: absolute;
-  top: 3.3%;
-  left: 38%;
-  height: 19.7%;
-  width: 14.2%;
+  position: relative;
+  top: 5%;
+  left: 4%;
+  height: 90%;
+  width: 92%;
   /* border: 2px solid red; */
-  object-fit: cover;
-  z-index: -1;
-}
-
-.frameMoldure {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  right: 0%;
-  bottom: 0%;
-  border: 25px solid white;
-  object-fit: cover;
-  z-index: -1;
-}
-.frame {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
   z-index: -1;
 }
 
@@ -1115,6 +1144,27 @@ export default {
   z-index: -1;
   /* border: 2px solid green; */
 }
+
+.frameMoldure {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  border: 25px solid white;
+  object-fit: cover;
+  z-index: -1;
+}
+.frame {
+  position: relative;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
 
 .activity {
   height: 250px;
