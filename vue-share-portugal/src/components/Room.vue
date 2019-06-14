@@ -986,7 +986,7 @@ text-align: left;
 
 }
 
-.workshopDiv  {
+.roomworkshopDiv  {
   position: absolute;
   width: 8%;
   height: 23%;
