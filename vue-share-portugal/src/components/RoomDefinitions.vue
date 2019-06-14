@@ -252,17 +252,17 @@
 
     <!-- ------------------------------------------------------------------------------------------------ -->
     <div v-if="room === 'room1'">
-      <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
-      <div class="background"></div>
-      <div class="roomWall"></div>
+      <div class="rdwall" v-bind:style="backgroundCss + wallColor"></div>
+      <div class="rdbackground"></div>
+      <div class="rdroomWall"></div>
       <!-- <div class="padrao"></div> -->
 
-      <div v-if="picked === 'One'" class="padrao"></div>
-      <div v-if="picked === 'Two'" class="padrao2"></div>
+      <div v-if="picked === 'One'" class="rdpadrao"></div>
+      <div v-if="picked === 'Two'" class="rdpadrao2"></div>
 
-      <div class="imageFrame">
-        <div class="frameBorder">
-          <img :src="frameImage" class="frame">
+      <div class="rdimageFrame">
+        <div class="rdframeBorder">
+          <img :src="frameImage" class="rdframe">
         </div>
       </div>
   
@@ -938,7 +938,7 @@ export default {
 .container input:checked ~ .checkmark:after {
   display: block;
 }
-.background {
+.rdbackground {
   background-image: url("/static/room.png");
   width: 100%;
   height: 100%;
@@ -1019,7 +1019,7 @@ export default {
   z-index: -15;
 }
 
-.imageFrame {
+.rdimageFrame {
   position: absolute;
   top: 9%;
   left: 34%;
@@ -1046,7 +1046,7 @@ export default {
 }
 
 
-.roomWall {
+.rdroomWall {
   background-image: url("/static/roomWall.png");
   width: 100%;
   height: 100%;
@@ -1059,7 +1059,7 @@ export default {
   z-index: -9999;
 }
 
-.padrao {
+.rdpadrao {
   background-image: url("/static/padrao.png");
   width: 100%;
   height: 100%;
@@ -1072,7 +1072,7 @@ export default {
   z-index: -9999;
 }
 
-.padrao2 {
+.rdpadrao2 {
   background-image: url("/static/padraoInvert.png");
   width: 100%;
   height: 100%;
@@ -1114,7 +1114,7 @@ export default {
   z-index: -1;
 }
 
-.frameBorder {
+.rdframeBorder {
   position: relative;
   top: 2%;
   left: 2.5%;
@@ -1155,7 +1155,7 @@ export default {
   object-fit: cover;
   z-index: -1;
 }
-.frame {
+.rdframe {
   position: relative;
   top: 0%;
   left: 0%;
