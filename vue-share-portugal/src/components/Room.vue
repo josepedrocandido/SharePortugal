@@ -1,17 +1,17 @@
 <template>
 <div>
   <div v-if="room === 'room1'">
-      <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
-      <div class="background"></div>
-      <div class="roomWall"></div>
+      <div class="roomwall" v-bind:style="backgroundCss + wallColor"></div>
+      <div class="roombackground"></div>
+      <div class="roomroomWall"></div>
             
 
       
     <img v-on:click="activePhone" src="/static/phoneNotification.png" class="phoneNotification">
       <!-- <div class="padrao"></div> -->
 
-      <div v-if="picked === 'One'" class="padrao"></div>
-      <div v-if="picked === 'Two'" class="padrao2"></div>
+      <div v-if="picked === 'One'" class="roompadrao"></div>
+      <div v-if="picked === 'Two'" class="roompadrao2"></div>
 
       <!-- <transition name="fade">
         
@@ -24,21 +24,21 @@
         <img src="/static/Illustrator Files/back.png" class="back">
       </router-link>
 
-      <div class="imageFrame">
-        <div class="frameBorder">
-          <img :src="frameImage" class="frame">
+      <div class="roomimageFrame">
+        <div class="roomframeBorder">
+          <img :src="frameImage" class="roomframe">
         </div>
       </div>
 
-      <div v-on:click="activePhone" class="phoneActivated"></div>
+      <div v-on:click="activePhone" class="roomphoneActivated"></div>
 
-      <div v-if="this.phoneOn" class="phone">
+      <div v-if="this.phoneOn" class="roomphone">
         
-        <div id="bio">
-          <div class="bioImage">
+        <div id="roombio">
+          <div class="roombioImage">
               <img :src="userPicture" alt="Local Picture" class="localPic">
           </div>
-          <div class="bioText">
+          <div class="roombioText">
               <p><b>{{ userName }}</b><br>{{ userBio }}</p><br>
               <a :href="this.mailTo + this.userEmail" class="btn btn-success" role="button" aria-pressed="true">Send Email</a><br><br>
               <button type="button" class="btn btn-light" v-on:click="activePhone">Close</button>
@@ -50,20 +50,20 @@
       
 
       <div v-if="flag === '1'">
-          <img class="wsPaper" src="/static/workshopPaper.png">
-          <div v-on:click="activeWS" class="workshopDiv">
+          <img class="roomwsPaper" src="/static/workshopPaper.png">
+          <div v-on:click="activeWS" class="roomworkshopDiv">
             <p><b>{{ this.activityName }}</b></p>
             <img :src="activityPicture" alt="WS" class="WsPicture"><br><br>   
           </div>
       </div>
 
-    <div v-if="this.wsOn" class="ws">
+    <div v-if="this.wsOn" class="roomws">
         
-        <div id="wsArea">
-          <div class="wsImage">
+        <div id="roomwsArea">
+          <div class="roomwsImage">
               <img :src="activityPicture" alt="Local Picture" class="localPic">
           </div>
-          <div class="wsText">
+          <div class="roomwsText">
               <p><b>Name: </b>{{ activityName }}<br></p>
               <p><b>When: </b>{{ activityWhen }}<br></p>
               <p><b>Where: </b>{{ activityWhere }}<br></p>
@@ -81,16 +81,16 @@
 
 
     <div v-if="room === 'room2'">
-      <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
-      <div v-if="picked === 'One'" class="backgroundRoom2"></div>
-      <div v-if="picked === 'Two'" class="backgroundRoom2Inverted"></div>
+      <div class="roomwall" v-bind:style="backgroundCss + wallColor"></div>
+      <div v-if="picked === 'One'" class="roombackgroundRoom2"></div>
+      <div v-if="picked === 'Two'" class="roombackgroundRoom2Inverted"></div>
       
     <img v-on:click="activePhone" src="/static/phoneNotification.png" class="phoneNotification2">
-        <div class="vinil"></div>
+        <div class="roomvinil"></div>
 
-              <div class="moldure">
-        <div class="frameBorder2">
-          <img :src="frameImage" class="frame2">
+              <div class="roommoldure">
+        <div class="roomframeBorder2">
+          <img :src="frameImage" class="roomframe2">
         </div>
       </div>
 
@@ -104,15 +104,15 @@
 
      
 
-      <div v-on:click="activePhone" class="phoneActivated2"></div>
+      <div v-on:click="activePhone" class="roomphoneActivated2"></div>
 
       <div v-if="this.phoneOn" class="phone">
         
-        <div id="bio">
-          <div class="bioImage">
+        <div id="roombio">
+          <div class="roombioImage">
               <img :src="userPicture" alt="Local Picture" class="localPic">
           </div>
-          <div class="bioText">
+          <div class="roombioText">
               <p><b>{{ userName }}</b><br>{{ userBio }}</p><br>
               <a :href="this.mailTo + this.userEmail" class="btn btn-success" role="button" aria-pressed="true">Send Email</a><br><br>
               <button type="button" class="btn btn-light" v-on:click="activePhone">Close</button>
@@ -124,8 +124,8 @@
       
 
       <div v-if="flag === '1'">
-        <div v-on:click="activeWS" class="workshopMoldure">
-            <div class="workshopDiv2">
+        <div v-on:click="activeWS" class="roomworkshopMoldure">
+            <div class="roomworkshopDiv2">
               <p>
                 <b>{{ this.activityName }}</b>
               </p>
@@ -136,20 +136,20 @@
         </div>
       </div>
 
-    <div v-if="this.wsOn" class="ws2">
+    <div v-if="this.wsOn" class="roomws2">
         
-        <div id="wsArea2">
-          <div class="wsImage2">
+        <div id="roomwsArea2">
+          <div class="roomwsImage2">
               <img :src="activityPicture" alt="Local Picture" class="localPic">
           </div>
-          <div class="wsText2">
+          <div class="roomwsText2">
               <p><b>Name: </b>{{ activityName }}<br></p>
               <p><b>When: </b>{{ activityWhen }}<br></p>
               <p><b>Where: </b>{{ activityWhere }}<br></p>
               <p><b>Infos: </b>{{ activityInfo }}<br><br></p>
           </div>
 
-          <div class="wsButton2">
+          <div class="roomwsButton2">
             <a :href="this.mailTo + this.userEmail  + this.subject" class="btn btn-success" role="button" aria-pressed="true">Register</a>
             <button type="button" class="btn btn-dark" v-on:click="activeWS">Close</button>
           </div>
@@ -392,7 +392,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 
-  .ws {
+  .roomws {
     background-image: url("/static/Paper.png"); 
     width: 100%;
     height: 100%;
@@ -405,7 +405,7 @@ export default {
     z-index: 9999999999;
   }
 
-    .ws2 {
+    .roomws2 {
     background-image: url("/static/board.png"); 
     width: 100%;
     height: 100%;
@@ -418,7 +418,7 @@ export default {
     z-index: 9999999999;
   }
 
-  .phone {
+  .roomphone {
     background-image: url("/static/phone.png"); 
     width: 100%;
     height: 100%;
@@ -431,7 +431,7 @@ export default {
     z-index: 9999;
   }
 
-.phoneActivated {
+.roomphoneActivated {
     position: absolute;
     top: 60%;
     left: 73%;
@@ -441,7 +441,7 @@ export default {
     z-index: 999;
 }
 
-.phoneActivated2 {
+.roomphoneActivated2 {
     position: absolute;
     top: 47%;
     right: 50%;
@@ -455,7 +455,7 @@ export default {
 
 
 
-  .background {
+  .roombackground {
     background-image: url("/static/room.png"); 
     width: 100%;
     height: 100%;
@@ -468,7 +468,7 @@ export default {
     z-index: -999;
   }
 
-  .imageFrame {
+  .roomimageFrame {
   position: absolute;
   top: 9%;
   left: 34%;
@@ -481,7 +481,7 @@ export default {
   z-index: -15;
 }
 
-  .workshopMoldure {
+  .roomworkshopMoldure {
   position: absolute;
   top: 39%;
   left: 21%;
@@ -494,7 +494,7 @@ export default {
   z-index: 10;
 }
 
-  .backgroundRoom2 {
+  .roombackgroundRoom2 {
   background-image: url("/static/room2.png");
   width: 100%;
   height: 100%;
@@ -507,7 +507,7 @@ export default {
   z-index: -999;
 }
 
-.backgroundRoom2WS {
+.roombackgroundRoom2WS {
   background-image: url("/static/room2WS.png");
   width: 100%;
   height: 100%;
@@ -521,7 +521,7 @@ export default {
 }
 
 
-.backgroundRoom2Inverted {
+.roombackgroundRoom2Inverted {
   background-image: url("/static/room2Inverted.png");
   width: 100%;
   height: 100%;
@@ -534,7 +534,7 @@ export default {
   z-index: -999;
 }
 
-.vinil {
+.roomvinil {
   background-image: url("/static/vinis.png");
   width: 100%;
   height: 100%;
@@ -547,7 +547,7 @@ export default {
   z-index: 0;
 }
 
-    .roomWall {
+    .roomroomWallroomWall {
     background-image: url("/static/roomWall.png"); 
     width: 100%;
     height: 100%;
@@ -587,7 +587,7 @@ export default {
   transform: scale(1.3);
 }
 
-      .workshopArea {
+      .roomworkshopArea {
     /* background-image: url("/static/workshopPaper.png");  */
     width: 100%;
     height: 100%;
@@ -600,7 +600,7 @@ export default {
     z-index: 99999999;
   }
 
-      .padrao {
+      .roompadrao {
     background-image: url("/static/padrao.png"); 
     width: 100%;
     height: 100%;
@@ -613,7 +613,7 @@ export default {
     z-index: -9999;
   }
 
-        .padrao2 {
+        .roompadrao2 {
     background-image: url("/static/padraoInvert.png"); 
     width: 100%;
     height: 100%;
@@ -626,7 +626,7 @@ export default {
     z-index: -9999;
   }
 
-.wall {
+.roomwall {
   /* background-color: #C9C39B; */
   width: 100%;
   height: 100%;
@@ -655,7 +655,7 @@ export default {
   z-index: -1;
 }
 
-.frameBorder {
+.roomframeBorder {
   position: relative;
   top: 2%;
   left: 2.5%;
@@ -665,7 +665,7 @@ export default {
   z-index: -1;
 }
 
-.frameBorder2 {
+.roomframeBorder2 {
   position: relative;
   top: 5%;
   left: 4%;
@@ -675,7 +675,7 @@ export default {
   z-index: -1;
 }
 
-.moldure {
+.roommoldure {
   position: absolute;
   top: 3%;
   left: 37%;
@@ -697,7 +697,7 @@ export default {
   object-fit: cover;
   z-index: -1;
 }
-.frame {
+.roomframe {
   position: relative;
   top: 0%;
   left: 0%;
@@ -707,7 +707,7 @@ export default {
   z-index: -1;
 }
 
-.frame2 {
+.roomframe2 {
   position: absolute;
   top: 0%;
   left: 0%;
@@ -750,7 +750,7 @@ export default {
   z-index: -1;
 }
 
-.workshopDiv:hover {
+.roomworkshopDiv:hover {
   opacity: 0.5;
   
 }
@@ -874,7 +874,7 @@ text-align: left;
   top: 0%;
 }
 
-.wsPaper {
+.roomwsPaper {
   position: absolute;
   top: 6%;
   left: 48%;
@@ -882,7 +882,7 @@ text-align: left;
 
 }
 
-#bio {
+#roombio {
   position: absolute;
   width: 15%;
   height: 50%;
@@ -896,7 +896,7 @@ text-align: left;
   border-color: red; */
 }
 
-#wsArea {
+#roomwsArea {
   position: absolute;
   width: 17%;
   height: 50%;
@@ -910,7 +910,7 @@ text-align: left;
   border-color: red; */
 }
 
-#wsArea2 {
+#roomwsArea2 {
   position: absolute;
   width: 30%;
   height: 43%;
@@ -924,7 +924,7 @@ text-align: left;
   border-color: red; */
 }
 
-.bioText  {
+.roombioText  {
   color: white;
   text-align: center;
   z-index: 2;
@@ -933,7 +933,7 @@ text-align: left;
   padding-top: 9%;
 }
 
-.wsText  {
+.roomwsText  {
   color: black;
   text-align: center;
   z-index: 2;
@@ -942,7 +942,7 @@ text-align: left;
   padding-top: 9%;
 }
 
-.wsText2  {
+.roomwsText2  {
   position: absolute;
   left: 35%;
   width: 60%;
@@ -953,7 +953,7 @@ text-align: left;
   border-color: green; */
 }
 
-.wsButton2  {
+.roomwsButton2  {
   text-align: center;
   z-index: 2;
   /* border-style: solid; 
@@ -963,21 +963,21 @@ text-align: left;
 
 
 
-.bioImage  {
+.roombioImage  {
   text-align: center;
   z-index: 2;
   /* border-style: solid;
   border-color: blue; */
 }
 
-.wsImage  {
+.roomwsImage  {
   text-align: center;
   z-index: 2;
   /* border-style: solid;
   border-color: blue; */
 }
 
-.wsImage2  {
+.roomwsImage2  {
   position: absolute;
   text-align: left;
   z-index: 2;
@@ -1000,7 +1000,7 @@ text-align: left;
   border-color: red; */
 }
 
-.workshopDiv2 {
+.roomworkshopDiv2 {
   position: relative;
   width: 85%;
   height: 90%;
