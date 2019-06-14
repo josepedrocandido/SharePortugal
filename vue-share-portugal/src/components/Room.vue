@@ -7,7 +7,7 @@
             
 
       
-    <img v-on:click="activePhone" src="/static/phoneNotification.png" class="phoneNotification">
+    <img v-on:click="activePhone" src="/static/phoneNotification.png" class="roomphoneNotification">
       <!-- <div class="padrao"></div> -->
 
       <div v-if="picked === 'One'" class="roompadrao"></div>
@@ -36,7 +36,7 @@
         
         <div id="roombio">
           <div class="roombioImage">
-              <img :src="userPicture" alt="Local Picture" class="localPic">
+              <img :src="userPicture" alt="Local Picture" class="roomlocalPic">
           </div>
           <div class="roombioText">
               <p><b>{{ userName }}</b><br>{{ userBio }}</p><br>
@@ -53,7 +53,7 @@
           <img class="roomwsPaper" src="/static/workshopPaper.png">
           <div v-on:click="activeWS" class="roomworkshopDiv">
             <p><b>{{ this.activityName }}</b></p>
-            <img :src="activityPicture" alt="WS" class="WsPicture"><br><br>   
+            <img :src="activityPicture" alt="WS" class="roomWsPicture"><br><br>   
           </div>
       </div>
 
@@ -61,7 +61,7 @@
         
         <div id="roomwsArea">
           <div class="roomwsImage">
-              <img :src="activityPicture" alt="Local Picture" class="localPic">
+              <img :src="activityPicture" alt="Local Picture" class="roomlocalPic">
           </div>
           <div class="roomwsText">
               <p><b>Name: </b>{{ activityName }}<br></p>
@@ -106,11 +106,11 @@
 
       <div v-on:click="activePhone" class="roomphoneActivated2"></div>
 
-      <div v-if="this.phoneOn" class="phone">
+      <div v-if="this.phoneOn" class="roomphone">
         
         <div id="roombio">
           <div class="roombioImage">
-              <img :src="userPicture" alt="Local Picture" class="localPic">
+              <img :src="userPicture" alt="Local Picture" class="roomlocalPic">
           </div>
           <div class="roombioText">
               <p><b>{{ userName }}</b><br>{{ userBio }}</p><br>
@@ -129,7 +129,7 @@
               <p>
                 <b>{{ this.activityName }}</b>
               </p>
-              <img :src="activityPicture" class="WsPicture2">
+              <img :src="activityPicture" class="roomWsPicture2">
               <br>
               <br> 
             </div>
@@ -140,7 +140,7 @@
         
         <div id="roomwsArea2">
           <div class="roomwsImage2">
-              <img :src="activityPicture" alt="Local Picture" class="localPic">
+              <img :src="activityPicture" alt="Local Picture" class="roomlocalPic">
           </div>
           <div class="roomwsText2">
               <p><b>Name: </b>{{ activityName }}<br></p>
@@ -560,7 +560,7 @@ export default {
     z-index: -9999;
   }
 
-  .phoneNotification {
+  .roomphoneNotification {
     position: fixed;
     top: 55%;
     right: 15%;
@@ -577,7 +577,7 @@ export default {
   }
 
 
-  .phoneNotification:hover {
+  .roomphoneNotification:hover {
   opacity: 0.5;
   transform: scale(1.3);
 }
@@ -1032,15 +1032,15 @@ text-align: left;
   top: 0%;
 }
 
-.localPic {
+.roomlocalPic {
   width: 152px;
 }
 
-.WsPicture {
+.roomWsPicture {
   width: 95px;
 }
 
-.WsPicture2 {
+.roomWsPicture2 {
   width: 50px;
 }
 
