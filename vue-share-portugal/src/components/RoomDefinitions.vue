@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div v-if="room === 'room2'">
-      <div class="wall" v-bind:style="backgroundCss + wallColor"></div>
-      <div v-if="picked === 'One'" class="backgroundRoom2"></div>
-      <div v-if="picked === 'Two'" class="backgroundRoom2Inverted"></div>
+    <div v-if="room === 'rdroom2'">
+      <div class="rdwall" v-bind:style="backgroundCss + wallColor"></div>
+      <div v-if="picked === 'One'" class="rdbackgroundRoom2"></div>
+      <div v-if="picked === 'Two'" class="rdbackgroundRoom2Inverted"></div>
 
-      <div class="vinil"></div>
-      <div class="moldure">
-        <div class="frameBorder2">
-          <img :src="frameImage" class="frame2">
+      <div class="rdvinil"></div>
+      <div class="rdmoldure">
+        <div class="rdframeBorder2">
+          <img :src="frameImage" class="rdframe2">
         </div>
       </div>
 
@@ -120,11 +120,11 @@
             <b>Wall Pattern</b>
           </p>
           <br>
-          <div v-on:click="mudarPadrao" class="padrao1">
+          <div v-on:click="mudarPadrao" class="rdpadrao1">
             <img src="/static/room2Padrao1.png">
           </div>
 
-          <div v-on:click="mudarPadrao2" class="padrao22">
+          <div v-on:click="mudarPadrao2" class="rdpadrao22">
             <img src="/static/room2Padrao2.png">
           </div>
 
@@ -237,12 +237,12 @@
 
       <div v-if="flag === '1'">
         <!-- <img class="wsPaper" src="/static/workshopPaper.png"> -->
-        <div class="workshopMoldure">
-            <div class="workshopDiv2">
+        <div class="rdworkshopMoldure">
+            <div class="rdworkshopDiv2">
               <p>
                 <b>{{ this.activityName }}</b>
               </p>
-              <img :src="activityPicture" class="WsPicture2">
+              <img :src="activityPicture" class="rdWsPicture2">
               <br>
               <br> 
             </div>
@@ -377,11 +377,11 @@
             <b>Wall Pattern</b>
           </p>
           <br>
-          <div v-on:click="padrao1" class="padrao1">
+          <div v-on:click="padrao1" class="rdpadrao1">
             <img src="/static/padrao2.png">
           </div>
 
-          <div v-on:click="padrao2" class="padrao22">
+          <div v-on:click="padrao2" class="rdpadrao22">
             <img src="/static/padrao1.png">
           </div>
 
@@ -493,12 +493,12 @@
       </div>
 
       <div v-if="flag === '1'">
-        <img class="wsPaper" src="/static/workshopPaper.png">
-        <div class="workshopDiv">
+        <img class="rdwsPaper" src="/static/workshopPaper.png">
+        <div class="rdworkshopDiv">
           <p>
             <b>{{ this.activityName }}</b>
           </p>
-          <img :src="activityPicture" class="WsPicture">
+          <img :src="activityPicture" class="rdWsPicture">
           <br>
           <br>
         </div>
@@ -781,7 +781,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.room1 {
+.rdroom1 {
   position: absolute;
   width: 18%;
   height: 6%;
@@ -796,7 +796,7 @@ export default {
   margin-top: 20px;
 }
 
-.room2 {
+.rdroom2 {
   position: absolute;
   width: 18%;
   height: 6%;
@@ -811,7 +811,7 @@ export default {
   margin-top: 20px;
 }
 
-.padrao1 {
+.rdpadrao1 {
   position: absolute;
   width: 18%;
   height: 6%;
@@ -826,7 +826,7 @@ export default {
   margin-top: 20px;
 }
 
-.padrao22 {
+.rdpadrao22 {
   position: absolute;
   width: 18%;
   height: 6%;
@@ -841,15 +841,15 @@ export default {
   margin-top: 20px;
 }
 
-.WsPicture {
+.rdWsPicture {
   width: 100px;
 }
 
-.WsPicture2 {
+.rdWsPicture2 {
   width: 50px;
 }
 
-.wsPaper {
+.rdwsPaper {
   position: absolute;
   top: 6%;
   left: 48%;
@@ -857,7 +857,7 @@ export default {
   z-index: -1;
 }
 
-.workshopDiv {
+.rdworkshopDiv {
   position: absolute;
   width: 80%;
   height: 23%;
@@ -871,7 +871,7 @@ export default {
   border-color: red; */
 }
 
-.workshopDiv2 {
+.rdworkshopDiv2 {
   position: relative;
   width: 85%;
   height: 90%;
@@ -951,7 +951,7 @@ export default {
   z-index: -999;
 }
 
-.backgroundRoom2 {
+.rdbackgroundRoom2 {
   background-image: url("/static/room2.png");
   width: 100%;
   height: 100%;
@@ -978,7 +978,7 @@ export default {
 }
 
 
-.backgroundRoom2Inverted {
+.rdbackgroundRoom2Inverted {
   background-image: url("/static/room2Inverted.png");
   width: 100%;
   height: 100%;
@@ -991,7 +991,7 @@ export default {
   z-index: -999;
 }
 
-.vinil {
+.rdvinil {
   background-image: url("/static/vinis.png");
   width: 100%;
   height: 100%;
@@ -1006,7 +1006,7 @@ export default {
 
 
 
-.moldure {
+.rdmoldure {
   position: absolute;
   top: 3%;
   left: 37%;
@@ -1032,7 +1032,7 @@ export default {
   z-index: -15;
 }
 
-.workshopMoldure {
+.rdworkshopMoldure {
   position: absolute;
   top: 39%;
   left: 21%;
@@ -1085,7 +1085,7 @@ export default {
   z-index: -9999;
 }
 
-.wall {
+.rdwall {
   /* background-color: #C9C39B; */
   width: 100%;
   height: 100%;
@@ -1124,7 +1124,7 @@ export default {
   z-index: -1;
 }
 
-.frameBorder2 {
+.rdframeBorder2 {
   position: relative;
   top: 5%;
   left: 4%;
@@ -1134,7 +1134,7 @@ export default {
   z-index: -1;
 }
 
-.frame2 {
+.rdframe2 {
   position: absolute;
   top: 0%;
   left: 0%;
