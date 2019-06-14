@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="room === 'rdroom2'">
+    <div v-if="room === 'room2'">
       <div class="rdwall" v-bind:style="backgroundCss + wallColor"></div>
       <div v-if="picked === 'One'" class="rdbackgroundRoom2"></div>
       <div v-if="picked === 'Two'" class="rdbackgroundRoom2Inverted"></div>
