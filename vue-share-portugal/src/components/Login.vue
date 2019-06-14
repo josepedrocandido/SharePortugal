@@ -77,7 +77,7 @@ export default {
       if (this.input.email != "" && this.input.password != "") {
         var vm = this;
         axios
-          .post("http://localhost:3000/locals/login", {
+          .post("http://shareportugal.m-iti.org/api/locals/login", {
             email: this.input.email,
             password: this.input.password
           })

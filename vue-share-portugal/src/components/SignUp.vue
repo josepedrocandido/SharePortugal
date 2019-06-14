@@ -98,7 +98,7 @@ export default {
       ) {
         var vm = this;
         axios
-          .post("http://localhost:3000/locals/signup", {
+          .post("http://shareportugal.m-iti.org/api/locals/signup", {
             name: this.input.name,
             email: this.input.email,
             password: this.input.password,
@@ -111,7 +111,7 @@ export default {
             console.log(response.data.id);
             // createRoomStyle(response.data.id);
             axios
-              .post("http://localhost:3000/roomstyle", {
+              .post("http://shareportugal.m-iti.org/api/roomstyle", {
                 localId: response.data.id,
                 wallColor: "#222E3D",
                 tableColor: "#DCE6E8",

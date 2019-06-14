@@ -127,7 +127,7 @@
         image6: "",
         image7: "",
         image8: "",
-        localhost: "http://localhost:3000/",
+        localhost: "http://shareportugal.m-iti.org/api/",
         day: true,
         teste: ""
       };
@@ -222,7 +222,7 @@
 
       var vm = this;
       axios
-        .get("http://localhost:3000/locals")
+        .get("http://shareportugal.m-iti.org/api/locals")
         .then(function(response) {
               var res = response.data;
               for (var i in response.data) {

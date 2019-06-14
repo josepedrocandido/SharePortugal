@@ -31,13 +31,13 @@ export default {
       image2: "",
       image3: "",
       image4: "",
-      localhost: "http://localhost:3000/"
+      localhost: "http://shareportugal.m-iti.org/api/"
     };
   },
 
   mounted() {
     axios
-      .get("http://localhost:3000/locals")
+      .get("http://shareportugal.m-iti.org/api/locals")
       .then(
         response => (
           (this.image1 = response.data[0]), (this.image2 = response.data[1]), (this.image3 = response.data[2])
