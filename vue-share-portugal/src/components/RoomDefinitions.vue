@@ -781,7 +781,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.rdroom1 {
+.room1 {
   position: absolute;
   width: 18%;
   height: 6%;
@@ -796,7 +796,7 @@ export default {
   margin-top: 20px;
 }
 
-.rdroom2 {
+.room2 {
   position: absolute;
   width: 18%;
   height: 6%;
