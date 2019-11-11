@@ -517,6 +517,9 @@
 <script>
 import axios from "axios";
 import Swatches from "vue-swatches";
+import {
+    rootLink
+} from '../../src/main.js';
 
 // Import the styles too, globally
 import "vue-swatches/dist/vue-swatches.min.css";
@@ -680,7 +683,7 @@ export default {
 
     createActivity() {
       var vm = this;
-      axios.post("http://shareportugal.m-iti.org/api/activities", {
+      axios.post("http://localhost:3000/activities", {
         localId: this.id,
         nameOfActivity: this.newActivityName,
         aboutActivity: this.newActivityInfo,
@@ -702,9 +705,9 @@ export default {
   },
 
   created() {
-    this.baseUrl = "http://shareportugal.m-iti.org/api/locals/";
-    this.roomstyleUrl = "http://shareportugal.m-iti.org/api/roomstyle/";
-    this.activityUrl = "http://shareportugal.m-iti.org/api/activities/";
+    this.baseUrl = "http://localhost:3000/locals/";
+    this.roomstyleUrl = "http://localhost:3000/roomstyle/";
+    this.activityUrl = "http://localhost:3000/activities/";
     this.id = this.$route.params._id;
     this.token = this.$route.params.token;
 

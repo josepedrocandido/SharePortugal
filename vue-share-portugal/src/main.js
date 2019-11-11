@@ -13,6 +13,8 @@ Vue.component('VueSlideBar', VueSlideBar)
 Vue.use(BootstrapVue);
 
 
+export const rootLink = 'http://localhost:3000/'
+
 
 Vue.use(BootstrapVue);
 

@@ -1,0 +1,13 @@
+.login-background {
+    background-image: url("/static/login/loginBackground.png");
+}
+
+.popup-login {
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 20px;
+    border-radius: 30px;
+}
