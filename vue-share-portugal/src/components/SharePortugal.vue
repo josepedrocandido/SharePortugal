@@ -53,10 +53,10 @@
 
     <div class="center" id="content" ref="content">
         <transition name="fade">
-            <img v-if="day" class="img-buildings" src="/static/Illustrator Files/buildingsDay.png">
+            <img v-if="day" class="img-buildings" src="/static/homePage/buildingsDay.png">
         </transition>
         <transition name="fade">
-            <img v-if="!day" class="img-buildings" src="/static/Illustrator Files/buildingsNight.png">
+            <img v-if="!day" class="img-buildings" src="/static/homePage/buildingsNight.png">
         </transition>
         <router-link v-if="image1" :to="{name: 'Room', params: { _id: image1._id }}">
             <img :src="image1.localImage" id="img1">
