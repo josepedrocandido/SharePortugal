@@ -22,3 +22,8 @@
     justify-content: space-between;
     margin: 50px;
 }
+
+p {
+    margin: 0;
+    padding: 0;
+}

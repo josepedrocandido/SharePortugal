@@ -13,17 +13,17 @@
                 <span></span>
                 <span></span>
                 <span></span>
-                <ul id="menu">
-                    <li>
-                        <img class="madeira" src="/static/Illustrator Files/madeira.png">
-                        <div class="madeiraText">
+                <ul id="menu" class="white-color">
+                    <li class="city-menu city-hover">
+                        <img src="/static/homePage/madeira.png" class="city-image">
+                        <div>
                             <h4>Madeira</h4>
                             <p>Come and meet the local people of Madeira, their stories and their land.</p>
                         </div>
                     </li>
-                    <li class="lisboa">
-                        <img class="lisbon" src="/static/Illustrator Files/lisbon.png">
-                        <div class="lisbonText">
+                    <li class="city-menu" style="opacity:0.3;">
+                        <img src="/static/homePage/lisbon.png" class="city-image">
+                        <div>
                             <h4>Lisboa</h4>
                             <p>Come and meet the local people of Lisboa, their stories and their land.</p>
                         </div>
@@ -35,11 +35,12 @@
             <button id="loginButton" type="button" class="btn btn-light">Login</button>
         </router-link>
     </div>
+
     <transition name="fade">
-        <div v-if="day" class="background"></div>
+        <div v-if="day" class="background day-background"></div>
     </transition>
     <transition name="fade">
-        <div v-if="!day" class="backgroundNight"></div>
+        <div v-if="!day" class="background night-background"></div>
     </transition>
 
     <div id="div-vue-bar">
@@ -52,10 +53,10 @@
 
     <div class="center" id="content" ref="content">
         <transition name="fade">
-            <img v-if="day" class="img-buildings" src="/static/Illustrator Files/buildingsDay.png">
+            <img v-if="day" class="img-buildings" src="/static/homePage/buildingsDay.png">
         </transition>
         <transition name="fade">
-            <img v-if="!day" class="img-buildings" src="/static/Illustrator Files/buildingsNight.png">
+            <img v-if="!day" class="img-buildings" src="/static/homePage/buildingsNight.png">
         </transition>
         <router-link v-if="image1" :to="{name: 'Room', params: { _id: image1._id }}">
             <img :src="image1.localImage" id="img1">

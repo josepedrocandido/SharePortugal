@@ -1,12 +1,30 @@
+<style>
+@import '../css/base.css';
+@import '../css/colors.css';
+@import '../css/admin.css';
+@import '../css/login.css';
+</style>
+
 <template>
 <div>
-    <h1>Admin Area</h1>
-    <div v-for="user in users" v-bind:key="user.id">
-        <p>{{user.name}}</p>
-        <p>{{user.email}}</p>
-        <p>{{user._id}}</p>
-        <button type="button" class="btn btn-success" @click.stop.prevent="deleteUser(user._id)">Delete User</button>
-        <hr>
+    <div class="background login-background"></div>
+    <div class="wrapper">
+        <div class="topBar">
+            <h1 style="color: white;">Admin Area - Users</h1>
+            <router-link :to="{name: 'SharePortugal'}">
+                <button id="homeButton" type="button" class="btn btn-light">Home Page</button>
+            </router-link>
+        </div>
+        <div class="admin-layout">
+            <div v-for="user in users" v-bind:key="user.id">
+                <div class="user-section white-color"> <img :src="user.localImage" height="100" width="100" style="margin-bottom:20px;">
+                    <h2>{{user.name}}</h2>
+                    <p><b>Email:</b> {{user.email}}</p>
+                    <p><b>id:</b> {{user._id}}</p>
+                    <button type="button" class="btn btn-danger" @click.stop.prevent="deleteUser(user._id)" style="margin-top: 20px;">Delete User</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </template>
@@ -35,11 +53,7 @@ export default {
                 .then(function (response) {
                     console.log("Ok User")
                 });
-            axios
-                .delete(this.getUsersLink + "/" + id, {})
-                .then(function (response) {
-                    console.log("Ok User")
-                });
+            window.location.reload();
         }
     },
 
