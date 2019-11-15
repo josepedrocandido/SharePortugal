@@ -46,7 +46,7 @@
     <div id="div-vue-bar">
         <VueSlideBar v-model="value2" :min="slider.minValue" :max="slider.maxValue" :processStyle="slider.processStyle" :lineHeight="slider.lineHeight" :speed="0.1" :tooltipStyles="{ backgroundColor: 'tomato', borderColor: 'tomato' }" @dragEnd="dragEnd" @dragStart="dragStart" @input="input">
             <template slot="tooltip" slot-scope="tooltip">
-                <img id="tooltip" src="/static/images/location.png">
+                <img id="tooltip" src="/static/homePage/location.png">
             </template>
         </VueSlideBar>
     </div>
@@ -84,11 +84,11 @@
         </router-link>
     </div>
 
-    <transition name="fade"><img v-if="day" class="sun" src="/static/Illustrator Files/sun.png"></transition>
-    <transition name="fade"><img v-if="!day" class="sun" src="/static/Illustrator Files/sunGrey.png"></transition>
+    <transition name="fade"><img v-if="day" class="sun" src="/static/homePage//sun.png"></transition>
+    <transition name="fade"><img v-if="!day" class="sun" src="/static/homePage/sunGrey.png"></transition>
     <toggle-button id="toggleButton" v-model="day" :value="true" :speed="3500" :color="{checked: 'tomato', unchecked: '#299578'}" :height="17" />
-    <transition name="fade"><img v-if="!day" class="moon" src="/static/Illustrator Files/moon.png"></transition>
-    <transition name="fade"><img v-if="day" class="moon" src="/static/Illustrator Files/moonGrey.png"></transition>
+    <transition name="fade"><img v-if="!day" class="moon" src="/static/homePage/moon.png"></transition>
+    <transition name="fade"><img v-if="day" class="moon" src="/static/homePage/moonGrey.png"></transition>
 </div>
 </template>
 
