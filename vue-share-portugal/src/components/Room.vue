@@ -1,9 +1,3 @@
-<style>
-@import '../css/base.css';
-@import '../css/room.css';
-@import '../css/colors.css';
-</style>
-
 <template>
 <div>
   <div v-if="room === 'room1'">
