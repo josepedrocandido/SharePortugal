@@ -6,7 +6,55 @@
 
 <template>
 <div>
-    <div class="topBar">
+
+    <div class="top-bar">
+        <div class="test">
+            <div class="top-button">
+                <img src="/static/homePage/pin.svg">
+                <h5>Madeira</h5>
+            </div>
+            <div class="city-picker">
+                <img src="/static/homePage/madeira.png" class="city-image">
+                <div class="madeira-city">
+                    <h4>Madeira</h4>
+                    <p>Come and meet the local people of Madeira, their stories and their land.</p>
+                </div>
+            </div>
+            <div class="city-picker">
+                <img src="/static/homePage/lisbon.png" class="city-image">
+                <div class="lisboa-city">
+                    <h4>Lisboa</h4>
+                    <p>Come and meet the local people of Lisboa, their stories and their land.</p>
+                </div>
+            </div>
+        </div>
+
+        <router-link :to="{name: 'Login'}">
+            <div class="top-button">
+                <img src="/static/homePage/user.svg">
+                <h5>Login</h5>
+            </div>
+        </router-link>
+    </div>
+
+    <div class="modal">
+        <div class="city-picker">
+            <img src="/static/homePage/madeira.png" class="city-image">
+            <div class="madeira-city">
+                <h4>Madeira</h4>
+                <p>Come and meet the local people of Madeira, their stories and their land.</p>
+            </div>
+        </div>
+        <div class="city-picker">
+            <img src="/static/homePage/lisbon.png" class="city-image">
+            <div class="lisboa-city">
+                <h4>Lisboa</h4>
+                <p>Come and meet the local people of Lisboa, their stories and their land.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="topBar">
         <div class="hamburguer-menu">
             <div id="menuToggle">
                 <input type="checkbox" />
@@ -34,7 +82,7 @@
         <router-link :to="{name: 'Login'}">
             <button id="loginButton" type="button" class="btn btn-light">Login</button>
         </router-link>
-    </div>
+    </div> -->
 
     <transition name="fade">
         <div v-if="day" class="background day-background"></div>
