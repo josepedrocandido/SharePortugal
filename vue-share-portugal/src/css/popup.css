@@ -1,0 +1,13 @@
+.top-popup-bar {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.popup {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 8px;
+    z-index: 5;
+}

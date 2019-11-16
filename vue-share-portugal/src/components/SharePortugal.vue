@@ -2,25 +2,37 @@
 @import '../css/base.css';
 @import '../css/homePage.css';
 @import '../css/colors.css';
+@import '../css/topBar.css';
+@import '../css/popup.css';
 </style>
 
 <template>
 <div>
 
     <div class="top-bar">
-        <div class="test">
-            <div class="top-button">
-                <img src="/static/homePage/pin.svg">
-                <h5>Madeira</h5>
+        <div @click="popup = !popup" v-if="!popup" class="top-button">
+            <img src="/static/homePage/pin.svg">
+            <h5>Madeira</h5>
+        </div>
+        <div v-if="popup" class="popup">
+            <div class="top-popup-bar">
+                <div class="top-button top-button-no-hover">
+                    <img src="/static/homePage/pinColored.svg">
+                    <h5 class="top-button-active">Madeira</h5>
+                </div>
+                <div @click="popup = !popup" class="top-button">
+                    <img style="height:25px;" src="/static/homePage/close.svg">
+                </div>
             </div>
-            <div class="city-picker">
+
+            <div @click="popup = !popup" class="city-picker">
                 <img src="/static/homePage/madeira.png" class="city-image">
                 <div class="madeira-city">
                     <h4>Madeira</h4>
                     <p>Come and meet the local people of Madeira, their stories and their land.</p>
                 </div>
             </div>
-            <div class="city-picker">
+            <div class="city-picker city-picker-disabled">
                 <img src="/static/homePage/lisbon.png" class="city-image">
                 <div class="lisboa-city">
                     <h4>Lisboa</h4>
@@ -177,7 +189,8 @@ export default {
             image8: "",
             getUsersLink: rootLink + 'locals',
             day: true,
-            teste: ""
+            teste: "",
+            popup: false
         };
     },
 
@@ -192,6 +205,12 @@ export default {
     },
 
     methods: {
+
+        openPopup: function (event) {
+            if (this.popup) {
+                this.popup = false;
+            } else this.popup = true;
+        },
         scrollTo(element, scrollPixels, duration) {
             const scrollPos = element.scrollLeft;
             // Condition to check if scrolling is required
