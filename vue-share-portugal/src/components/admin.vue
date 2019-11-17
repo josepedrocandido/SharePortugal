@@ -3,18 +3,22 @@
 @import '../css/colors.css';
 @import '../css/admin.css';
 @import '../css/login.css';
+@import '../css/topBar.css';
 </style>
 
 <template>
 <div>
     <div class="background login-background"></div>
-    <div class="wrapper">
-        <div class="topBar">
-            <h1 style="color: white;">Admin Area - Users</h1>
-            <router-link :to="{name: 'SharePortugal'}">
-                <button id="homeButton" type="button" class="btn btn-light">Home Page</button>
-            </router-link>
-        </div>
+
+        <div class="top-bar">
+        <router-link :to="{name: 'SharePortugal'}">
+            <div class="top-button">
+                <img src="/static/login/home.svg">
+                <h5>Back to The City</h5>
+            </div>
+        </router-link>
+    </div>
+    <div class="wrapperAdmin">
         <div class="admin-layout">
             <div v-for="user in users" v-bind:key="user.id">
                 <div class="user-section white-color"> <img :src="user.localImage" height="100" width="100" style="margin-bottom:20px;">
@@ -25,7 +29,7 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 </div>
 </template>
 

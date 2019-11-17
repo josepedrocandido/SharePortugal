@@ -2,18 +2,23 @@
 @import '../css/base.css';
 @import '../css/colors.css';
 @import '../css/login.css';
+@import '../css/topBar.css';
 </style>
 
 <template>
 <div>
     <div class="background login-background"></div>
-    <div class="topBar">
+    
+    <div class="top-bar">
         <router-link :to="{name: 'SharePortugal'}">
-            <button id="homeButton" type="button" class="btn btn-light">Home Page</button>
+            <div class="top-button">
+                <img src="/static/login/home.svg">
+                <h5>Back to The City</h5>
+            </div>
         </router-link>
     </div>
     <div class="wrapper">
-        <div class="popup-login white-color">
+        <div class="popup-login">
             <p class="h1">Sign Up</p>
             <br>
             <div v-if="messageFlag">
@@ -39,6 +44,7 @@
                 <a>
                     <p class="h7">Please login!</p>
                 </a>
+                <br>
                 <router-link :to="{name: 'Login'}">
                     <button type="button" class="btn btn-dark" :to="{name: 'Login'}">Login</button>
                 </router-link>

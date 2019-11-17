@@ -115,8 +115,8 @@
     <div class="bottom-menu">
         <div class="bottom-bar">
             <div class="contacts">
-                <a href="https://github.com/josepedrocandido/SharePortugal" target="_blank"><img src="/static/homePage/github.svg"></a>
-                <router-link :to="{name: 'Login'}"><a href="">More about the project</a></router-link>
+                <a href="https://github.com/josepedrocandido" target="_blank"><img src="/static/homePage/github.svg"></a>
+                <router-link :to="{name: 'AboutProject'}"><a href="">More about the project</a></router-link>
             </div>
             <div id="div-vue-bar">
                 <VueSlideBar v-model="value2" :min="slider.minValue" :max="slider.maxValue" :processStyle="slider.processStyle" :lineHeight="slider.lineHeight" :speed="0.1" :tooltipStyles="{ backgroundColor: 'tomato', borderColor: 'tomato' }" @dragEnd="dragEnd" @dragStart="dragStart" @input="input">

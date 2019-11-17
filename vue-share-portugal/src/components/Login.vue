@@ -2,18 +2,25 @@
 @import '../css/base.css';
 @import '../css/colors.css';
 @import '../css/login.css';
+@import '../css/topBar.css';
+@import '../css/popup.css';
 </style>
 
 <template>
 <div>
-    <div class="background login-background"></div>
-    <div class="topBar">
+    <div class="top-bar">
         <router-link :to="{name: 'SharePortugal'}">
-            <button id="homeButton" type="button" class="btn btn-light">Home Page</button>
+            <div class="top-button">
+                <img src="/static/login/home.svg">
+                <h5>Back to The City</h5>
+            </div>
         </router-link>
     </div>
+
+    <div class="background login-background"></div>
+
     <div class="wrapper">
-        <div class="popup-login white-color">
+        <div class="popup-login">
             <div v-if="loginFlag">
                 <form>
                     <p class="h1">Welcome Back!</p><br>
@@ -42,7 +49,7 @@
             <div v-if="!loginFlag">
                 <p class="h6">Hello again, <b>{{ user }}</b>!</p><br>
                 <router-link :to="{name: 'RoomDefinitions', params: { token: token, _id: tokenId }}">
-                    <a>
+                    <a style="color: blue;">
                         <p class="h6">Go to my room!</p>
                     </a>
                 </router-link>

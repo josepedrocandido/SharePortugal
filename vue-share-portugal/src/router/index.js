@@ -8,6 +8,7 @@ import SignUp from '@/components/SignUp'
 import admin from '@/components/admin'
 import PhotosTest from '@/components/PhotosTest'
 import PersonalInformation from '@/components/PersonalInformation'
+import AboutProject from '@/components/AboutProject'
 
 
 
@@ -50,6 +51,13 @@ export default new Router({
             name: 'admin',
             component: admin
         },
+
+        {
+            path: '/aboutProject',
+            name: 'AboutProject',
+            component: AboutProject
+        },
+
         {
             path: '/PhotosTest',
             name: 'PhotosTest',

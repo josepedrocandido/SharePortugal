@@ -1,3 +1,13 @@
+<style>
+@import '../css/base.css';
+@import '../css/homePage.css';
+@import '../css/colors.css';
+@import '../css/topBar.css';
+@import '../css/popup.css';
+@import '../css/room.css';
+@import '../css/roomdefs.css';
+</style>
+
 <template>
 <div>
   <div v-if="room === 'room1'">
