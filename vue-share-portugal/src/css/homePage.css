@@ -172,7 +172,7 @@
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    width: 93%;
+    width: 100%;
 }
 
 .bottom-bar {
@@ -188,15 +188,22 @@
     margin-top: -10px;
 }
 
+
+/* .no-right-margin {
+    margin-right: 0px;
+} */
+
 .day-to-night-secion {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 40px;
 }
 
 .contacts {
     display: flex;
     align-items: center;
+    margin-left: 70px;
 }
 
 .contacts img {
