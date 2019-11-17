@@ -40,7 +40,6 @@
                 </div>
             </div>
         </div>
-
         <router-link :to="{name: 'Login'}">
             <div class="top-button">
                 <img src="/static/homePage/user.svg">

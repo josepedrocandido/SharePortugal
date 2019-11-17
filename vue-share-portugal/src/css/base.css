@@ -25,4 +25,5 @@ a,
 a:hover {
     color: transparent;
     text-decoration: none;
+    z-index: 2;
 }

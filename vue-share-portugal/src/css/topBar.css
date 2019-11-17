@@ -11,6 +11,7 @@
     align-items: center;
     padding: 25px 25px;
     transition: 0.4s;
+    z-index: 2;
 }
 
 .top-button img {
