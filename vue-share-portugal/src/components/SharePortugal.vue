@@ -29,14 +29,14 @@
                 <img src="/static/homePage/madeira.png" class="city-image">
                 <div class="madeira-city">
                     <h4>Madeira</h4>
-                    <p>Come and meet the local people of Madeira, their stories and their land.</p>
+                    <p>In the middle of the Atlantic, the islands of Madeira and Porto Santo are a haven of natural beauty. Come discover the locals of these islands that sit between the blue of the sea and the emerald green of the vegetation!</p>
                 </div>
             </div>
             <div class="city-picker city-picker-disabled">
                 <img src="/static/homePage/lisbon.png" class="city-image">
                 <div class="lisboa-city">
                     <h4>Lisboa</h4>
-                    <p>Come and meet the local people of Lisboa, their stories and their land.</p>
+                    <p>The city of the seven hills and the gateway to continental Europe. The self-pronounced ‘alfacinhas’ have a lot to show you in Europe’s sunniest capital. Join them in discovering all the hidden treasures of this beautiful city!</p>
                 </div>
             </div>
         </div>

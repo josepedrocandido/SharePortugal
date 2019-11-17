@@ -11,6 +11,10 @@
     cursor: pointer;
 }
 
+.city-picker p {
+    width: 30vw;
+}
+
 .city-picker-disabled,
 .city-picker-disabled:hover {
     opacity: 0.3;
