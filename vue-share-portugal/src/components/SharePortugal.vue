@@ -2,37 +2,49 @@
 @import '../css/base.css';
 @import '../css/homePage.css';
 @import '../css/colors.css';
+@import '../css/topBar.css';
+@import '../css/popup.css';
+@import '../css/windowsPositions.css';
 </style>
 
 <template>
 <div>
-    <div class="topBar">
-        <div class="hamburguer-menu">
-            <div id="menuToggle">
-                <input type="checkbox" />
-                <span></span>
-                <span></span>
-                <span></span>
-                <ul id="menu" class="white-color">
-                    <li class="city-menu city-hover">
-                        <img src="/static/homePage/madeira.png" class="city-image">
-                        <div>
-                            <h4>Madeira</h4>
-                            <p>Come and meet the local people of Madeira, their stories and their land.</p>
-                        </div>
-                    </li>
-                    <li class="city-menu" style="opacity:0.3;">
-                        <img src="/static/homePage/lisbon.png" class="city-image">
-                        <div>
-                            <h4>Lisboa</h4>
-                            <p>Come and meet the local people of Lisboa, their stories and their land.</p>
-                        </div>
-                    </li>
-                </ul>
+    <div class="top-bar">
+        <div @click="popup = !popup" v-if="!popup" class="top-button">
+            <img src="/static/homePage/pin.svg">
+            <h5>Madeira</h5>
+        </div>
+        <div v-if="popup" class="popup">
+            <div class="top-popup-bar">
+                <div class="top-button top-button-no-hover">
+                    <img src="/static/homePage/pinColored.svg">
+                    <h5 class="top-button-active">Madeira</h5>
+                </div>
+                <div @click="popup = !popup" class="top-button">
+                    <img style="height:25px;margin:0;" src="/static/homePage/close.svg">
+                </div>
+            </div>
+
+            <div @click="popup = !popup" class="city-picker">
+                <img src="/static/homePage/madeira.png" class="city-image">
+                <div class="madeira-city">
+                    <h4>Madeira</h4>
+                    <p>Come and meet the local people of Madeira, their stories and their land.</p>
+                </div>
+            </div>
+            <div class="city-picker city-picker-disabled">
+                <img src="/static/homePage/lisbon.png" class="city-image">
+                <div class="lisboa-city">
+                    <h4>Lisboa</h4>
+                    <p>Come and meet the local people of Lisboa, their stories and their land.</p>
+                </div>
             </div>
         </div>
         <router-link :to="{name: 'Login'}">
-            <button id="loginButton" type="button" class="btn btn-light">Login</button>
+            <div class="top-button">
+                <img src="/static/homePage/user.svg">
+                <h5>Login</h5>
+            </div>
         </router-link>
     </div>
 
@@ -43,14 +55,6 @@
         <div v-if="!day" class="background night-background"></div>
     </transition>
 
-    <div id="div-vue-bar">
-        <VueSlideBar v-model="value2" :min="slider.minValue" :max="slider.maxValue" :processStyle="slider.processStyle" :lineHeight="slider.lineHeight" :speed="0.1" :tooltipStyles="{ backgroundColor: 'tomato', borderColor: 'tomato' }" @dragEnd="dragEnd" @dragStart="dragStart" @input="input">
-            <template slot="tooltip" slot-scope="tooltip">
-                <img id="tooltip" src="/static/homePage/location.svg">
-            </template>
-        </VueSlideBar>
-    </div>
-
     <div class="center" id="content" ref="content">
         <transition name="fade">
             <img v-if="day" class="img-buildings" src="/static/homePage/buildingsDay.png">
@@ -59,36 +63,77 @@
             <img v-if="!day" class="img-buildings" src="/static/homePage/buildingsNight.png">
         </transition>
         <router-link v-if="image1" :to="{name: 'Room', params: { _id: image1._id }}">
-            <img :src="image1.localImage" id="img1">
+            <img :src="image1.localImage" id="img1" class="windows">
         </router-link>
         <router-link v-if="image2" :to="{name: 'Room', params: { _id: image2._id }}">
-            <img :src="image2.localImage" id="img2">
+            <img :src="image2.localImage" id="img2" class="windows">
         </router-link>
         <router-link v-if="image3" :to="{name: 'Room', params: { _id: image3._id }}">
-            <img :src="image3.localImage" id="img3">
+            <img :src="image3.localImage" id="img3" class="windows">
         </router-link>
         <router-link v-if="image4" :to="{name: 'Room', params: { _id: image4._id }}">
-            <img :src="image4.localImage" id="img4">
+            <img :src="image4.localImage" id="img4" class="windows">
         </router-link>
         <router-link v-if="image5" :to="{name: 'Room', params: { _id: image5._id }}">
-            <img :src="image5.localImage" id="img5">
+            <img :src="image5.localImage" id="img5" class="windows">
         </router-link>
         <router-link v-if="image6" :to="{name: 'Room', params: { _id: image6._id }}">
-            <img :src="image6.localImage" id="img6">
+            <img :src="image6.localImage" id="img6" class="windows">
         </router-link>
         <router-link v-if="image7" :to="{name: 'Room', params: { _id: image7._id }}">
-            <img :src="image7.localImage" id="img7">
+            <img :src="image7.localImage" id="img7" class="windows">
         </router-link>
         <router-link v-if="image8" :to="{name: 'Room', params: { _id: image8._id }}">
-            <img :src="image8.localImage" id="img8">
+            <img :src="image8.localImage" id="img8" class="windows">
         </router-link>
-    </div>
+        <router-link v-if="image9" :to="{name: 'Room', params: { _id: image9._id }}">
+            <img :src="image9.localImage" id="img9" class="windows">
+        </router-link>
+        <router-link v-if="image10" :to="{name: 'Room', params: { _id: image10._id }}">
+            <img :src="image10.localImage" id="img10" class="windows">
+        </router-link>
+        <router-link v-if="image11" :to="{name: 'Room', params: { _id: image11._id }}">
+            <img :src="image11.localImage" id="img11" class="windows">
+        </router-link>
+        <router-link v-if="image12" :to="{name: 'Room', params: { _id: image12._id }}">
+            <img :src="image12.localImage" id="img12" class="windows">
+        </router-link>
+        <router-link v-if="image13" :to="{name: 'Room', params: { _id: image13._id }}">
+            <img :src="image13.localImage" id="img13" class="windows">
+        </router-link>
+        <router-link v-if="image14" :to="{name: 'Room', params: { _id: image14._id }}">
+            <img :src="image14.localImage" id="img14" class="windows">
+        </router-link>
+        <router-link v-if="image15" :to="{name: 'Room', params: { _id: image15._id }}">
+            <img :src="image15.localImage" id="img15" class="windows">
+        </router-link>
+        <router-link v-if="image16" :to="{name: 'Room', params: { _id: image16._id }}">
+            <img :src="image16.localImage" id="img16" class="windows">
+        </router-link>
 
-    <transition name="fade"><img v-if="day" class="sun" src="/static/homePage//sun.svg"></transition>
-    <transition name="fade"><img v-if="!day" class="sun" src="/static/homePage/sunGrey.svg"></transition>
-    <toggle-button id="toggleButton" v-model="day" :value="true" :speed="3500" :color="{checked: 'tomato', unchecked: '#299578'}" :height="17" />
-    <transition name="fade"><img v-if="!day" class="moon" src="/static/homePage/moon.svg"></transition>
-    <transition name="fade"><img v-if="day" class="moon" src="/static/homePage/moonGrey.svg"></transition>
+    </div>
+    <div class="bottom-menu">
+        <div class="bottom-bar">
+            <div class="contacts">
+                <a href="https://github.com/josepedrocandido/SharePortugal" target="_blank"><img src="/static/homePage/github.svg"></a>
+                <router-link :to="{name: 'Login'}"><a href="">More about the project</a></router-link>
+            </div>
+            <div id="div-vue-bar">
+                <VueSlideBar v-model="value2" :min="slider.minValue" :max="slider.maxValue" :processStyle="slider.processStyle" :lineHeight="slider.lineHeight" :speed="0.1" :tooltipStyles="{ backgroundColor: 'tomato', borderColor: 'tomato' }" @dragEnd="dragEnd" @dragStart="dragStart" @input="input">
+                    <template slot="tooltip" slot-scope="tooltip">
+                        <img id="tooltip" src="/static/homePage/location.svg">
+                    </template>
+                </VueSlideBar>
+            </div>
+            <div class="day-to-night-secion">
+                <img v-if="!day" class="sun-night-icon" src="/static/homePage/moon.svg">
+                <img v-if="day" class="sun-night-icon" src="/static/homePage/moonGrey.svg">
+                <toggle-button id="toggleButton" v-model="day" :value="true" :speed="3500" :color="{checked: 'tomato', unchecked: '#299578'}" :height="17" />
+                <img v-if="day" class="sun-night-icon" src="/static/homePage//sun.svg">
+                <img v-if="!day" class="sun-night-icon" src="/static/homePage/sunGrey.svg">
+            </div>
+        </div>
+    </div>
 </div>
 </template>
 
@@ -127,9 +172,18 @@ export default {
             image6: "",
             image7: "",
             image8: "",
+            image9: "",
+            image10: "",
+            image11: "",
+            image12: "",
+            image13: "",
+            image14: "",
+            image15: "",
+            image16: "",
             getUsersLink: rootLink + 'locals',
             day: true,
-            teste: ""
+            teste: "",
+            popup: false
         };
     },
 
@@ -140,10 +194,17 @@ export default {
             } else {
                 this.slider.processStyle.backgroundColor = "#299578";
             }
-        }
+        },
+
     },
 
     methods: {
+
+        openPopup: function (event) {
+            if (this.popup) {
+                this.popup = false;
+            } else this.popup = true;
+        },
         scrollTo(element, scrollPixels, duration) {
             const scrollPos = element.scrollLeft;
             // Condition to check if scrolling is required
@@ -243,6 +304,30 @@ export default {
                     }
                     if (res[7]) {
                         vm.image8 = res[7];
+                    }
+                    if (res[8]) {
+                        vm.image9 = res[8];
+                    }
+                    if (res[9]) {
+                        vm.image10 = res[9];
+                    }
+                    if (res[10]) {
+                        vm.image11 = res[10];
+                    }
+                    if (res[11]) {
+                        vm.image12 = res[11];
+                    }
+                    if (res[12]) {
+                        vm.image13 = res[12];
+                    }
+                    if (res[13]) {
+                        vm.image14 = res[13];
+                    }
+                    if (res[14]) {
+                        vm.image15 = res[14];
+                    }
+                    if (res[15]) {
+                        vm.image16 = res[15];
                     }
                 }
             });

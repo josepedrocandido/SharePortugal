@@ -1,0 +1,88 @@
+.windows {
+    position: absolute;
+    height: 44px;
+}
+
+.windows:hover {
+    transform: scale(2);
+}
+
+#img1 {
+    top: 215px;
+    left: 689px;
+}
+
+#img2 {
+    top: 215px;
+    left: 761px;
+}
+
+#img3 {
+    top: 215px;
+    left: 887px;
+}
+
+#img4 {
+    top: 215px;
+    left: 1014px;
+}
+
+#img5 {
+    top: 215px;
+    left: 1086px;
+}
+
+#img6 {
+    top: 222px;
+    left: 1462px;
+}
+
+#img7 {
+    top: 222px;
+    left: 1546px;
+}
+
+#img8 {
+    top: 222px;
+    left: 1630px;
+}
+
+#img9 {
+    top: 215px;
+    left: 2697px;
+}
+
+#img10 {
+    top: 215px;
+    left: 2769px;
+}
+
+#img11 {
+    top: 215px;
+    left: 2895px;
+}
+
+#img12 {
+    top: 215px;
+    left: 3021px;
+}
+
+#img13 {
+    top: 215px;
+    left: 3094px;
+}
+
+#img14 {
+    top: 222px;
+    left: 3470px;
+}
+
+#img15 {
+    top: 222px;
+    left: 3554px;
+}
+
+#img16 {
+    top: 222px;
+    left: 3637px;
+}
