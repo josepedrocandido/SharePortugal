@@ -8,7 +8,6 @@
 
 <template>
 <div>
-
     <div class="top-bar">
         <div @click="popup = !popup" v-if="!popup" class="top-button">
             <img src="/static/homePage/pin.svg">
@@ -41,6 +40,7 @@
             </div>
         </div>
 
+       
         <router-link :to="{name: 'Login'}">
             <div class="top-button">
                 <img src="/static/homePage/user.svg">
@@ -55,14 +55,6 @@
     <transition name="fade">
         <div v-if="!day" class="background night-background"></div>
     </transition>
-
-    <div id="div-vue-bar">
-        <VueSlideBar v-model="value2" :min="slider.minValue" :max="slider.maxValue" :processStyle="slider.processStyle" :lineHeight="slider.lineHeight" :speed="0.1" :tooltipStyles="{ backgroundColor: 'tomato', borderColor: 'tomato' }" @dragEnd="dragEnd" @dragStart="dragStart" @input="input">
-            <template slot="tooltip" slot-scope="tooltip">
-                <img id="tooltip" src="/static/homePage/location.svg">
-            </template>
-        </VueSlideBar>
-    </div>
 
     <div class="center" id="content" ref="content">
         <transition name="fade">
@@ -96,12 +88,28 @@
             <img :src="image8.localImage" id="img8">
         </router-link>
     </div>
-
-    <transition name="fade"><img v-if="day" class="sun" src="/static/homePage//sun.svg"></transition>
-    <transition name="fade"><img v-if="!day" class="sun" src="/static/homePage/sunGrey.svg"></transition>
-    <toggle-button id="toggleButton" v-model="day" :value="true" :speed="3500" :color="{checked: 'tomato', unchecked: '#299578'}" :height="17" />
-    <transition name="fade"><img v-if="!day" class="moon" src="/static/homePage/moon.svg"></transition>
-    <transition name="fade"><img v-if="day" class="moon" src="/static/homePage/moonGrey.svg"></transition>
+    <div class="bottom-menu">
+        <div class="bottom-bar">
+            <div class="contacts">
+                <a href="https://github.com/josepedrocandido/SharePortugal" target="_blank"><img src="/static/homePage/github.svg"></a>
+                 <router-link :to="{name: 'Login'}"><a href="">Learn More</a></router-link>
+            </div>
+            <div id="div-vue-bar">
+                <VueSlideBar v-model="value2" :min="slider.minValue" :max="slider.maxValue" :processStyle="slider.processStyle" :lineHeight="slider.lineHeight" :speed="0.1" :tooltipStyles="{ backgroundColor: 'tomato', borderColor: 'tomato' }" @dragEnd="dragEnd" @dragStart="dragStart" @input="input">
+                    <template slot="tooltip" slot-scope="tooltip">
+                        <img id="tooltip" src="/static/homePage/location.svg">
+                    </template>
+                </VueSlideBar>
+            </div>
+            <div class="day-to-night-secion">
+                <img v-if="!day" class="sun-night-icon" src="/static/homePage/moon.svg">
+                <img v-if="day" class="sun-night-icon" src="/static/homePage/moonGrey.svg">
+                <toggle-button id="toggleButton" v-model="day" :value="true" :speed="3500" :color="{checked: 'tomato', unchecked: '#299578'}" :height="17" />
+                <img v-if="day" class="sun-night-icon" src="/static/homePage//sun.svg">
+                <img v-if="!day" class="sun-night-icon" src="/static/homePage/sunGrey.svg">
+            </div>
+        </div>
+    </div>
 </div>
 </template>
 
@@ -154,7 +162,9 @@ export default {
             } else {
                 this.slider.processStyle.backgroundColor = "#299578";
             }
-        }
+        },
+
+                
     },
 
     methods: {

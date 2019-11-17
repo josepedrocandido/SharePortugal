@@ -45,11 +45,12 @@
 }
 
 #div-vue-bar {
-    width: 30%;
-    position: absolute;
+    width: 30vw;
+    margin-bottom: 8px;
+    /* position: absolute;
     bottom: 3.5%;
     left: 29%;
-    z-index: 99999;
+    z-index: 99999; */
 }
 
 .center {
@@ -155,52 +156,59 @@
     transform: scale(2);
 }
 
-#toggleButton {
-    position: absolute;
-    bottom: 2.4%;
-    right: 29%;
-    z-index: 99999;
-}
-
 #tooltip {
     height: 70px;
     position: relative;
     bottom: 48px;
 }
 
-.sun {
-    position: absolute;
-    bottom: 2.5%;
-    right: 25.5%;
-    width: 35px;
-    height: 35px;
+#tooltip:hover {
+    opacity: 0.5;
 }
 
-.moon {
+.bottom-menu {
     position: absolute;
-    bottom: 2.5%;
-    left: 64.2%;
-    width: 35px;
-    height: 35px;
+    bottom: 2%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 93%;
 }
 
+.bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
 
-/* .lisbonText {
-    position: absolute;
-    bottom: 14%;
-    left: 35%;
-    width: 350px;
-    height: 150px;
-} */
+.sun-night-icon {
+    width: 35px;
+    height: 35px;
+    margin: 0px 20px;
+    margin-top: -10px;
+}
 
+.day-to-night-secion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-/*
- * Made by Erik Terwan
- * 24th of November 2015
- * MIT License
- *
- *
- * If you are thinking of using this in
- * production code, beware of the browser
- * prefixes.
- */
+.contacts {
+    display: flex;
+    align-items: center;
+}
+
+.contacts img {
+    height: 25px;
+    margin-right: 30px;
+}
+
+.contacts a {
+    color: black;
+}
+
+.contacts a:hover {
+    color: black;
+    opacity: 0.5;
+}
