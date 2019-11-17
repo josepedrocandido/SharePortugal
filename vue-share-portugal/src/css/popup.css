@@ -9,5 +9,5 @@
     flex-direction: column;
     background-color: white;
     border-radius: 8px;
-    z-index: 5;
+    z-index: 999999999999999999999;
 }
