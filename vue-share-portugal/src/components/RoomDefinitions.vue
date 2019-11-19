@@ -693,7 +693,7 @@ export default {
 
     createActivity() {
       var vm = this;
-      axios.post("http://localhost:3000/activities", {
+      axios.post("http://shareportugal.m-iti.org/api/activities", {
         localId: this.id,
         nameOfActivity: this.newActivityName,
         aboutActivity: this.newActivityInfo,
@@ -715,9 +715,9 @@ export default {
   },
 
   created() {
-    this.baseUrl = "http://localhost:3000/locals/";
-    this.roomstyleUrl = "http://localhost:3000/roomstyle/";
-    this.activityUrl = "http://localhost:3000/activities/";
+    this.baseUrl = "http://shareportugal.m-iti.org/api/locals/";
+    this.roomstyleUrl = "http://shareportugal.m-iti.org/api/roomstyle/";
+    this.activityUrl = "http://shareportugal.m-iti.org/api/activities/";
     this.id = this.$route.params._id;
     this.token = this.$route.params.token;
 

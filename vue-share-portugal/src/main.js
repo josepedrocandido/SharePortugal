@@ -13,7 +13,7 @@ Vue.component('VueSlideBar', VueSlideBar)
 Vue.use(BootstrapVue);
 
 
-export const rootLink = 'http://localhost:3000/'
+export const rootLink = 'http://shareportugal.m-iti.org/api/'
 
 
 Vue.use(BootstrapVue);
